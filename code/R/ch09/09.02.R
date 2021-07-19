@@ -23,4 +23,3 @@ my_model %>% predict(my_test,
 #>   setosa versicolor virginica
 #> 1      1 0.00000000 0.0000000
 #> 2      0 0.02173913 0.9782609
-

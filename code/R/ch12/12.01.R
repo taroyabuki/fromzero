@@ -22,4 +22,3 @@ seq(from = as.POSIXct("2021-01-01"), to = as.POSIXct("2021-01-03"), by = "1 day"
 seq(from = as.POSIXct("2021-01-01 00:00:00"),
     to   = as.POSIXct("2021-01-01 03:00:00"), by = "2 hour")
 #> [1] "2021-01-01 00:00:00 JST" "2021-01-01 02:00:00 JST"
-

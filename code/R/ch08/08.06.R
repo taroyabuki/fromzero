@@ -2,8 +2,8 @@
 
 library(caret)
 library(tidyverse)
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/wine.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
 my_data <- read_csv(my_url)
 
 ### 8.6.1 正則化の実践
@@ -79,4 +79,3 @@ my_model$results %>%
 #> 1     0 0.0595 0.3117092 ...
 
 ### 8.6.4 補足：RとPythonで結果を同じにする方法
-

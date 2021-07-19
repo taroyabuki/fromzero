@@ -2,8 +2,8 @@
 
 library(caret)
 library(tidyverse)
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/wine.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
 my_data <- read_csv(my_url)
 
 n <- nrow(my_data)
@@ -30,4 +30,3 @@ RMSE(y_, y)
 
 my_model2$results$RMSE
 #> [1] 0.3569918 # RMSE（検証）
-

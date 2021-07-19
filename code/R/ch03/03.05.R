@@ -80,4 +80,3 @@ my_df %>% proxy::simil("correlation")
 #>             A           B
 #> B  0.88249750            
 #> C -0.03266277  0.44124132
-

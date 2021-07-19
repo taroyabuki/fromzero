@@ -68,4 +68,3 @@ my_results %>%
   xlab("#Neighbors") + ylab("RMSE") +
   theme(legend.position = c(1, 0),
         legend.justification = c(1, 0))
-

@@ -18,13 +18,13 @@ my_model = KNeighborsRegressor()
 my_model.fit(X, y)
 
 # 可視化の準備
-tmp = pd.DataFrame({'speed':np.linspace(min(my_data.speed),
-                                        max(my_data.speed),
-                                        100)})
+tmp = pd.DataFrame({'speed': np.linspace(min(my_data.speed),
+                                         max(my_data.speed),
+                                         100)})
 tmp['model'] = my_model.predict(tmp)
 
 pd.concat([my_data, tmp]).plot(
-  x='speed', style=['o', '-'])
+    x='speed', style=['o', '-'])
 
 y_ = my_model.predict(X)
 
@@ -36,4 +36,3 @@ my_model.score(X, y)
 
 np.corrcoef(y, y_)[0, 1]**2
 #> 0.7380949412509705 # 決定係数6
-

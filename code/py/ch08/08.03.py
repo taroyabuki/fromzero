@@ -4,8 +4,8 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/wine.csv')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
 my_data = pd.read_csv(my_url)
 X, y = my_data.drop(columns=['LPRICE2']), my_data['LPRICE2']
 
@@ -34,4 +34,3 @@ pd.Series(my_lr.coef_,
 my_test = [[500, 17, 120, 2]]
 my_pipeline.predict(my_test)
 #> array([-1.49884253])
-

@@ -18,14 +18,13 @@ my_data.head()
 #> 5 -1.50926    420  16.1333 ...
 #> 6 -1.71655    582  16.4167 ...
 
-len(my_data)
-#> 27
+my_data.shape
+#> (27, 5)
 
 my_data.to_csv('wine.csv',
                index=False)
 
 #my_data = pd.read_csv('wine.csv') # 作ったファイルを使う場合
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/wine.csv')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
 my_data = pd.read_csv(my_url)
-

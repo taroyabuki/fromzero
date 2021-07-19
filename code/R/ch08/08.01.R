@@ -27,13 +27,12 @@ head(my_data)
 #> 7 -1.71655   582 16.4167 ...
 #> 8 -0.41800   485 17.4833 ...
 
-nrow(my_data)
-#> [1] 27
+dim(my_data)
+#> [1] 27  5
 
 my_data %>% write_csv("wine.csv")
 
 #my_data <- read_csv("wine.csv") # 作ったファイルを使う場合
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/wine.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
 my_data <- read_csv(my_url)
-

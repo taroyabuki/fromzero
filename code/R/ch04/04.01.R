@@ -20,7 +20,7 @@ var(x) # xの分散
 var(y) # yの分散
 #> [1] 2.5
 
-sum((x - mean(x))^2) / (n - 1) # 分散
+sum((x - mean(x))^2) / (n - 1)
 #> [1] 62.5
 
 sd(x) # xの標準偏差
@@ -49,24 +49,22 @@ quantile(x)
 #### 4.1.1.1 不偏分散とその非負の平方根
 
 x <- c(165, 170, 175, 180, 185)
-n <- length(x)
 
 var(x)                # 不偏分散
 #> [1] 62.5
 
-var(x) * (n - 1) / n  # 標本分散
-# あるいは
 mean((x - mean(x))^2) # 標本分散
+# あるいは
+n <- length(x)
+var(x) * (n - 1) / n  # 標本分散
 #> [1] 50
 
-# √不偏分散
-sd(x)
+sd(x)                     # √不偏分散
 #> [1] 7.905694
 
-# √標本分散
-sd(x) * sqrt((n - 1) / n)
+mean((x - mean(x))^2)^0.5 # √標本分散
 # あるいは
-mean((x - mean(x))^2)^0.5
+sd(x) * sqrt((n - 1) / n) # √標本分散
 #> [1] 7.071068
 
 sd(x) / length(x)**0.5
@@ -129,10 +127,12 @@ psych::describe(my_df)
 # あるいは
 
 pastecs::stat.desc(my_df)
-#>               english        math
-#> nbr.val     4.0000000   4.0000000
-#> nbr.null    0.0000000   0.0000000
-#> nbr.na      0.0000000   0.0000000
+#>          name     english ...
+#> nbr.val    NA   4.0000000 ...
+#> nbr.null   NA   0.0000000 ...
+#> nbr.na     NA   0.0000000 ...
+#> min        NA  60.0000000 ...
+#> max        NA  90.0000000 ...
 # 以下省略
 
 #### 4.1.2.2 分割表とグループごとの集計
@@ -162,4 +162,3 @@ my_df %>% group_by(gender) %>%
 #>   <chr>    <dbl> <dbl>
 #> 1 f           75    85
 #> 2 m           80    85
-

@@ -25,7 +25,7 @@ my_roc$auc
 
 ### 10.2.2 再現率と精度のトレードオフ（PR曲線）
 
-c(sum((y == 1) & (y_ == 1)) / sum(y  == 1), # Recall = TPR
+c(sum((y == 1) & (y_ == 1)) / sum(y  == 1), # Recall == TPR
   sum((y == 1) & (y_ == 1)) / sum(y_ == 1)) # Precision
 #> [1] 0.8000000 0.6666667
 
@@ -38,4 +38,3 @@ my_pr %>% plot(xlab = "Recall",
 
 my_pr$auc.integral
 #> [1] 0.8469525
-

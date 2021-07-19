@@ -7,10 +7,10 @@ library(tidyverse)
 my_data <- iris
 
 n <- nrow(my_data)
-my_data$Petal.Length[0:(n-1) %% 10 == 0] <- NA
-my_data$Petal.Width[ 0:(n-1) %% 10 == 1] <- NA
+my_data$Petal.Length[0:(n - 1) %% 10 == 0] <- NA
+my_data$Petal.Width[ 0:(n - 1) %% 10 == 1] <- NA
 
-psych::describe(my_data) # nの値が135の変数に，150-135=15個の欠損がある．
+psych::describe(my_data) # nの値が135の変数に，150 - 135 = 15個の欠損がある．
 #>              vars   n mean   sd median trimmed  mad min max range ...
 #> Sepal.Length    1 150 5.84 0.83    5.8    5.81 1.04 4.3 7.9   3.6 ...
 #> Sepal.Width     2 150 3.06 0.44    3.0    3.04 0.44 2.0 4.4   2.4 ...
@@ -38,4 +38,3 @@ my_model <- train(form = Species ~ ., data = my_data, method = "xgbTree",
                   trControl = trainControl(method = "cv", number = 5))
 max(my_model$results$Accuracy)
 #> [1] 0.966666666666667
-

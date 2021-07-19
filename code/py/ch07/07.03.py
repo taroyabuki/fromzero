@@ -48,11 +48,10 @@ my_model.predict(tmp)
 import numpy as np
 import pandas as pd
 
-tmp = pd.DataFrame({'speed':np.linspace(min(my_data.speed),
+tmp = pd.DataFrame({'speed': np.linspace(min(my_data.speed),
                                         max(my_data.speed),
                                         100)})
 tmp['model'] = my_model.predict(tmp)
 
 pd.concat([my_data, tmp]).plot(
-  x='speed', style=['o', '-'])
-
+    x='speed', style=['o', '-'])

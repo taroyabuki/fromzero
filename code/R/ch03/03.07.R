@@ -15,7 +15,7 @@ f1(10)           # 動作確認
 replicate(n = 3, expr = f1(10))
 #> [1] 0.4672766 0.4712016 0.5579449
 
-rep(x = f1(10), times=3)
+rep(x = f1(10), times = 3)
 #> [1] 0.481329 0.481329 0.481329
 
 ### 3.7.2 1次元データ→1次元データ
@@ -30,7 +30,7 @@ rep(x = 10, times = 3) %>% map_dbl(f1)
 ### 3.7.3 1次元データ→データフレーム
 
 f2 <- function(n) {
-  tmp = runif(n)
+  tmp <- runif(n)
   list(x = n,
        p = mean(tmp),
        q = sd(tmp))
@@ -80,8 +80,8 @@ f3(x = 10, y = 6) # 動作確認
 #> [1] 1.316561 （標準偏差の例）
 
 my_df <- data.frame(
-  x = c(5, 10, 100, 5, 10, 100),
-  y = c(6, 6, 6, 12, 12, 12))
+  x = c(5, 10, 100,  5, 10, 100),
+  y = c(6,  6,   6, 12, 12,  12))
 
 my_df %>% pmap_dfr(f3)
 #>       x     y     p     q
@@ -102,4 +102,3 @@ v <- c(5, 10, 100)
 v %>% future_map_dbl(f1, .options =
   furrr_options(seed = TRUE))
 # 結果は割愛
-

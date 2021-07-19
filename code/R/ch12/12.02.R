@@ -126,4 +126,3 @@ caret::RMSE(y_, y)
 my_prophet_model %>% plot(tmp) +
   geom_line(data = my_train, aes(x = as.POSIXct(ds))) +
   geom_line(data = my_test,  aes(x = as.POSIXct(ds)), color = "red")
-

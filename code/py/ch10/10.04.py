@@ -14,8 +14,8 @@ from sklearn.model_selection import cross_val_score, LeaveOneOut
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/titanic.csv')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/titanic.csv')
 my_data = pd.read_csv(my_url)
 
 X, y = my_data.iloc[:, 0:3], my_data.Survived
@@ -46,4 +46,3 @@ my_scores = cross_val_score(
     n_jobs=-1)
 my_scores.mean()
 #> 0.7782825988187188
-

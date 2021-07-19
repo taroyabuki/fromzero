@@ -30,4 +30,3 @@ my_pipeline = Pipeline([('sc', StandardScaler()),  # 標準化
 my_scores = cross_val_score(my_pipeline, X, y, cv=LeaveOneOut(), n_jobs=-1)
 my_scores.mean()
 #> 0.9533333333333334
-

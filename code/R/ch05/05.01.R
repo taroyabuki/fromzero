@@ -41,8 +41,9 @@ my_df2
 
 my_df %>% write_csv("exam2.csv")
 # あるいは
-my_df %>% write.csv(file = "exam2.csv",
-  row.names = FALSE) # 行名を出力しない．
+my_df %>% write.csv(
+  file = "exam2.csv",
+  row.names = FALSE)
 
 my_df2 %>% write.csv("exam3.csv")
 
@@ -84,10 +85,10 @@ tmp
 #> 5 NA    D      90  100      f
 
 # 1行目のデータを使って列の名前を付け直す．
-colnames(tmp) <- tmp[1,]
+colnames(tmp) <- tmp[1, ]
 
 # 1行目と1列目を削除する．
-my_data <- tmp[-1 ,-1]
+my_data <- tmp[-1, -1]
 my_data
 #>   name english math gender
 #> 2    A      60   70      f
@@ -100,9 +101,8 @@ my_data
 #### 5.1.4.1 JSONデータの読み込み
 
 library(jsonlite)
-
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/exam.json")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/exam.json")
 my_data <- fromJSON(my_url)
 #my_data <- fromJSON("exam.json") # （ファイルを使う場合）
 my_data
@@ -115,9 +115,8 @@ my_data
 #### 5.1.4.2 XMLデータの読み込み
 
 library(xml2)
-
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/exam.xml")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/exam.xml")
 my_xml <- read_xml(my_url)      # XMLデータの読み込み
 #my_xml <- read_xml("exam.xml") # （ファイルを使う場合）
 xml_ns(my_xml)                  # 名前空間の確認（d1）
@@ -143,4 +142,3 @@ my_data
 #> 2      90    80 m      B    
 #> 3      70    90 m      C    
 #> 4      90   100 f      D  
-

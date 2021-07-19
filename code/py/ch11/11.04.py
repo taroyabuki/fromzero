@@ -14,12 +14,12 @@ h2o.no_progress()
 
 ### 11.4.2 H2Oのデータフレーム
 
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/wine.csv')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
 my_data = pd.read_csv(my_url)
 my_frame = h2o.H2OFrame(my_data) # 通常のデータフレームをH2OFrameに変換する．
 # あるいは
-my_frame = h2o.import_file(my_url, header=1) # データを読み込む（1行目はラベル）．
+my_frame = h2o.import_file(my_url, header=1) # データを読み込む．
 
 my_frame.head(5)
 #>   LPRICE2    WRAIN    DEGREES  ...
@@ -49,8 +49,8 @@ tmp = h2o.as_list(
     my_model.predict(my_frame))
 
 pd.DataFrame({
-    'y':my_data['LPRICE2'],
-    'y_':tmp['predict']}
+    'y': my_data['LPRICE2'],
+    'y_': tmp['predict']}
 ).plot('y', 'y_', kind='scatter')
 
 ### 11.4.4 AutoMLによる分類
@@ -87,4 +87,3 @@ y_ = tmp.predict
 
 (y_ == y_test).mean()
 #> 0.938
-

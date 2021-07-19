@@ -31,18 +31,17 @@ X, y = my_data.iloc[:, 0:4], my_data.Species
 
 my_pipeline = Pipeline([
     ('imputer', SimpleImputer(strategy='median')), # 欠損を中央値で埋める．
-    ('tree', tree.DecisionTreeClassifier())])      # パラメータはデフォルトのまま
+    ('tree', tree.DecisionTreeClassifier(random_state=0))])
 my_scores = cross_val_score(my_pipeline, X, y, cv=LeaveOneOut(), n_jobs=-1)
 my_scores.mean()
 #> 0.9333333333333333
 
 ### 9.5.3 方針2：欠損があっても使える手法で学習する．
 
-warnings.simplefilter('ignore', UserWarning) # 警告を表示しない．
+warnings.simplefilter('ignore', UserWarning)  # これ以降，警告を表示しない．
 my_scores = cross_val_score(
     xgboost.XGBClassifier(eval_metric='mlogloss'), X, y, cv=5)
-warnings.simplefilter('default', UserWarning) # 警告を表示する．
+warnings.simplefilter('default', UserWarning) # これ以降，警告を表示する．
 
 my_scores.mean()
 #> 0.9666666666666668
-

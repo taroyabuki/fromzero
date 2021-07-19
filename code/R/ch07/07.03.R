@@ -51,4 +51,3 @@ my_data %>%
   stat_function(
     fun = f,
     mapping = aes(color = "model"))
-

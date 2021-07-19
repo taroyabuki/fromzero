@@ -8,8 +8,8 @@ from sklearn.model_selection import cross_val_score, LeaveOneOut
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/titanic.csv')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/titanic.csv')
 my_data = pd.read_csv(my_url)
 
 my_data.head()
@@ -28,7 +28,7 @@ X, y = my_data.iloc[:, 0:3], my_data.Survived
 
 my_pipeline = Pipeline([
     ('ohe', OneHotEncoder(drop='first')),
-    ('tree', tree.DecisionTreeClassifier(max_depth=2,
+    ('tree', tree.DecisionTreeClassifier(max_depth=2, random_state=0,
                                          min_impurity_decrease=0.01))])
 my_pipeline.fit(X, y)
 
@@ -56,7 +56,7 @@ my_scores.mean()
 
 tmp = pd.DataFrame(
     my_pipeline.predict_proba(X),
-    columns = my_pipeline.classes_)
+    columns=my_pipeline.classes_)
 y_score = tmp.Yes
 
 my_fpr, my_tpr, _ = roc_curve(y_true=y,
@@ -69,4 +69,3 @@ my_auc
 RocCurveDisplay(fpr=my_fpr, tpr=my_tpr, roc_auc=my_auc).plot()
 
 ### 10.3.5 補足：質的入力変数の扱い
-

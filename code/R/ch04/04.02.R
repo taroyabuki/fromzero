@@ -19,7 +19,7 @@ hist(x, breaks = 2) # 階級数は2
 x <- iris$Sepal.Length
 tmp <- seq(min(x), max(x),
            length.out = 10)
-hist(x, breaks=tmp, right=FALSE)
+hist(x, breaks = tmp, right = FALSE)
 
 ### 4.2.2 散布図
 
@@ -41,7 +41,7 @@ my_df %>% select(mean, sd, se)
 #> Petal.Length 3.76 1.77 0.14
 #> Petal.Width  1.20 0.76 0.06
 
-tmp = rownames(my_df)
+tmp <- rownames(my_df)
 my_df %>% ggplot(aes(x = factor(tmp, levels = tmp), y = mean)) +
   geom_col() +
   geom_errorbar(aes(ymin = mean - se, ymax = mean + se)) +
@@ -57,7 +57,7 @@ tmp <- my_group %>%                          # 標準誤差を求める．
   summarize(across(everything(), ~ sd(.) / length(.)**0.5)) %>%
   pivot_longer(-Species)
 
-my_df$se = tmp$value
+my_df$se <- tmp$value
 head(my_df)
 #> # A tibble: 6 x 4
 #>   Species    name         value     se
@@ -84,7 +84,7 @@ iris %>% pivot_longer(-Species) %>%
 # 各変数の平均（品種ごと）
 iris %>% pivot_longer(-Species) %>%
   ggplot(aes(x = Species, y = value, fill = name)) +
-  geom_bar(stat = "summary", fun = mean, position="dodge") +
+  geom_bar(stat = "summary", fun = mean, position = "dodge") +
   stat_summary(geom = "errorbar", fun.data = mean_se, position = "dodge")
 
 ### 4.2.5 モザイクプロット
@@ -149,4 +149,3 @@ f <- function(x) { x^3 - x }
 data.frame(x = c(-2, 2)) %>%
   ggplot(aes(x = x)) +
   stat_function(fun = f)
-

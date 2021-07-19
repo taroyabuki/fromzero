@@ -15,8 +15,8 @@ my_df
 #> 2    C       70    90      m
 #> 3    D       90   100      f
 
-my_url = ('https://raw.githubusercontent.com/taroyabuki/'
-          'fromzero/master/data/exam.csv')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/exam.csv')
 my_df = pd.read_csv(my_url)
 
 my_df2 = pd.read_csv('exam.csv',
@@ -31,8 +31,7 @@ my_df2
 
 #### 5.1.1.2 CSVファイルへの書き出し
 
-my_df.to_csv('exam2.csv',
-    index=False) # 行名を出力しない．
+my_df.to_csv('exam2.csv', index=False)
 
 my_df2.to_csv('exam3.csv')
 
@@ -75,8 +74,8 @@ my_data
 
 #### 5.1.4.1 JSONデータの読み込み
 
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/exam.json')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/exam.json')
 my_data = pd.read_json(my_url)
 #my_data = pd.read_json('exam.json') # （ファイルを使う場合）
 my_data
@@ -91,8 +90,8 @@ my_data
 import xml.etree.ElementTree as ET
 from urllib.request import urlopen
 
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/exam.xml')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/exam.xml')
 with urlopen(my_url) as f:
     my_tree = ET.parse(f)       # XMLデータの読み込み
 
@@ -104,7 +103,7 @@ my_records = my_tree.findall(f'.//{my_ns}record')
 def f(record):
     my_dic1 = record.attrib # 属性を取り出す．
     # 子要素の名前と内容のペアを辞書にする．
-    my_dic2 = {child.tag.replace(my_ns, ''):child.text for child in list(record)}
+    my_dic2 = {child.tag.replace(my_ns, ''): child.text for child in list(record)}
     return {**my_dic1, **my_dic2} # 辞書を結合する．
 
 my_data = pd.DataFrame([f(record) for record in my_records])
@@ -116,4 +115,3 @@ my_data
 #> 1       90    80      m    B
 #> 2       70    90      m    C
 #> 3       90   100      f    D
-

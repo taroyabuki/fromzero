@@ -93,5 +93,4 @@ os.getcwd()
 
 os.chdir('..')
 os.getcwd()
-#> '/home/jovyan/work'
-
+#> '/home/jovyan'

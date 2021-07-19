@@ -27,7 +27,7 @@ my_model.compile(loss='sparse_categorical_crossentropy',
 
 my_cb = callbacks.EarlyStopping(
     patience=20,
-    restore_best_weights = True)
+    restore_best_weights=True)
 
 my_history = my_model.fit(
     x=X,
@@ -36,7 +36,7 @@ my_history = my_model.fit(
     batch_size=10,
     epochs=500,
     callbacks=[my_cb],
-    verbose = 0)
+    verbose=0)
 
 tmp = pd.DataFrame(my_history.history)
 tmp.plot(xlabel='epoch')
@@ -73,4 +73,3 @@ y_2 = [[0.1, 0.2, 0.7],
 [losses.sparse_categorical_crossentropy(y_true=y, y_pred=y_1).numpy().mean(),
  losses.sparse_categorical_crossentropy(y_true=y, y_pred=y_2).numpy().mean()]
 #> [0.5017337, 0.70840335]
-

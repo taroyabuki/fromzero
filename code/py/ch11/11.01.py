@@ -7,8 +7,8 @@ from keras import activations, callbacks, layers, models
 from sklearn.preprocessing import StandardScaler
 from sklearn.utils import shuffle
 
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/wine.csv')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
 tmp = pd.read_csv(my_url)
 
 my_data = shuffle(tmp)
@@ -46,7 +46,7 @@ my_model.compile(
 
 my_cb = callbacks.EarlyStopping(
     patience=20,
-    restore_best_weights = True)
+    restore_best_weights=True)
 
 my_history = my_model.fit(
     x=X,
@@ -68,4 +68,3 @@ tmp.iloc[-1, ]
 y_ = my_model.predict(X)
 ((y_.ravel() - y)**2).mean()
 #> 0.23050613964540986
-

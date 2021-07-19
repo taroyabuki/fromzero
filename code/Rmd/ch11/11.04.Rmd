@@ -15,12 +15,12 @@ h2o.no_progress()
 ### 11.4.2 H2Oのデータフレーム
 
 ```{r}
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/wine.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
 my_data <- read_csv(my_url)
 my_frame <- as.h2o(my_data) # 通常のデータフレームをH2OFrameに変換する．
 # あるいは
-my_frame <- h2o.importFile(my_url, header = TRUE) # データを読み込む（1行目はラベル）．
+my_frame <- h2o.importFile(my_url, header = TRUE) # データを読み込む．
 ```
 
 ```{r}

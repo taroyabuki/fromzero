@@ -17,9 +17,9 @@ my_ds = pd.date_range(
     end='1960/12/01',
     freq='MS')
 my_df = pd.DataFrame({
-    'ds':my_ds,
-    'x':range(n),
-    'y':my_data},
+    'ds': my_ds,
+    'x': range(n),
+    'y': my_data},
     index=my_ds)
 my_df.head()
 #>                    ds  x      y
@@ -70,6 +70,7 @@ my_arima_model = pm.auto_arima(my_train.y, m=12, trace=True)
 #### 12.2.3.2 予測
 
 y_, my_ci = my_arima_model.predict(len(my_test),         # 期間はテストデータと同じ．
+                                   alpha=0.05,           # 有意水準（デフォルト）
                                    return_conf_int=True) # 信頼区間を求める．
 tmp = pd.DataFrame({'y': y_,
                     'Lo': my_ci[:, 0],
@@ -92,7 +93,7 @@ plt.plot(tmp.y,      label='model')
 plt.fill_between(tmp.index,
                  tmp.Lo,
                  tmp.Hi,
-                 alpha=0.25)
+                 alpha=0.25) # 不透明度
 plt.legend(loc='upper left')
 
 ### 12.2.4 Prophetによる時系列予測
@@ -118,5 +119,4 @@ mean_squared_error(y, y_)**0.5
 
 fig = my_prophet_model.plot(tmp)
 fig.axes[0].plot(my_train.ds, my_train.y)
-fig.axes[0].plot(my_test.ds, my_test.y, color = 'red')
-
+fig.axes[0].plot(my_test.ds, my_test.y, color='red')

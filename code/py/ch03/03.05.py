@@ -66,16 +66,15 @@ distance.cdist(my_df, my_df,
 #>        [31., 49.,  0.]])
 
 # コサイン類似度
-1 - distance.cdist(
-    my_df, my_df, metric='cosine')
+1 - distance.cdist(my_df, my_df,
+    metric='cosine')
 #> array([[ 1.   ,  0.817, -0.033],
 #>        [ 0.817,  1.   ,  0.293],
 #>        [-0.033,  0.293,  1.   ]])
 
 # 相関係数
-1 - distance.cdist(
-    my_df, my_df, metric='correlation')
+1 - distance.cdist(my_df, my_df,
+    metric='correlation')
 #> array([[ 1.   ,  0.882, -0.033],
 #>        [ 0.882,  1.   ,  0.441],
 #>        [-0.033,  0.441,  1.   ]])
-

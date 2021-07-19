@@ -12,7 +12,7 @@ my_data = pd.DataFrame(
 
 my_result = hierarchy.linkage(
     my_data,
-    metric='euclidean',
+    metric='euclidean', # 省略可
     method='complete')
 
 hierarchy.dendrogram(my_result,
@@ -34,8 +34,7 @@ my_data = pd.DataFrame(
      'society':  [  0,  20,  30,   0,  21,  17]},
     index=       ['A', 'B', 'C', 'D', 'E', 'F'])
 
-sns.clustermap(my_data,
-               z_score=1) # 列ごとの標準化
+sns.clustermap(my_data, z_score=1) # 列ごとの標準化
 
 ### 13.2.3 非階層的クラスタ分析
 
@@ -95,4 +94,3 @@ sns.scatterplot(x='PC1', y='PC2', data=my_result, legend=False,
                 hue='cluster',   # 色でクラスタを表現する．
                 style='Species', # 形で品種を表現する．
                 palette='bright')
-

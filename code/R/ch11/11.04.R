@@ -12,12 +12,12 @@ h2o.no_progress()
 
 ### 11.4.2 H2Oのデータフレーム
 
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/wine.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
 my_data <- read_csv(my_url)
 my_frame <- as.h2o(my_data) # 通常のデータフレームをH2OFrameに変換する．
 # あるいは
-my_frame <- h2o.importFile(my_url, header = TRUE) # データを読み込む（1行目はラベル）．
+my_frame <- h2o.importFile(my_url, header = TRUE) # データを読み込む．
 
 my_frame
 #>    LPRICE2 WRAIN DEGREES HRAIN ...
@@ -85,4 +85,3 @@ y_ <- tmp$predict
 
 mean(y_ == y_test)
 #> [1] 0.9306
-

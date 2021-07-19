@@ -2,8 +2,8 @@
 
 ### 8.7.1 ニューラルネットワークとは何か
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 x = np.linspace(-6, 6, 100)
 y = 1 / (1 + np.exp(-x))
 plt.plot(x, y)
@@ -18,19 +18,19 @@ from sklearn.model_selection import cross_val_score, GridSearchCV, LeaveOneOut
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/wine.csv')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
 my_data = pd.read_csv(my_url)
 X, y = my_data.drop(columns=['LPRICE2']), my_data['LPRICE2']
 
-warnings.simplefilter("ignore", ConvergenceWarning)  # 警告を表示しない．
+warnings.simplefilter("ignore", ConvergenceWarning)  # これ以降，警告を表示しない．
 my_pipeline = Pipeline([('sc', StandardScaler()),    # 標準化
                         ('mlp', MLPRegressor())])    # ニューラルネットワーク
 my_pipeline.fit(X, y)                                # 訓練
 
 my_scores = cross_val_score(my_pipeline, X, y, cv=LeaveOneOut(),
                             scoring='neg_mean_squared_error')
-warnings.simplefilter("default", ConvergenceWarning) # 警告を表示する．
+warnings.simplefilter("default", ConvergenceWarning) # これ以降，警告を表示する．
 
 (-my_scores.mean())**0.5
 #> 0.41735891601426384
@@ -56,4 +56,3 @@ my_search.best_params_               # 最良パラメータ
 
 (-my_search.best_score_)**0.5
 #> 0.3759690731968538
-

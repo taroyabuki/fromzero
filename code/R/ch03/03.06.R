@@ -5,4 +5,3 @@
 library(tidyverse)
 
 ### 3.6.2 Pythonのモジュール
-

@@ -61,8 +61,7 @@ my_model.compile(loss='sparse_categorical_crossentropy',
                  optimizer='rmsprop',
                  metrics=['accuracy'])
 
-my_cb = callbacks.EarlyStopping(patience=5,
-                                restore_best_weights = True)
+my_cb = callbacks.EarlyStopping(patience=5, restore_best_weights=True)
 
 my_history = my_model.fit(
     x=x_train,
@@ -108,8 +107,8 @@ x_test2d = x_test.reshape(-1, 28, 28, 1)
 
 my_model = models.Sequential()
 my_model.add(layers.Conv2D(filters=32, kernel_size=3, # 畳み込み層
-                    activation='relu',
-                    input_shape=[28, 28, 1]))
+                           activation='relu',
+                           input_shape=[28, 28, 1]))
 my_model.add(layers.MaxPooling2D(pool_size=2))        # プーリング層
 my_model.add(layers.Flatten())
 my_model.add(layers.Dense(128, activation='relu'))
@@ -135,9 +134,9 @@ my_model.summary()
 #> Non-trainable params: 0
 #> _________________________________________________________________
 
-my_model.compile(loss = 'sparse_categorical_crossentropy',
-                 optimizer = 'rmsprop',
-                 metrics = ['accuracy'])
+my_model.compile(loss='sparse_categorical_crossentropy',
+                 optimizer='rmsprop',
+                 metrics=['accuracy'])
 
 from keras.callbacks import EarlyStopping
 my_cb = EarlyStopping(patience=5,
@@ -173,9 +172,9 @@ my_model.add(layers.Dense(500, activation='relu'))
 my_model.add(layers.Dropout(rate=0.5))
 my_model.add(layers.Dense(10, activation='softmax'))
 
-my_model.compile(loss = 'sparse_categorical_crossentropy',
-                 optimizer = 'rmsprop',
-                 metrics = ['accuracy'])
+my_model.compile(loss='sparse_categorical_crossentropy',
+                 optimizer='rmsprop',
+                 metrics=['accuracy'])
 
 my_cb = callbacks.EarlyStopping(patience=5,
                                 restore_best_weights = True)
@@ -208,6 +207,7 @@ tmp = pd.DataFrame({
 
 tmp = tmp[tmp.y_ != tmp.y]                             # 予測がはずれたものを残す
 my_result = tmp.sort_values('y_prob', ascending=False) # 確率の大きい順に並び替える
+
 my_result.head()
 #>         y_prob  y_  y    id
 #> 2654  0.999997   1  6  2654
@@ -223,4 +223,3 @@ for i in range(5):
     plt.title(f'{ans} ({id})')
     plt.imshow(x_test[id])
     plt.axis('off')
-

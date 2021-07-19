@@ -72,9 +72,7 @@ my_scores = cross_val_score(my_model, X, y,
 -my_scores.mean()
 #> 15.301860331378464  # RMSE（検証）
 
-my_scores = cross_val_score(my_model, X, y)
-# あるいは
-my_scores = cross_val_score(my_model, X, y, scoring='r2')
+my_scores = cross_val_score(my_model, X, y, scoring='r2') # scoring='r2'は省略可
 my_scores.mean()
 #> 0.49061365458235245 # 決定係数1（検証）
 
@@ -122,8 +120,8 @@ my_knn_socres = cross_val_score(
 #> 16.07308308943869 # K最近傍法
 
 my_df = pd.DataFrame({
-    'lm':-my_lm_scores,
-    'knn':-my_knn_socres})
+    'lm': -my_lm_scores,
+    'knn': -my_knn_socres})
 my_df.head()
 #>            lm     knn
 #> 0   18.913720  108.16
@@ -139,6 +137,5 @@ d = DescrStatsW(my_df.lm - my_df.knn)
 d.ttest_mean()[1] # p値
 #> 0.6952755720536115
 
-d.tconfint_mean(alpha = 0.05, alternative='two-sided') # 信頼区間
+d.tconfint_mean(alpha=0.05, alternative='two-sided') # 信頼区間
 #> (-72.8275283312228, 48.95036023665703)
-

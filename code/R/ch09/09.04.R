@@ -46,4 +46,3 @@ my_model$results %>% filter(Accuracy == max(Accuracy)) %>% head(5) %>% t
 
 my_model <- train(form = Species ~ ., data = my_data, method = "rf")
 ggplot(varImp(my_model))
-

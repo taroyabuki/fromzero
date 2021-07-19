@@ -9,10 +9,10 @@ from sklearn.model_selection import GridSearchCV, LeaveOneOut
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from scipy.stats import zscore
-warnings.simplefilter('ignore', ConvergenceWarning) # 警告を表示しない．
+warnings.simplefilter('ignore', ConvergenceWarning) # これ以降，警告を表示しない．
 
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/wine.csv')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
 my_data = pd.read_csv(my_url)
 X, y = my_data.drop(columns=['LPRICE2']), my_data['LPRICE2']
 
@@ -57,8 +57,8 @@ _, my_path, _ = enet_path(
 
 pd.DataFrame(
     my_path.T,
-    columns = X.columns,
-    index = np.log(As)
+    columns=X.columns,
+    index=np.log(As)
 ).plot(
     xlabel='log A ( = log alpha)',
     ylabel='Coefficients')
@@ -96,4 +96,3 @@ my_results.plot(style='o-', xlabel='A ( = alpha)', ylabel='RMSE').legend(
 #> 0.31945619679509646
 
 ### 8.6.4 補足：RとPythonで結果を同じにする方法
-

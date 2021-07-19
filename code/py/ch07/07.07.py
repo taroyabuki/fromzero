@@ -10,7 +10,7 @@ from sklearn.neighbors import KNeighborsRegressor
 my_data = sm.datasets.get_rdataset('cars', 'datasets').data
 X, y = my_data[['speed']], my_data['dist']
 
-my_params = {'n_neighbors':range(1, 16)} # 探索範囲（1以上15以下の整数）
+my_params = {'n_neighbors': range(1, 16)} # 探索範囲（1以上15以下の整数）
 
 my_search = GridSearchCV(estimator=KNeighborsRegressor(),
                          param_grid=my_params,
@@ -20,7 +20,7 @@ my_search.fit(X, y)
 
 tmp = my_search.cv_results_                # チューニングの詳細
 my_scores = (-tmp['mean_test_score'])**0.5 # RMSE
-my_results = pd.DataFrame(tmp['params']).assign(validation = my_scores)
+my_results = pd.DataFrame(tmp['params']).assign(validation=my_scores)
 
 my_results.head()
 #>    n_neighbors  validation
@@ -72,4 +72,3 @@ my_results = pd.Series(range(1, 16)).apply(my_loocv)
 my_results.plot(x='n_neighbors',
                 style='o-',
                 ylabel='RMSE')
-

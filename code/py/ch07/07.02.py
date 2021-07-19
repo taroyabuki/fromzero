@@ -26,4 +26,3 @@ my_data.describe()
 #> max    25.000000  120.000000
 
 my_data.plot(x='speed', style='o')
-

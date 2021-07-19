@@ -2,8 +2,8 @@
 
 library(keras)
 library(tidyverse)
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/wine.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
 tmp <- read_csv(my_url)
 
 my_data <- tmp[sample(nrow(tmp)), ]
@@ -48,4 +48,3 @@ my_history
 y_ <- my_model %>% predict(X)
 mean((y_ - y)^2)**0.5
 #> [1] 0.2724372
-

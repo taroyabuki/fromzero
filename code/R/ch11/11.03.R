@@ -167,9 +167,10 @@ my_result <- data.frame(
   y_prob = apply(y_prob, 1, max),           # 確率の最大値
   y_     = apply(y_prob, 1, which.max) - 1, # 予測カテゴリ
   y      = y_test,                          # 正解
-  id     = 1:length(y_test)) %>%            # 番号
+  id     = seq_len(length(y_test))) %>%     # 番号
   filter(y_ != y) %>%                       # 予測がはずれたものを残す
   arrange(desc(y_prob))                     # 確率の大きい順に並び替える
+
 head(my_result)
 #>      y_prob y_ y   id
 #> 1 0.9998116  9 4 2131
@@ -180,12 +181,19 @@ head(my_result)
 #> 6 0.9857675  0 6 2119
 
 tmp <- my_result[1:5, ]$id
-my_labels = sprintf("%s (%s)", my_result[1:5, ]$y, tmp)
-my_fig <- expand.grid(label = my_labels, y = 28:1, x = 1:28)
-my_fig$z <- as.vector(x_test[tmp, , ])
+my_labels <- sprintf("%s (%s)",
+  my_result[1:5, ]$y, tmp)
+my_fig <- expand.grid(
+  label = my_labels,
+  y = 28:1,
+  x = 1:28)
+my_fig$z <- as.vector(
+  x_test[tmp, , ])
 
-my_fig %>% ggplot(aes(x = x, y = y, fill = z)) +
-  geom_raster() + coord_fixed() + theme_void() +
+my_fig %>% ggplot(
+  aes(x = x, y = y, fill = z)) +
+  geom_raster() +
+  coord_fixed() +
+  theme_void() +
   theme(legend.position = "none") +
   facet_grid(. ~ label)
-

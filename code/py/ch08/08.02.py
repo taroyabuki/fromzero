@@ -6,8 +6,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import cross_val_score, LeaveOneOut
 
-my_url = ('https://raw.githubusercontent.com'
-          '/taroyabuki/fromzero/master/data/wine.csv')
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
 my_data = pd.read_csv(my_url)
 X, y = my_data.drop(columns=['LPRICE2']), my_data['LPRICE2']
 
@@ -51,11 +51,10 @@ import numpy as np
 M = np.matrix(X.assign(b0=1))
 b = np.linalg.pinv(M) @ y
 pd.Series(b,
-  index=list(X.columns) + ['b0'])
+    index=list(X.columns) + ['b0'])
 #> WRAIN       0.001167
 #> DEGREES     0.616392
 #> HRAIN      -0.003861
 #> TIME_SV     0.023847
 #> b0        -12.145334
 #> dtype: float64
-

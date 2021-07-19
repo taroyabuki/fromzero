@@ -9,12 +9,14 @@ x = [165, 170, 175, 180, 185]
 np.mean(x) # リストの場合
 #> 175.0
 
-x = np.array([165, 170, 175, 180, 185])
-x.mean() # アレイの場合（np.mean(x)も可）
+x = np.array( # アレイ
+    [165, 170, 175, 180, 185])
+x.mean() # np.mean(x)も可
 #> 175.0
 
-x = pd.Series([165, 170, 175, 180, 185])
-x.mean() # シリーズの場合（np.mean(x)も可）
+x = pd.Series( # シリーズ
+    [165, 170, 175, 180, 185])
+x.mean() # np.mean(x)も可
 #> 175.0
 
 n = len(x) # サンプルサイズ
@@ -25,23 +27,23 @@ y = [173, 174, 175, 176, 177]
 np.mean(y)
 #> 175.0
 
-np.var(x) # xの分散
-#> 50.0
+np.var(x, ddof=1) # xの分散
+#> 62.5
 
-np.var(y) # yの分散
-#> 2.0
+np.var(y, ddof=1) # yの分散
+#> 2.5
 
-sum((x - np.mean(x))**2) / n # 分散
-#> 50.0
+sum((x - np.mean(x))**2) / (n - 1)
+#> 62.5
 
-np.std(x) # xの標準偏差
-#> 7.0710678118654755
+np.std(x, ddof=1) # xの標準偏差
+#> 7.905694150420948
 
-np.std(y) # yの標準偏差
-#> 1.4142135623730951
+np.std(y, ddof=1) # yの標準偏差
+#> 1.5811388300841898
 
-np.var(x)**0.5 # xの標準偏差
-#> 7.0710678118654755
+np.var(x, ddof=1)**0.5 # xの標準偏差
+#> 7.905694150420948
 
 s = pd.Series(x)
 s.describe()
@@ -60,33 +62,20 @@ s.describe()
 #### 4.1.1.1 不偏分散とその非負の平方根
 
 x = [165, 170, 175, 180, 185]
-n = len(x)
 
-np.var(x, ddof=1)       # 不偏分散
-# あるいは
-np.var(x) * n / (n - 1) # 不偏分散
+np.var(x, ddof=1) # 不偏分散
 #> 62.5
 
-np.var(x)                    # 標本分散
-# あるいは
-np.var(x, ddof=0)            # 標本分散
-# あるいは
-((x - np.mean(x))**2).mean() # 標本分散
+np.var(x, ddof=0) # 標本分散
 #> 50.0
 
-# √不偏分散
-np.std(x, ddof=1)
-# あるいは
-np.std(x) * np.sqrt(n / (n - 1))
+np.std(x, ddof=1) # √不偏分散
 #> 7.905694150420949
 
-# √標本分散
-np.std(x)
-# あるいは
-np.std(x, ddof=0)
+np.std(x, ddof=0) # √標本分散
 #> 7.0710678118654755
 
-np.std(x, ddof = 1) / len(x)**0.5
+np.std(x, ddof=1) / len(x)**0.5
 #> 3.5355339059327373
 
 ### 4.1.2 データフレームの統計処理
@@ -102,7 +91,7 @@ my_df = pd.DataFrame({
 
 #### 4.1.2.1 列ごとの集計
 
-my_df['english'].var()
+my_df['english'].var(ddof=1)
 # あるいは
 np.var(my_df['english'], ddof=1)
 
@@ -145,7 +134,7 @@ my_df.groupby('gender').apply(len)
 #> dtype: int64
 
 my_df2 = my_df.assign(
-    excel = my_df.math>=80)
+    excel=my_df.math >= 80)
 pd.crosstab(my_df2.gender,
             my_df2.excel)
 #> excel   False  True
@@ -163,4 +152,3 @@ my_df.groupby('gender').agg(np.mean)
 #> gender
 #> f          75.0  85.0
 #> m          80.0  85.0
-

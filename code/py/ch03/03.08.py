@@ -11,7 +11,6 @@ type(x)
 %whos
 #> Variable   Type      Data/Info
 #> ------------------------------
-#> math       module    <module 'math' from '/opt<...>-38-x86_64-linux-gnu.so'>
 #> x          int       123
 
 import math
@@ -31,4 +30,3 @@ np.isnan(v[1])
 
 v[1] == np.nan # 誤り
 #> False
-

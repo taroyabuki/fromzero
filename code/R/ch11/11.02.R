@@ -64,4 +64,3 @@ y_2 <- list(c(0.1, 0.2, 0.7),
 c(mean(as.array(loss_sparse_categorical_crossentropy(y_true = y, y_pred = y_1))),
   mean(as.array(loss_sparse_categorical_crossentropy(y_true = y, y_pred = y_2))))
 #> [1] 0.5017337 0.7084033
-

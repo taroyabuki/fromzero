@@ -31,10 +31,10 @@ r, c = my_df.shape # 行数と列数
 r, c
 #> (4, 4)
 
-r                  # 行数（len(my_df)も可）
+r # 行数（len(my_df)も可）
 #> 4
 
-c                  # 列数
+c # 列数
 #> 4
 
 #### 3.4.1.4 組合せ
@@ -63,6 +63,7 @@ my_df2
 #>    P    Q
 #> 0  1   10
 #> 1  1  100
+# 以下省略
 
 list(my_df.index)
 #> [0, 1, 2, 3]
@@ -227,9 +228,9 @@ A.T @ A
 ### 3.4.5 縦型と横型
 
 my_df = pd.DataFrame({
-  'day':[25, 26, 27],
-  'min':[20, 21, 15],
-  'max':[24, 27, 21]})
+    'day': [25, 26, 27],
+    'min': [20, 21, 15],
+    'max': [24, 27, 21]})
 
 my_longer = my_df.melt(id_vars='day')
 my_longer
@@ -252,7 +253,7 @@ my_wider
 #> 26         27   21
 #> 27         21   15
 
-my_wider.plot(style='o-',
-              xticks=my_wider.index,
-              ylabel='temperature')
-
+my_wider.plot(
+    style='o-',
+    xticks=my_wider.index, # x軸目盛り
+    ylabel='temperature')  # y軸ラベル

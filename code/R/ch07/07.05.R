@@ -27,7 +27,7 @@ my_data %>%
 y  <- my_data$dist
 y_ <- my_model %>% predict(my_data)
 
-RMSE(y_ , y)
+RMSE(y_, y)
 #> [1] 13.96845 # RMSE
 
 R2(pred = y_, obs = y,
@@ -37,4 +37,3 @@ R2(pred = y_, obs = y,
 R2(pred = y_, obs = y,
    form = "corr")
 #> [1] 0.7017314 # 決定係数6
-

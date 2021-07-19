@@ -37,4 +37,3 @@ iris.head()
 #>    sepal length (cm)  sepal width (cm)  ...  petal width (cm)  target
 #> 0                5.1               3.5  ...               0.2  setosa
 # 以下省略
-

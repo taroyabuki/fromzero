@@ -45,9 +45,9 @@ R2(pred = y_, obs = y,
 summary(my_model$finalModel)$r.squared
 #> [1] 0.6510794
 
-my_test = my_data[1:3, ]
-y  = my_test$dist
-y_ = my_model %>% predict(my_test)
+my_test <- my_data[1:3, ]
+y  <- my_test$dist
+y_ <- my_model %>% predict(my_test)
 
 R2(pred = y_, obs = y,
    form = "traditional")
@@ -65,11 +65,11 @@ my_data <- cars
 my_idx <- c(2, 11, 27, 34, 39, 44)
 my_sample <- my_data[my_idx, ]
 
-options(warn = -1) # 警告を表示しない．
+options(warn = -1) # これ以降，警告を表示しない．
 my_model <- train(form = dist ~ poly(speed, degree = 5, raw = TRUE),
                   data = my_sample,
                   method = "lm")
-options(warn = 0)  # 警告を表示する．
+options(warn = 0)  # これ以降，警告を表示する．
 
 y  <- my_sample$dist
 y_ <- my_model %>% predict(my_sample)
@@ -88,9 +88,8 @@ R2(pred = y_, obs = y,
 f <- function(x) { my_model %>% predict(data.frame(speed = x)) }
 
 my_data %>%
-  ggplot(aes(x = speed, y = dist, color="data")) +
+  ggplot(aes(x = speed, y = dist, color = "data")) +
   geom_point() +
   geom_point(data = my_sample, mapping = aes(color = "sample")) +
   stat_function(fun = f, mapping = aes(color = "model")) +
   coord_cartesian(ylim = c(0, 120))
-

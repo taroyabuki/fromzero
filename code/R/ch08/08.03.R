@@ -2,8 +2,8 @@
 
 library(caret)
 library(tidyverse)
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/wine.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
 my_data <- read_csv(my_url)
 
 my_data %>%
@@ -35,4 +35,3 @@ my_test <- data.frame(
 my_model %>% predict(my_test)
 #>         1 
 #> -1.498843
-

@@ -2,8 +2,8 @@
 
 library(caret)
 library(tidyverse)
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/wine.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
 my_data <- read_csv(my_url)
 
 my_model <- train(form = LPRICE2 ~ WRAIN + DEGREES + HRAIN + TIME_SV,
@@ -58,4 +58,3 @@ matrix(b,
 #> HRAIN    -0.003860554
 #> TIME_SV   0.023847413
 #> b0      -12.145333577
-

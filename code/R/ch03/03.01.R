@@ -91,5 +91,4 @@ getwd()
 
 setwd("..")
 getwd()
-#> '/home/jovyan/work'
-
+#> '/home/jovyan'

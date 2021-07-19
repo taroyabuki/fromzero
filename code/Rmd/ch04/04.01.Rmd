@@ -29,7 +29,7 @@ var(y) # yの分散
 ```
 
 ```{r}
-sum((x - mean(x))^2) / (n - 1) # 分散
+sum((x - mean(x))^2) / (n - 1)
 #> [1] 62.5
 ```
 
@@ -68,26 +68,24 @@ quantile(x)
 
 ```{r}
 x <- c(165, 170, 175, 180, 185)
-n <- length(x)
 
 var(x)                # 不偏分散
 #> [1] 62.5
 
-var(x) * (n - 1) / n  # 標本分散
-# あるいは
 mean((x - mean(x))^2) # 標本分散
+# あるいは
+n <- length(x)
+var(x) * (n - 1) / n  # 標本分散
 #> [1] 50
 ```
 
 ```{r}
-# √不偏分散
-sd(x)
+sd(x)                     # √不偏分散
 #> [1] 7.905694
 
-# √標本分散
-sd(x) * sqrt((n - 1) / n)
+mean((x - mean(x))^2)^0.5 # √標本分散
 # あるいは
-mean((x - mean(x))^2)^0.5
+sd(x) * sqrt((n - 1) / n) # √標本分散
 #> [1] 7.071068
 ```
 
@@ -160,10 +158,12 @@ psych::describe(my_df)
 # あるいは
 
 pastecs::stat.desc(my_df)
-#>               english        math
-#> nbr.val     4.0000000   4.0000000
-#> nbr.null    0.0000000   0.0000000
-#> nbr.na      0.0000000   0.0000000
+#>          name     english ...
+#> nbr.val    NA   4.0000000 ...
+#> nbr.null   NA   0.0000000 ...
+#> nbr.na     NA   0.0000000 ...
+#> min        NA  60.0000000 ...
+#> max        NA  90.0000000 ...
 # 以下省略
 ```
 

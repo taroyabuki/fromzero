@@ -26,4 +26,3 @@ print(classification_report(y_true=y, y_pred=y_))
 #>     accuracy                           0.70        10
 #>    macro avg       0.71      0.70      0.70        10
 #> weighted avg       0.71      0.70      0.70        10
-

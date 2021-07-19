@@ -23,7 +23,7 @@ head(my_data)
 ```
 
 ```{r}
-options(digits=3)
+options(digits = 3)
 pastecs::stat.desc(my_data)
 #>                speed    dist
 #> nbr.val       50.000   50.00

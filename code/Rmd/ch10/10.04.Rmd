@@ -9,8 +9,8 @@ library(caret)
 library(PRROC)
 library(tidyverse)
 
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/titanic.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/titanic.csv")
 my_data <- read_csv(my_url)
 
 my_model <- train(form = Survived ~ ., data = my_data, method = "glm",

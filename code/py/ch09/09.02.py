@@ -10,7 +10,7 @@ from sklearn import tree
 my_data = sm.datasets.get_rdataset('iris', 'datasets').data
 X, y = my_data.iloc[:, 0:4], my_data.Species
 
-my_model = tree.DecisionTreeClassifier(max_depth=2)
+my_model = tree.DecisionTreeClassifier(max_depth=2, random_state=0)
 my_model.fit(X, y)
 
 my_dot = tree.export_graphviz(
@@ -28,8 +28,7 @@ my_model.predict(my_test)
 
 pd.DataFrame(
     my_model.predict_proba(my_test),
-    columns = my_model.classes_)
+    columns=my_model.classes_)
 #>    setosa  versicolor  virginica
 #> 0     1.0    0.000000   0.000000
 #> 1     0.0    0.021739   0.978261
-

@@ -16,7 +16,7 @@ head(my_data)
 #> 5     8   16
 #> 6     9   10
 
-options(digits=3)
+options(digits = 3)
 pastecs::stat.desc(my_data)
 #>                speed    dist
 #> nbr.val       50.000   50.00
@@ -37,4 +37,3 @@ pastecs::stat.desc(my_data)
 my_data %>%
   ggplot(aes(x = speed, y = dist)) +
   geom_point()
-

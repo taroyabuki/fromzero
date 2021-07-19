@@ -22,7 +22,7 @@ my_model$results
 #> 1      TRUE 15.06708 0.6724501 12.12448 4.75811  0.1848932 3.052435
 
 my_model <- train(form = dist ~ speed, data = my_data, method = "lm",
-                  trControl = trainControl(method="LOOCV"))
+                  trControl = trainControl(method = "LOOCV"))
 my_model$results
 #>   intercept     RMSE  Rsquared      MAE
 #> 1      TRUE 15.69731 0.6217139 12.05918
@@ -144,4 +144,3 @@ t.test(x = my_df$lm, y = my_df$knn,
 #> sample estimates:
 #> mean of the differences 
 #>               -3.210688 
-

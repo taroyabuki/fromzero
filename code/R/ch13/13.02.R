@@ -10,8 +10,8 @@ my_data <- data.frame(
   row.names = c("A", "B", "C", "D"))
 
 my_result <- my_data %>%
-  dist("euclidian") %>%
-  hclust("complete")
+  dist("euclidian") %>% # distだけでも可
+  hclust("complete")    # hclustだけでも可
 
 my_result %>% factoextra::fviz_dend(
   k = 3, # クラスタ数
@@ -88,8 +88,6 @@ my_result$cluster <- (my_data %>% scale %>% kmeans(3))$cluster %>% as.factor
 #my_result$cluster <- my_data %>% dist %>% hclust %>% cutree(3) %>% as.factor
 
 my_result %>%
-  ggplot(aes(x = PC1, y = PC2,
-         color = cluster)) +         # 色でクラスタを表現する．
-  geom_point(shape = iris$Species) + # 形で品種を表現する．
+  ggplot(aes(x = PC1, y = PC2, color = cluster)) + # 色でクラスタを表現する．
+  geom_point(shape = iris$Species) +               # 形で品種を表現する．
   theme(legend.position = "none")
-

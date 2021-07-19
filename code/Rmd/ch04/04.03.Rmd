@@ -38,7 +38,7 @@ x <- rbinom(size = n, # 試行回数
 hist(x, breaks = max(x) - min(x))
 ```
 
-### 4.3.4 
+### 4.3.4 正規乱数
 
 ```{r}
 r <- 10000

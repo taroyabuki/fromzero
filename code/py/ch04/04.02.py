@@ -1,5 +1,7 @@
 ## 4.2 データの可視化
 
+import numpy as np
+import pandas as pd
 import statsmodels.api as sm
 iris = sm.datasets.get_rdataset('iris', 'datasets').data
 iris.head()
@@ -14,12 +16,10 @@ iris.head()
 
 iris.hist('Sepal.Length')
 
-import pandas as pd
 my_df = pd.DataFrame(
-    {'x':[10, 20, 30]})
+    {'x': [10, 20, 30]})
 my_df.hist('x', bins=2) # 階級数は2
 
-import numpy as np
 x = iris['Sepal.Length']
 tmp = np.linspace(min(x), max(x), 10)
 iris.hist('Sepal.Length',
@@ -38,11 +38,11 @@ iris.boxplot()
 ### 4.2.4 棒グラフとエラーバー
 
 pd.options.display.float_format = (
-'{:.2f}'.format)
+    '{:.2f}'.format)
 my_df = (iris.describe().transpose()
-[['mean','std']])
-my_df['se'] = (my_df['std'] /
-               len(iris)**0.5)
+    [['mean','std']])
+my_df['se'] = (my_df['std']
+               / len(iris)**0.5)
 my_df
 #>               mean  std   se
 #> Sepal.Length  5.84 0.83 0.07
@@ -68,11 +68,11 @@ my_group.agg('mean').plot(kind='bar', yerr=my_se, capsize=5)
 ### 4.2.5 モザイクプロット
 
 from statsmodels.graphics.mosaicplot \
-import mosaic
+    import mosaic
 
 my_df = pd.DataFrame({
-    'Species':iris.Species,
-    'w_Sepal':iris['Sepal.Width'] > 3})
+    'Species': iris.Species,
+    'w_Sepal': iris['Sepal.Width'] > 3})
 
 my_table = pd.crosstab( # 分割表
     my_df['Species'],
@@ -101,4 +101,3 @@ y = x**3 - x
 plt.plot(x, y)
 
 ### 4.2.7 ggplot2 (R)
-

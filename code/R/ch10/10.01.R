@@ -43,4 +43,3 @@ confusionMatrix(data      = as.factor(y_), # 予測
 #>       Balanced Accuracy : 0.7000          
 #>                                           
 #>        'Positive' Class : 1
-

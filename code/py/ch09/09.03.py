@@ -12,7 +12,7 @@ from sklearn.model_selection import cross_val_score, GridSearchCV, LeaveOneOut
 my_data = sm.datasets.get_rdataset('iris', 'datasets').data
 X, y = my_data.iloc[:, 0:4], my_data.Species
 
-my_model = tree.DecisionTreeClassifier(max_depth=2).fit(X, y)
+my_model = tree.DecisionTreeClassifier(max_depth=2, random_state=0).fit(X, y)
 y_ = my_model.predict(X)
 confusion_matrix(y_true=y, y_pred=y_)
 #> array([[50,  0,  0],
@@ -35,8 +35,8 @@ cross_val_score(my_model, X, y, cv=LeaveOneOut()).mean()
 
 ### 9.3.4 パラメータチューニング
 
-my_search = GridSearchCV(estimator=tree.DecisionTreeClassifier(),
-                         param_grid={'max_depth':range(1, 11)},
+my_search = GridSearchCV(estimator=tree.DecisionTreeClassifier(random_state=0),
+                         param_grid={'max_depth': range(1, 11)},
                          cv=LeaveOneOut(),
                          n_jobs=-1).fit(X, y)
 [my_search.best_params_, my_search.best_score_]
@@ -45,12 +45,13 @@ my_search = GridSearchCV(estimator=tree.DecisionTreeClassifier(),
 ### 9.3.5 補足：木の複雑さの制限
 
 my_params = {
-    'max_depth':range(2, 6),
-    'min_samples_split':[2, 20],
-    'min_samples_leaf':range(1, 8)}
+    'max_depth': range(2, 6),
+    'min_samples_split': [2, 20],
+    'min_samples_leaf': range(1, 8)}
 
 my_search = GridSearchCV(
-    estimator=tree.DecisionTreeClassifier(min_impurity_decrease=0.01),
+    estimator=tree.DecisionTreeClassifier(min_impurity_decrease=0.01,
+                                          random_state=0),
     param_grid=my_params,
     cv=LeaveOneOut(),
     n_jobs=-1).fit(X, y)
@@ -60,7 +61,7 @@ my_search = GridSearchCV(
 
 tmp = my_search.cv_results_
 my_results = pd.DataFrame(tmp['params']).assign(
-    Accuracy = tmp['mean_test_score'])
+    Accuracy=tmp['mean_test_score'])
 # 正解率（検証）の最大値
 my_results[my_results.Accuracy == my_results.Accuracy.max()]
 #>     max_depth  min_samples_leaf  min_samples_split  Accuracy
@@ -79,4 +80,3 @@ my_dot = tree.export_graphviz(
     class_names=my_model.classes_,
     filled=True)
 graphviz.Source(my_dot)
-

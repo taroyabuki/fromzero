@@ -159,7 +159,7 @@ x <- my_df[my_df$english == max(my_df$english), ]
 x <- my_df %>% filter(english == max(my_df$english))
 
 my_df2 <- my_df # コピー
-my_df2[my_df$gender == 'm', ]$gender <- 'M'
+my_df2[my_df$gender == "m", ]$gender <- "M"
 
 my_df2
 #>   name english math gender
@@ -178,8 +178,8 @@ x <- my_df %>% arrange(-english)
 
 #### 3.4.4.1 行列の生成
 
-x = c(2, 3, 5, 7, 11, 13, 17, 19, 23,
-      29, 31, 37)
+x <- c(2, 3, 5, 7, 11, 13, 17, 19, 23,
+       29, 31, 37)
 A <- matrix(
   data = x,     # 1次元データ
   nrow = 3,     # 行数
@@ -254,7 +254,6 @@ my_longer %>%
              color = name)) +
   geom_point() +
   geom_line() +
-  ylab("temperature") +
+  ylab("temperature") + # y軸ラベル
   scale_x_continuous(
-    breaks = my_longer$day)
-
+    breaks = my_longer$day) # x軸目盛り

@@ -30,4 +30,3 @@ pd.date_range(start='2021-01-01', end='2021-01-03', freq='1D')
 pd.date_range(start='2021-01-01 00:00:00', end='2021-01-01 03:00:00', freq='2H')
 #> DatetimeIndex(['2021-01-01 00:00:00', '2021-01-01 02:00:00'],
 #>               dtype='datetime64[ns]', freq='2H')
-

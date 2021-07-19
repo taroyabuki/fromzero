@@ -26,4 +26,3 @@ my_model$results %>% filter(Accuracy == max(Accuracy))
 #>   size decay  Accuracy Kappa
 #> 1    3   0.1 0.9733333  0.96
 #> 2    5   0.1 0.9733333  0.96
-

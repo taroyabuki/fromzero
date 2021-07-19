@@ -6,8 +6,8 @@ library(caret)
 library(PRROC)
 library(tidyverse)
 
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/titanic.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/titanic.csv")
 my_data <- read_csv(my_url)
 
 my_model <- train(form = Survived ~ ., data = my_data, method = "glm",
@@ -26,4 +26,3 @@ coef(my_model$finalModel) %>%
 my_model$results
 #>   parameter  Accuracy     Kappa
 #> 1      none 0.7782826 0.4448974
-

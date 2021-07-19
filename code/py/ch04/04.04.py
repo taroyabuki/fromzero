@@ -24,10 +24,11 @@ x = np.array(range(0, n + 1))     # 当たった回数
 my_pr  = stats.binom.pmf(x, n, t) # x回当たる確率
 my_pr2 = stats.binom.pmf(2, n, t) # 2回当たる確率
 
-my_data = pd.DataFrame({'x':x, 'y1':my_pr, 'y2':my_pr})
+my_data = pd.DataFrame({'x': x, 'y1': my_pr, 'y2': my_pr})
 my_data.loc[my_pr >  my_pr2, 'y1'] = np.nan # 当たる確率が，2回当たる確率超過
 my_data.loc[my_pr <= my_pr2, 'y2'] = np.nan # 当たる確率が，2回当たる確率以下
-ax = my_data.plot(x='x', style='o', ylabel='probability', legend=False)
+ax = my_data.plot(x='x', style='o', ylabel='probability',
+                  legend=False)         # 凡例を表示しない．
 ax.hlines(y=my_pr2, xmin=0, xmax=15)    # 水平線
 ax.vlines(x=x,      ymin=0, ymax=my_pr) # 垂直線
 
@@ -50,16 +51,16 @@ my_df = pd.DataFrame({
     'q': a,                                                    # 水平線
     'p': [binom_test(count=2, nobs=15, prop=t) for t in tmp]}) # p値
 
-my_df.plot(x = 't', legend=None, xlabel=r'$\theta$', ylabel=r'p-value')
+my_df.plot(x='t', legend=None, xlabel=r'$\theta$', ylabel=r'p-value')
 
 ### 4.4.3 平均の差の検定と推定（t検定）
 
 from statsmodels.stats.weightstats import CompareMeans, DescrStatsW
 
-X = [32.1, 26.2, 27.5, 31.8, 32.1, 31.2, 30.1, 32.4, 32.3, 29.9, 29.6,
-     26.6, 31.2, 30.9, 29.3]
-Y = [35.4, 34.6, 31.1, 32.4, 33.3, 34.7, 35.3, 34.3, 32.1, 28.3, 33.3,
-     30.5, 32.6, 33.3, 32.2]
+X = [32.1, 26.2, 27.5, 31.8, 32.1, 31.2, 30.1, 32.4, 32.3, 29.9,
+     29.6, 26.6, 31.2, 30.9, 29.3]
+Y = [35.4, 34.6, 31.1, 32.4, 33.3, 34.7, 35.3, 34.3, 32.1, 28.3,
+     33.3, 30.5, 32.6, 33.3, 32.2]
 
 a = 0.05          # 有意水準（デフォルト） = 1 - 信頼係数
 alt = 'two-sided' # 両側検定（デフォルト）
@@ -85,7 +86,7 @@ c.tconfint_diff(alpha=a, alternative=alt, usevar=ve) # 信頼区間
 ### 4.4.4 独立性の検定（カイ2乗検定）
 
 import pandas as pd
-my_url = ('https://raw.githubusercontent.com/taroyabuki/'
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
           '/fromzero/master/data/smoker.csv')
 my_data = pd.read_csv(my_url)
 
@@ -107,7 +108,7 @@ my_table
 #> Yes     950  348
 
 from scipy.stats import chi2_contingency
-chi2_contingency(my_table, correction = False)[1]
+chi2_contingency(my_table, correction=False)[1]
 #> 0.18860725715300422
 
 ### 4.4.5 ブートストラップ
@@ -126,8 +127,7 @@ sum(tmp) # 手順3
 #> 2
 
 n = 10**5
-result = [sum(np.random.choice(X, len(X), replace=True)) # 手順4
-            for _ in range(n)]
+result = [sum(np.random.choice(X, len(X), replace=True)) for _ in range(n)] # 手順4
 
 import matplotlib.pyplot as plt
 plt.hist(result, bins=range(0, 16))
@@ -138,10 +138,10 @@ np.quantile(result, [0.025, 0.975])
 #### 4.4.5.2 平均の差の信頼区間
 
 import numpy as np
-X = [32.1, 26.2, 27.5, 31.8, 32.1, 31.2, 30.1, 32.4, 32.3, 29.9, 29.6,
-     26.6, 31.2, 30.9, 29.3]
-Y = [35.4, 34.6, 31.1, 32.4, 33.3, 34.7, 35.3, 34.3, 32.1, 28.3, 33.3,
-     30.5, 32.6, 33.3, 32.2]
+X = [32.1, 26.2, 27.5, 31.8, 32.1, 31.2, 30.1, 32.4, 32.3, 29.9,
+     29.6, 26.6, 31.2, 30.9, 29.3]
+Y = [35.4, 34.6, 31.1, 32.4, 33.3, 34.7, 35.3, 34.3, 32.1, 28.3,
+     33.3, 30.5, 32.6, 33.3, 32.2]
 Z = np.array(X) - np.array(Y) # 対標本として扱う．
 
 n = 10**5
@@ -152,9 +152,8 @@ np.quantile(result, [0.025, 0.975])
 
 plt.hist(result, bins='sturges')
 
-result = [np.random.choice(X, len(X), replace=True).mean() -
-          np.random.choice(Y, len(Y), replace=True).mean()
+result = [np.random.choice(X, len(X), replace=True).mean()
+          - np.random.choice(Y, len(Y), replace=True).mean()
           for _ in range(n)]
 np.quantile(result, [0.025, 0.975])
 #> array([-4.06, -1.3 ])
-

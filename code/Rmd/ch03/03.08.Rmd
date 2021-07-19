@@ -19,7 +19,7 @@ help(log)
 ### 3.8.3 RのNA，Pythonのnan
 
 ```{r}
-v = c(1, NA, 3)
+v <- c(1, NA, 3)
 v
 #> [1]  1 NA  3
 ```

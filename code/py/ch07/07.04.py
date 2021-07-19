@@ -2,7 +2,6 @@
 
 ### 7.4.1 RMSE
 
-import matplotlib.pyplot as plt
 import pandas as pd
 import statsmodels.api as sm
 from sklearn.linear_model import LinearRegression
@@ -17,7 +16,7 @@ y_ = my_model.predict(X)
 my_data['y_'] = y_
 
 pd.options.display.float_format = (
-  '{:.2f}'.format)
+    '{:.2f}'.format)
 my_data['residual'] = y - y_
 my_data.head()
 #>    speed  dist    y_  residual
@@ -91,13 +90,12 @@ my_model.score(X5, y)
 np.corrcoef(y, y_)[0, 1]**2
 #> 0.9999999999999991 # 決定係数6
 
-tmp = pd.DataFrame({'speed':np.linspace(min(my_data.speed),
-                                        max(my_data.speed),
-                                        100)})
+tmp = pd.DataFrame({'speed': np.linspace(min(my_data.speed),
+                                         max(my_data.speed),
+                                         100)})
 X5 = PolynomialFeatures(d).fit_transform(tmp)
 tmp['model'] = my_model.predict(X5)
 
-my_sample = my_sample.assign(sample = y)
+my_sample = my_sample.assign(sample=y)
 my_df = pd.concat([my_data, my_sample, tmp])
 my_df.plot(x='speed', style=['o', 'o', '-'], ylim=(0, 130))
-

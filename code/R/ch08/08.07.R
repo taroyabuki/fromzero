@@ -8,8 +8,8 @@ curve(1 / (1 + exp(-x)), -6, 6)
 
 library(caret)
 library(tidyverse)
-my_url <- str_c("https://raw.githubusercontent.com",
-                "/taroyabuki/fromzero/master/data/wine.csv")
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
 my_data <- read_csv(my_url)
 
 my_model <- train(form = LPRICE2 ~ .,
@@ -41,4 +41,3 @@ my_model$results %>%
   filter(RMSE == min(RMSE))
 #>   layer1 layer2 layer3      RMSE ...
 #> 1      2      0      0 0.3165704 ...
-

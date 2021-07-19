@@ -9,7 +9,6 @@ plt.plot(x, y)
 
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import roc_curve, RocCurveDisplay, auc
 from sklearn.model_selection import cross_val_score, LeaveOneOut
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder

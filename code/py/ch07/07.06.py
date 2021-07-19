@@ -28,7 +28,8 @@ my_scores
 my_scores.mean()
 #> -0.20629282165364665
 
-my_scores = cross_val_score(my_model, X, y, scoring='neg_root_mean_squared_error')
+my_scores = cross_val_score(my_model, X, y,
+                            scoring='neg_root_mean_squared_error')
 -my_scores.mean()
 #> 15.58402474583013 # RMSE（検証）
 
@@ -41,8 +42,8 @@ my_scores = cross_val_score(my_model, X, y, scoring='neg_root_mean_squared_error
 import numpy as np
 import statsmodels.api as sm
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import make_scorer, mean_squared_error, r2_score
-from sklearn.model_selection import cross_val_score, LeaveOneOut, RepeatedKFold
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.model_selection import cross_val_score, LeaveOneOut
 
 my_data = sm.datasets.get_rdataset('cars', 'datasets').data
 X, y = my_data[['speed']], my_data['dist']
@@ -132,7 +133,7 @@ my_df.head()
 
 my_df.boxplot().set_ylabel("$r^2$")
 
-from statsmodels.stats.weightstats import CompareMeans, DescrStatsW
+from statsmodels.stats.weightstats import DescrStatsW
 d = DescrStatsW(my_df.lm - my_df.knn)
 d.ttest_mean()[1] # p値
 #> 0.6952755720536115

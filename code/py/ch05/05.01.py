@@ -2,7 +2,6 @@
 
 ### 5.1.1 CSV
 
-!wget https://raw.githubusercontent.com/taroyabuki/fromzero/master/data/exam.csv
 
 #### 5.1.1.1 CSVの読み込み
 

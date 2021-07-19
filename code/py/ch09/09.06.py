@@ -5,7 +5,6 @@
 import statsmodels.api as sm
 from sklearn.model_selection import cross_val_score, LeaveOneOut
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import StandardScaler
 
 my_data = sm.datasets.get_rdataset('iris', 'datasets').data
 X, y = my_data.iloc[:, 0:4], my_data.Species

@@ -1,6 +1,5 @@
 ## 8.5 変数選択
 
-import numpy as np
 import pandas as pd
 from sklearn.feature_selection import SequentialFeatureSelector
 from sklearn.linear_model import LinearRegression

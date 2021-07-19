@@ -8,7 +8,6 @@ x = 123
 type(x)
 #> int
 
-%whos
 #> Variable   Type      Data/Info
 #> ------------------------------
 #> x          int       123

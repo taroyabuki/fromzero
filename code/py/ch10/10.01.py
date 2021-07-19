@@ -16,7 +16,6 @@ confusion_matrix(y_true=y, y_pred=y_)
 #> array([[3, 2],
 #>        [1, 4]])
 
-from sklearn.metrics import classification_report
 print(classification_report(y_true=y, y_pred=y_))
 #>               precision    recall  f1-score   support
 #>

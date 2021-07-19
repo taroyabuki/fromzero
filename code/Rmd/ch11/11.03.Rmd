@@ -120,10 +120,10 @@ x_test2d  <- x_test  %>% array_reshape(c(-1, 28, 28, 1))
 my_model <- keras_model_sequential() %>%
   layer_conv_2d(filters = 32, kernel_size = 3,  # 畳み込み層
                 activation = "relu",
-                input_shape = c(28, 28, 1)) %>% 
+                input_shape = c(28, 28, 1)) %>%
   layer_max_pooling_2d(pool_size = 2) %>%       # プーリング層
-  layer_flatten() %>% 
-  layer_dense(units = 128, activation = "relu") %>% 
+  layer_flatten() %>%
+  layer_dense(units = 128, activation = "relu") %>%
   layer_dense(units = 10, activation = "softmax")
 
 summary(my_model)
@@ -162,14 +162,14 @@ my_model %>%
 ```{r}
 my_model <- keras_model_sequential() %>%
   layer_conv_2d(filters = 20, kernel_size = 5, activation = "relu",
-                input_shape = c(28, 28, 1)) %>% 
-  layer_max_pooling_2d(pool_size = 2, strides = 2) %>% 
-  layer_conv_2d(filters = 50, kernel_size = 5, activation = "relu") %>% 
-  layer_max_pooling_2d(pool_size = 2, strides = 2) %>% 
-  layer_dropout(rate = 0.25) %>% 
-  layer_flatten() %>% 
-  layer_dense(units = 500, activation = "relu") %>% 
-  layer_dropout(rate = 0.5) %>% 
+                input_shape = c(28, 28, 1)) %>%
+  layer_max_pooling_2d(pool_size = 2, strides = 2) %>%
+  layer_conv_2d(filters = 50, kernel_size = 5, activation = "relu") %>%
+  layer_max_pooling_2d(pool_size = 2, strides = 2) %>%
+  layer_dropout(rate = 0.25) %>%
+  layer_flatten() %>%
+  layer_dense(units = 500, activation = "relu") %>%
+  layer_dropout(rate = 0.5) %>%
   layer_dense(units = 10, activation = "softmax")
 
 my_model %>% compile(

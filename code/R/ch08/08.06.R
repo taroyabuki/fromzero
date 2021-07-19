@@ -23,7 +23,7 @@ my_model <- train(
 coef(my_model$finalModel, A)
 #>                         1
 #> (Intercept) -2.8015519302
-#> WRAIN        .           
+#> WRAIN        .
 #> DEGREES      0.0832910512
 #> HRAIN       -0.0004147386
 #> TIME_SV      0.0023104647

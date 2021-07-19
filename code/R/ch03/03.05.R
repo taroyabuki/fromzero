@@ -57,26 +57,26 @@ my_df <- data.frame(
 # ユークリッド距離
 my_df %>% proxy::dist("Euclidean")
 #>    A  B
-#> B 24   
+#> B 24
 #> C 23 31
 
 
 # マンハッタン距離
 my_df %>% proxy::dist("Manhattan")
 #>    A  B
-#> B 24   
+#> B 24
 #> C 31 49
 
 
 # コサイン類似度
 my_df %>% proxy::simil("cosine")
 #>             A           B
-#> B  0.81696786            
+#> B  0.81696786
 #> C -0.03265116  0.29342441
 
 
 # 相関係数
 my_df %>% proxy::simil("correlation")
 #>             A           B
-#> B  0.88249750            
+#> B  0.88249750
 #> C -0.03266277  0.44124132

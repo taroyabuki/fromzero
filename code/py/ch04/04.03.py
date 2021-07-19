@@ -34,7 +34,7 @@ plt.hist(x)
 
 tmp = np.random.uniform(
     low=1,     # 最小
-    high=7,    # 最大+1
+    high=7,    # 最大 + 1
     size=1000) # 乱数の数
 x = [int(k) for k in tmp]
 plt.hist(x, bins=6) # 結果は割愛
@@ -96,10 +96,10 @@ from math import gamma
 
 def g(x):
     n = len(x)
-    return (np.std(x, ddof=1)
-            * (np.sqrt((n - 1) / 2)
-            * gamma((n - 1) / 2)
-            / gamma(n / 2)))
+    return (np.std(x, ddof=1) *
+            (np.sqrt((n - 1) / 2) *
+             gamma((n - 1) / 2) /
+             gamma(n / 2)))
 pd.Series([10, 20, 30]).apply(f)
 #>       k      mean        se
 #> 0  10.0  3.005788  0.007121

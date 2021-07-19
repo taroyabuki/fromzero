@@ -152,8 +152,8 @@ np.quantile(result, [0.025, 0.975])
 
 plt.hist(result, bins='sturges')
 
-result = [np.random.choice(X, len(X), replace=True).mean()
-          - np.random.choice(Y, len(Y), replace=True).mean()
+result = [np.random.choice(X, len(X), replace=True).mean() -
+          np.random.choice(Y, len(Y), replace=True).mean()
           for _ in range(n)]
 np.quantile(result, [0.025, 0.975])
 #> array([-4.06, -1.3 ])

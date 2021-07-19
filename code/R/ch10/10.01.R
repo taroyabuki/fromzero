@@ -15,31 +15,31 @@ confusionMatrix(data      = as.factor(y_), # 予測
                 positive = "1",            # 「1」を陽性とする．
                 mode = "everything")       # 全ての指標を求める．
 #> Confusion Matrix and Statistics
-#> 
+#>
 #>           Reference
 #> Prediction 0 1
 #>          0 3 1
 #>          1 2 4
-#>                                           
-#>                Accuracy : 0.7             
+#>
+#>                Accuracy : 0.7
 #>                  95% CI : (0.3475, 0.9333)
-#>     No Information Rate : 0.5             
-#>     P-Value [Acc > NIR] : 0.1719          
-#>                                           
-#>                   Kappa : 0.4             
-#>                                           
-#>  Mcnemar's Test P-Value : 1.0000          
-#>                                           
-#>             Sensitivity : 0.8000          
-#>             Specificity : 0.6000          
-#>          Pos Pred Value : 0.6667          
-#>          Neg Pred Value : 0.7500          
-#>               Precision : 0.6667          
-#>                  Recall : 0.8000          
-#>                      F1 : 0.7273          
-#>              Prevalence : 0.5000          
-#>          Detection Rate : 0.4000          
-#>    Detection Prevalence : 0.6000          
-#>       Balanced Accuracy : 0.7000          
-#>                                           
+#>     No Information Rate : 0.5
+#>     P-Value [Acc > NIR] : 0.1719
+#>
+#>                   Kappa : 0.4
+#>
+#>  Mcnemar's Test P-Value : 1.0000
+#>
+#>             Sensitivity : 0.8000
+#>             Specificity : 0.6000
+#>          Pos Pred Value : 0.6667
+#>          Neg Pred Value : 0.7500
+#>               Precision : 0.6667
+#>                  Recall : 0.8000
+#>                      F1 : 0.7273
+#>              Prevalence : 0.5000
+#>          Detection Rate : 0.4000
+#>    Detection Prevalence : 0.6000
+#>       Balanced Accuracy : 0.7000
+#>
 #>        'Positive' Class : 1

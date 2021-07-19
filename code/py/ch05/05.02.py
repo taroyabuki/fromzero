@@ -7,8 +7,8 @@ from scipy.stats import zscore
 
 x1 = [1, 2, 3]
 
-z1 = ((x1 - np.mean(x1))
-    / np.std(x1, ddof=1))
+z1 = ((x1 - np.mean(x1)) /
+      np.std(x1, ddof=1))
 # あるいは
 z1 = zscore(x1, ddof=1)
 
@@ -22,8 +22,8 @@ z1 * np.std(x1, ddof=1) + np.mean(x1)
 #> array([1., 2., 3.])
 
 x2 = [1, 3, 5]
-z2 = ((x2 - np.mean(x1))
-    / np.std(x1, ddof=1))
+z2 = ((x2 - np.mean(x1)) /
+      np.std(x1, ddof=1))
 [z2.mean(), np.std(z2, ddof=1)]
 #> [1.0, 2.0]
 

@@ -30,15 +30,15 @@ my_model <- train(form = dist ~ speed, # モデル式（出力変数と入力変
                   method = "lm")       # 手法
 
 coef(my_model$finalModel)
-#> (Intercept)       speed 
-#> -17.579095    3.932409 
+#> (Intercept)       speed
+#> -17.579095    3.932409
 
 #### 7.3.3.3 予測
 
 tmp <- data.frame(speed = 21.5)
 my_model %>% predict(tmp)
-#>        1 
-#> 66.96769 
+#>        1
+#> 66.96769
 
 #### 7.3.3.4 モデルの可視化
 

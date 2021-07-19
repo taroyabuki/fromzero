@@ -19,10 +19,10 @@ confusion_matrix(y_true=y, y_pred=y_)
 from sklearn.metrics import classification_report
 print(classification_report(y_true=y, y_pred=y_))
 #>               precision    recall  f1-score   support
-#> 
+#>
 #>            0       0.75      0.60      0.67         5
 #>            1       0.67      0.80      0.73         5
-#> 
+#>
 #>     accuracy                           0.70        10
 #>    macro avg       0.71      0.70      0.70        10
 #> weighted avg       0.71      0.70      0.70        10

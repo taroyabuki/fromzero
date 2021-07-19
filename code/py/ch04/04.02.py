@@ -40,9 +40,9 @@ iris.boxplot()
 pd.options.display.float_format = (
     '{:.2f}'.format)
 my_df = (iris.describe().transpose()
-    [['mean','std']])
-my_df['se'] = (my_df['std']
-               / len(iris)**0.5)
+    [['mean', 'std']])
+my_df['se'] = (my_df['std'] /
+               len(iris)**0.5)
 my_df
 #>               mean  std   se
 #> Sepal.Length  5.84 0.83 0.07

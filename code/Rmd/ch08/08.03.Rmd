@@ -40,7 +40,7 @@ my_test <- data.frame(
   WRAIN = 500, DEGREES = 17,
   HRAIN = 120, TIME_SV = 2)
 my_model %>% predict(my_test)
-#>         1 
+#>         1
 #> -1.498843
 ```
 

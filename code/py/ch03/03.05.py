@@ -46,9 +46,9 @@ np.set_printoptions(precision=3)
 import pandas as pd
 
 my_df = pd.DataFrame({
-    'x':[3,  3,   9],
-    'y':[4,  4, -18],
-    'z':[5, 29,   8]},
+    'x': [3,  3,   9],
+    'y': [4,  4, -18],
+    'z': [5, 29,   8]},
     index=['A', 'B', 'C'])
 
 # ユークリッド距離

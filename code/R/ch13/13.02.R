@@ -23,8 +23,8 @@ my_result %>% factoextra::fviz_dend(
   type = "phylogenic")
 
 my_result %>% cutree(3)
-#> A B C D 
-#> 1 2 1 3 
+#> A B C D
+#> 1 2 1 3
 
 ### 13.2.2 階層的クラスタ分析とヒートマップ
 
@@ -55,8 +55,8 @@ my_data <- data.frame(
 my_result <- my_data %>% kmeans(3)
 
 my_result$cluster
-#> A B C D 
-#> 2 3 2 1 
+#> A B C D
+#> 2 3 2 1
 
 ### 13.2.4 クラスタ数の決定
 

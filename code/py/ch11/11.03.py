@@ -44,13 +44,13 @@ my_model.add(layers.Dense(units=10, activation="softmax"))
 my_model.summary()
 #> Model: "sequential"
 #> _________________________________________________________________
-#> Layer (type)                 Output Shape              Param #   
+#> Layer (type)                 Output Shape              Param #
 #> =================================================================
-#> flatten (Flatten)            (None, 784)               0         
+#> flatten (Flatten)            (None, 784)               0
 #> _________________________________________________________________
-#> dense (Dense)                (None, 256)               200960    
+#> dense (Dense)                (None, 256)               200960
 #> _________________________________________________________________
-#> dense_1 (Dense)              (None, 10)                2570      
+#> dense_1 (Dense)              (None, 10)                2570
 #> =================================================================
 #> Total params: 203,530
 #> Trainable params: 203,530
@@ -95,7 +95,7 @@ confusion_matrix(y_true=y_test,
 #> 0.942
 
 my_model.evaluate(x=x_test, y=y_test)
-#> [0.20125965774059296, 
+#> [0.20125965774059296,
 #>  0.9419999718666077]
 
 ### 11.3.3 畳み込みニューラルネットワーク（CNN）
@@ -117,17 +117,17 @@ my_model.add(layers.Dense(10, activation='softmax'))
 my_model.summary()
 #> Model: "sequential"
 #> _________________________________________________________________
-#> Layer (type)                 Output Shape              Param #   
+#> Layer (type)                 Output Shape              Param #
 #> =================================================================
-#> conv2d (Conv2D)              (None, 26, 26, 32)        320       
+#> conv2d (Conv2D)              (None, 26, 26, 32)        320
 #> _________________________________________________________________
-#> max_pooling2d (MaxPooling2D) (None, 13, 13, 32)        0         
+#> max_pooling2d (MaxPooling2D) (None, 13, 13, 32)        0
 #> _________________________________________________________________
-#> flatten (Flatten)            (None, 5408)              0         
+#> flatten (Flatten)            (None, 5408)              0
 #> _________________________________________________________________
-#> dense (Dense)                (None, 128)               692352    
+#> dense (Dense)                (None, 128)               692352
 #> _________________________________________________________________
-#> dense_1 (Dense)              (None, 10)                1290      
+#> dense_1 (Dense)              (None, 10)                1290
 #> =================================================================
 #> Total params: 693,962
 #> Trainable params: 693,962
@@ -140,7 +140,7 @@ my_model.compile(loss='sparse_categorical_crossentropy',
 
 from keras.callbacks import EarlyStopping
 my_cb = EarlyStopping(patience=5,
-                      restore_best_weights = True)
+                      restore_best_weights=True)
 
 my_history = my_model.fit(
     x=x_train2d,
@@ -177,7 +177,7 @@ my_model.compile(loss='sparse_categorical_crossentropy',
                  metrics=['accuracy'])
 
 my_cb = callbacks.EarlyStopping(patience=5,
-                                restore_best_weights = True)
+                                restore_best_weights=True)
 
 my_history = my_model.fit(
     x=x_train2d,

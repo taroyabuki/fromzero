@@ -11,12 +11,12 @@ my_data <- read_csv(my_url)
 head(my_data)
 #> # A tibble: 6 x 4
 #>   Class Sex   Age   Survived
-#>   <chr> <chr> <chr> <chr>   
-#> 1 1st   Male  Child Yes     
-#> 2 1st   Male  Child Yes     
-#> 3 1st   Male  Child Yes     
-#> 4 1st   Male  Child Yes     
-#> 5 1st   Male  Child Yes     
+#>   <chr> <chr> <chr> <chr>
+#> 1 1st   Male  Child Yes
+#> 2 1st   Male  Child Yes
+#> 3 1st   Male  Child Yes
+#> 4 1st   Male  Child Yes
+#> 5 1st   Male  Child Yes
 #> 6 1st   Male  Adult No
 
 ### 10.3.1 質的入力変数の扱い方

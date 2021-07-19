@@ -66,7 +66,7 @@ my_df %>% write.csv(file = "exam2.csv", row.names = FALSE,
 my_url <- "https://github.com/taroyabuki/fromzero/blob/master/data/exam.csv"
 my_tables <- xml2::read_html(my_url) %>% rvest::html_table()
 
-my_tables 
+my_tables
 #> [[1]]
 #>   X1   X2      X3   X4     X5
 #> 1 NA name english math gender
@@ -136,9 +136,9 @@ my_data <- my_records %>% map_dfr(f)
 my_data$english <- as.numeric(my_data$english)
 my_data$math    <- as.numeric(my_data$math)
 my_data
-#>   english  math gender name 
+#>   english  math gender name
 #>     <dbl> <dbl> <chr>  <chr>
-#> 1      60    70 f      A    
-#> 2      90    80 m      B    
-#> 3      70    90 m      C    
-#> 4      90   100 f      D  
+#> 1      60    70 f      A
+#> 2      90    80 m      B
+#> 3      70    90 m      C
+#> 4      90   100 f      D

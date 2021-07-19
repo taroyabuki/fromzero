@@ -30,11 +30,11 @@ my_model.add(layers.Dense(units=1))
 my_model.summary() # ネットワークの概要
 #> Model: "sequential"
 #> _________________________________________________________________
-#> Layer (type)                 Output Shape              Param #   
+#> Layer (type)                 Output Shape              Param #
 #> =================================================================
-#> dense (Dense)                (None, 3)                 15        
+#> dense (Dense)                (None, 3)                 15
 #> _________________________________________________________________
-#> dense_1 (Dense)              (None, 1)                 4         
+#> dense_1 (Dense)              (None, 1)                 4
 #> =================================================================
 #> Total params: 19
 #> Trainable params: 19

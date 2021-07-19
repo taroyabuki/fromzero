@@ -11,7 +11,7 @@ y  <- my_data$Species
 y_ <- my_model %>% predict(my_data)
 confusionMatrix(data = y_, reference = y)
 #> Confusion Matrix and Statistics
-#> 
+#>
 #>             Reference
 #> Prediction   setosa versicolor virginica
 #>   setosa         50          0         0

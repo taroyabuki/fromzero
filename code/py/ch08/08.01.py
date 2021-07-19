@@ -2,7 +2,7 @@
 
 import pandas as pd
 my_url = 'http://www.liquidasset.com/winedata.html'
-tmp = pd.read_table(my_url, skiprows=62, nrows=38, sep='\s+', na_values='.')
+tmp = pd.read_table(my_url, skiprows=62, nrows=38, sep='\\s+', na_values='.')
 tmp.describe()
 #>              OBS         VINT    LPRICE2       WRAIN    DEGREES ...
 #> count  38.000000    38.000000  27.000000   38.000000  37.000000 ...

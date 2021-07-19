@@ -64,7 +64,7 @@ plt.legend()
 import pmdarima as pm
 my_arima_model = pm.auto_arima(my_train.y, m=12, trace=True)
 #> （省略）
-#> Best model:  ARIMA(1,1,0)(0,1,0)[12]          
+#> Best model:  ARIMA(1,1,0)(0,1,0)[12]
 #> Total fit time: 0.838 seconds
 
 #### 12.2.3.2 予測

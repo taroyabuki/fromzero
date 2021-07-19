@@ -33,7 +33,7 @@ my_frame
 #> 5 -1.71655   582 16.4167   187 ...
 #> 6 -0.41800   485 17.4833   187 ...
 #>
-#> [27 rows x 5 columns] 
+#> [27 rows x 5 columns]
 
 # 通常のデータフレームに戻す．
 my_frame %>% as.data.frame %>% head

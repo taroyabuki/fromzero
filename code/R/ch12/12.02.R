@@ -97,7 +97,7 @@ tmp %>% autoplot +
   geom_line(data = my_df,
             aes(x = ds,
                 y = y,
-                color=label))
+                color = label))
 
 ### 12.2.4 Prophetによる時系列予測
 

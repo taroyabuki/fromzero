@@ -16,7 +16,7 @@ hist(x)
 
 x <- as.integer(      # 整数に変換
   runif(min = 1,      # 最小
-        max = 7,      # 最大+1
+        max = 7,      # 最大 + 1
         n = 1000))    # 乱数の数
 hist(x, breaks = 0:6) # 結果は割愛
 

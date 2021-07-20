@@ -27,7 +27,3 @@ taroyabuki/rstudio
 ```bash
 wget https://raw.githubusercontent.com/taroyabuki/rp/master/docker/rstudio.sh
 ```
-
-## 独自イメージ
-
-イメージを変更したい場合は，Dockerfileを編集し，「`docker build -t rstudio .`」，[local-rstudio.sh](../local-rstudio.sh)でコンテナを起動する．

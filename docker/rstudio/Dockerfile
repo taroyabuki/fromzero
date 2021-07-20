@@ -22,11 +22,13 @@ RUN Rscript -e ' \
     "gridExtra", \
     "h2o", \
     "igraph", \
+    "lintr", \
     "MLmetrics", \
     "neuralnet", \
     "pastecs", \
     "prophet", \
     "PRROC", \
+    "pryr", \
     "psych", \
     "randomForest", \
     "rpart.plot", \

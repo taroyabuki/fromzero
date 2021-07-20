@@ -1,4 +1,4 @@
-# Jupyter notebook
+# Jupyter Notebook
 
 https://hub.docker.com/r/taroyabuki/jupyter
 
@@ -27,7 +27,3 @@ start-notebook.sh \
 ```bash
 wget https://raw.githubusercontent.com/taroyabuki/rp/master/docker/jupyter.sh
 ```
-
-## 独自イメージ
-
-イメージを変更したい場合は，Dockerfileを編集し，「`docker build -t jupyter .`」，[local-rstudio.sh](../local-jupyter.sh)でコンテナを起動する．

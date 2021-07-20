@@ -10,6 +10,7 @@ RUN pip install \
   pandarallel \
   pca \
   pmdarima \
+  pycodestyle \
   pystan==2.18.0.0 \
   tensorflow \
   xgboost

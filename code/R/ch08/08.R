@@ -1,0 +1,319 @@
+## 8.1 ブドウの生育条件とワインの価格
+
+library(tidyverse)
+my_url <- "http://www.liquidasset.com/winedata.html"
+tmp <- read.table(file = my_url,   # 読み込む対象
+                  header = TRUE,   # 1行目は変数名
+                  na.string = ".", # 欠損値を表す文字列
+                  skip = 62,       # 読み飛ばす行数
+                  nrows = 38)      # 読み込む行数
+psych::describe(tmp)
+#>         vars  n    mean     sd  median trimmed    mad     min     max ...
+#> OBS        1 38   19.50  11.11   19.50   19.50  14.08    1.00   38.00 ...
+#> VINT       2 38 1970.50  11.11 1970.50 1970.50  14.08 1952.00 1989.00 ...
+#> LPRICE2    3 27   -1.45   0.63   -1.51   -1.49   0.72   -2.29    0.00 ...
+#> WRAIN      4 38  605.00 135.28  586.50  603.06 174.95  376.00  845.00 ...
+#> DEGREES    5 37   16.52   0.66   16.53   16.55   0.67   14.98   17.65 ...
+#> HRAIN      6 38  137.00  66.74  120.50  132.19  59.30   38.00  292.00 ...
+#> TIME_SV    7 38   12.50  11.11   12.50   12.50  14.08   -6.00   31.00 ...
+
+my_data <- na.omit(tmp[, -c(1, 2)])
+head(my_data)
+#>    LPRICE2 WRAIN DEGREES ...
+#> 1 -0.99868   600 17.1167 ...
+#> 2 -0.45440   690 16.7333 ...
+#> 4 -0.80796   502 17.1500 ...
+#> 6 -1.50926   420 16.1333 ...
+#> 7 -1.71655   582 16.4167 ...
+#> 8 -0.41800   485 17.4833 ...
+
+dim(my_data)
+#> [1] 27  5
+
+my_data %>% write_csv("wine.csv")
+
+#my_data <- read_csv("wine.csv") # 作ったファイルを使う場合
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+
+## 8.2 重回帰分析
+
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+
+my_model <- train(form = LPRICE2 ~ WRAIN + DEGREES + HRAIN + TIME_SV,
+                  data = my_data,
+                  method = "lm",
+                  trControl = trainControl(method = "LOOCV"))
+
+coef(my_model$finalModel) %>%
+  as.data.frame
+#>                         .
+#> (Intercept) -12.145333577
+#> WRAIN         0.001166782
+#> DEGREES       0.616392441
+#> HRAIN        -0.003860554
+#> TIME_SV       0.023847413
+
+my_test <- data.frame(
+  WRAIN = 500, DEGREES = 17,
+  HRAIN = 120, TIME_SV = 2)
+my_model %>% predict(my_test)
+#>         1
+#> -1.498843
+
+y  <- my_data$LPRICE2
+y_ <- my_model %>% predict(my_data)
+
+RMSE(y_, y)
+#> [1] 0.2586167 # RMSE（訓練）
+
+R2(pred = y_, obs = y,
+   form = "traditional")
+#> [1] 0.8275278 # 決定係数1（訓練）
+
+R2(pred = y_, obs = y,
+   form = "corr")
+#> [1] 0.8275278 # 決定係数6（訓練）
+
+my_model$results
+#>   intercept      RMSE  Rsquared       MAE
+#> 1      TRUE 0.3230043 0.7361273 0.2767282
+
+### 8.2.1 補足：行列計算による再現
+
+M <- my_data[, -1] %>%
+  mutate(b0 = 1) %>% as.matrix
+b <- MASS::ginv(M) %*% y
+matrix(b,
+       dimnames = list(colnames(M)))
+#>                  [,1]
+#> WRAIN     0.001166782
+#> DEGREES   0.616392441
+#> HRAIN    -0.003860554
+#> TIME_SV   0.023847413
+#> b0      -12.145333577
+
+## 8.3 標準化
+
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+
+my_data %>%
+  mutate_if(is.numeric, scale) %>% # 数値の列の標準化
+  pivot_longer(-LPRICE2) %>%
+  ggplot(aes(x = name, y = value)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", size = 3) +
+  xlab(NULL)
+
+my_model <- train(
+  form = LPRICE2 ~ .,
+  data = my_data,
+  method = "lm",
+  preProcess = c("center", "scale"))
+
+coef(my_model$finalModel) %>%
+  as.data.frame
+#>                      .
+#> (Intercept) -1.4517652
+#> WRAIN        0.1505557
+#> DEGREES      0.4063194
+#> HRAIN       -0.2820746
+#> TIME_SV      0.1966549
+
+my_test <- data.frame(
+  WRAIN = 500, DEGREES = 17,
+  HRAIN = 120, TIME_SV = 2)
+my_model %>% predict(my_test)
+#>         1
+#> -1.498843
+
+## 8.4 入力変数の数とモデルの良さ
+
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+
+n <- nrow(my_data)
+my_data2 <- my_data %>% mutate(v1 = 0:(n - 1) %% 2,
+                               v2 = 0:(n - 1) %% 3)
+head(my_data2)
+#> # A tibble: 6 x 7
+#>   LPRICE2 WRAIN DEGREES HRAIN TIME_SV    v1    v2
+#>     <dbl> <dbl>   <dbl> <dbl>   <dbl> <dbl> <dbl>
+#> 1  -0.999   600    17.1   160      31     0     0
+#> 2  -0.454   690    16.7    80      30     1     1
+#> 3  -0.808   502    17.2   130      28     0     2
+#> 4  -1.51    420    16.1   110      26     1     0
+#> 5  -1.72    582    16.4   187      25     0     1
+#> 6  -0.418   485    17.5   187      24     1     2
+
+my_model2 <- train(form = LPRICE2 ~ ., data = my_data2, method = "lm",
+                   trControl = trainControl(method = "LOOCV"))
+y  <- my_data2$LPRICE2
+y_ <- my_model2 %>% predict(my_data2)
+
+RMSE(y_, y)
+#> [1] 0.256212 # RMSE（訓練）
+
+my_model2$results$RMSE
+#> [1] 0.3569918 # RMSE（検証）
+
+## 8.5 変数選択
+
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+n <- nrow(my_data)
+my_data2 <- my_data %>% mutate(v1 = 0:(n - 1) %% 2,
+                               v2 = 0:(n - 1) %% 3)
+
+my_model <- train(form = LPRICE2 ~ .,
+                  data = my_data2,
+                  method = "leapForward", # 変数増加法
+                  trControl = trainControl(method = "LOOCV"),
+                  tuneGrid = data.frame(nvmax = 1:6)) # 選択する変数の上限
+summary(my_model$finalModel)$outmat
+#>          WRAIN DEGREES HRAIN TIME_SV v1  v2
+#> 1  ( 1 ) " "   "*"     " "   " "     " " " "
+#> 2  ( 1 ) " "   "*"     "*"   " "     " " " "
+#> 3  ( 1 ) " "   "*"     "*"   "*"     " " " "
+#> 4  ( 1 ) "*"   "*"     "*"   "*"     " " " "
+
+## 8.6 補足：正則化
+
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+
+### 8.6.1 正則化の実践
+
+A <- 2
+B <- 0.1
+
+my_model <- train(
+  form = LPRICE2 ~ .,
+  data = my_data,
+  method = "glmnet",
+  standardize = TRUE,
+  tuneGrid = data.frame(
+    lambda = A,
+    alpha = B))
+
+coef(my_model$finalModel, A)
+#>                         1
+#> (Intercept) -2.8015519302
+#> WRAIN        .
+#> DEGREES      0.0832910512
+#> HRAIN       -0.0004147386
+#> TIME_SV      0.0023104647
+
+my_test <- data.frame(
+  WRAIN = 500, DEGREES = 17,
+  HRAIN = 120, TIME_SV = 2)
+my_model %>% predict(my_test)
+#> [1] -1.430752
+
+### 8.6.2 ペナルティの強さと係数の関係
+
+library(ggfortify)
+library(glmnetUtils)
+
+my_data2 <- my_data %>% scale %>%
+  as.data.frame
+
+B <- 0.1
+
+glmnet(
+  form = LPRICE2 ~ .,
+  data = my_data2,
+  alpha = B) %>%
+  autoplot(xvar = "lambda") +
+  xlab("log A ( = log lambda)") +
+  theme(legend.position = c(0.15, 0.25))
+
+### 8.6.3 パラメータの決定
+
+As <- seq(0, 0.1, length.out = 21)
+Bs <- seq(0, 0.1, length.out =  6)
+
+my_model <- train(
+  form = LPRICE2 ~ ., data = my_data, method = "glmnet", standardize = TRUE,
+  trControl = trainControl(method = "LOOCV"),
+  tuneGrid = expand.grid(lambda = As, alpha  = Bs))
+
+my_model$bestTune
+#>   alpha lambda
+#> 8     0  0.035
+
+tmp <- "B ( = alpha)"
+ggplot(my_model) +
+  theme(legend.position = c(0, 1), legend.justification = c(0, 1)) +
+  xlab("A ( = lambda)") +
+  guides(shape = guide_legend(tmp), color = guide_legend(tmp))
+
+my_model$results %>%
+  filter(RMSE == min(RMSE))
+#>   alpha lambda      RMSE ...
+#> 1     0 0.0595 0.3117092 ...
+
+### 8.6.4 補足：RとPythonで結果を同じにする方法
+
+## 8.7 ニューラルネットワーク
+
+### 8.7.1 ニューラルネットワークとは何か
+
+curve(1 / (1 + exp(-x)), -6, 6)
+
+### 8.7.2 ニューラルネットワークの訓練
+
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+
+my_model <- train(form = LPRICE2 ~ .,
+                  data = my_data,
+                  method = "neuralnet",              # ニューラルネットワーク
+                  preProcess = c("center", "scale"), # 標準化
+                  trControl = trainControl(method = "LOOCV"))
+plot(my_model$finalModel) # 訓練済ネットワークの描画
+
+my_model$results
+#>   layer1 layer2 layer3      RMSE ...
+#> 1      1      0      0 0.3504016 ...
+#> 2      3      0      0 0.4380399 ...
+#> 3      5      0      0 0.4325535 ...
+
+### 8.7.3 ニューラルネットワークのチューニング
+
+my_model <- train(
+  form = LPRICE2 ~ .,
+  data = my_data,
+  method = "neuralnet",
+  preProcess = c("center", "scale"),
+  trControl = trainControl(method = "LOOCV"),
+  tuneGrid = expand.grid(layer1 = 1:5,
+                         layer2 = 0:2,
+                         layer3 = 0))
+
+my_model$results %>%
+  filter(RMSE == min(RMSE))
+#>   layer1 layer2 layer3      RMSE ...
+#> 1      2      0      0 0.3165704 ...
+

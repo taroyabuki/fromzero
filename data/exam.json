@@ -1,0 +1,26 @@
+[
+  {
+    "name": "A",
+    "english": 60,
+    "math": 70,
+    "gender": "f"
+  },
+  {
+    "name": "B",
+    "english": 90,
+    "math": 80,
+    "gender": "m"
+  },
+  {
+    "name": "C",
+    "english": 70,
+    "math": 90,
+    "gender": "m"
+  },
+  {
+    "name": "D",
+    "english": 90,
+    "math": 100,
+    "gender": "f"
+  }
+]

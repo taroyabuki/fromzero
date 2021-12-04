@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root xmlns='https://www.example.net/ns/1.0'>
+ <description>experiment results</description>
+ <records>
+  <record english='60' math='70'>
+   <gender>f</gender>
+   <name>A</name>
+  </record>
+  <record english='90' math='80'>
+   <gender>m</gender>
+   <name>B</name>
+  </record>
+  <record english='70' math='90'>
+   <gender>m</gender>
+   <name>C</name>
+  </record>
+  <record english='90' math='100'>
+   <gender>f</gender>
+   <name>D</name>
+  </record>
+ </records>
+</root>

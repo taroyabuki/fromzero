@@ -49,7 +49,7 @@ RやPythonのコード（具体的なコンピュータプログラム）の読�
 [R (Google Colab)](code/R-notebook)|R|ノートブック|Google Colab
 [R (.ipynb)](code/R-notebook)|R|ノートブック|Jupyter Notebook
 [R (.r)](code/R)|R|スクリプト|RStudio
-[R Markdown (.Rmd)](code/Rmd)|R|R Markdown|RSturio
+[R Markdown (.Rmd)](code/Rmd)|R|R Markdown|RStudio
 [Python (Google Colab)](code/Python-notebook)|Python|ノートブック|Google Colab
 [Python (.ipynb)](code/Python-notebook)|Python|ノートブック|Jupyter Notebook
 [Python (.py)](code/py)|Python|スクリプト|一般のPython環境

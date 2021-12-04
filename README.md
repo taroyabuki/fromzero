@@ -64,7 +64,7 @@ RやPythonのコード（具体的なコンピュータプログラム）の読�
 --|--|--
 Jupyter Notebook|Intel, AMD64, Apple Chip（GPU無効）|[jupyter](docker/jupyter)
 RStudio|Intel, AMD64（GPU無効）|[rstudio](docker/rstudio)
-RStudio|Intel, AMD64（GPU有効）|[rstudio-gpu](docker/rstudio-gpu)
+RStudio|Intel, AMD64（NVIDIAのGPU）|[rstudio-gpu](docker/rstudio-gpu)
 RStudio|Apple Chip|[rstudio-mac](docker/rstudio-mac)
 
 Dockerの使い方は，2.3節を参照してください．

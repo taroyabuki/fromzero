@@ -1,9 +1,8 @@
-# RStudio用のコンテナ（Apple Silicon）
+# RStudio用のコンテナ（Apple Chip）
 
 Docker Hub: https://hub.docker.com/r/taroyabuki/rstudio-mac
 
-- [Docker desktop 4.0.1](https://docs.docker.com/desktop/mac/release-notes/#docker-desktop-401)で動作すること，4.1から4.2では動作しないことを確認しています（それ以降は未確認）．
-- 11章のコードは実行できません．Google Colabを使ってください（[R](../code/R-notebook)・[Python](../code/Python-notebook)）．
+Apple Chipでは，11章のコードは実行できません．11章を読む際には，Google Colabを使ってください（[R](../code/R-notebook)・[Python](../code/Python-notebook)）．
 
 ## 使い方
 

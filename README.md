@@ -15,7 +15,7 @@ RやPythonのコード（具体的なコンピュータプログラム）の読�
 
 1. 第I部「データサイエンスの準備」で，準備に時間をかけています．
 1. ほぼ全ての例をコードに基づいて説明しています．本書掲載のコードはサポートサイト（[ここ](#コード)）でも公開しています（使用方法は2.6節を参照）．ただし，コードは自分で入力して実行することを勧めます．
-1. 第II部「機械学習」では，ほぼ全ての課題をRとPythonで解決し，同じ結果を得ることを試みています．[画像とそのソースコード](figures)をご参照ください．
+1. 第II部「機械学習」では，ほぼ全ての課題をRとPythonで解決し，同じ結果を得ることを試みています．
 
 ## 目次
 
@@ -54,7 +54,7 @@ RやPythonのコード（具体的なコンピュータプログラム）の読�
 [Python (.ipynb)](code/Python-notebook)|Python|ノートブック|Jupyter Notebook
 [Python (.py)](code/py)|Python|スクリプト|一般のPython環境
 
-Google Colab以外のコードは，`git clone https://github.com/taroyabuki/fromzero.git`としてから使うことを勧めます（2.6節を参照）．
+コードの使い方は，2.6節を参照してください．
 
 ## [画像とそのソースコード](figures)
 
@@ -66,3 +66,5 @@ Jupyter Notebook||[jupyter](docker/jupyter)
 RStudio|Intel, AMD64（GPU無効）|[rstudio](docker/rstudio)
 RStudio|Intel, AMD64（GPU有効）|[rstudio-gpu](docker/rstudio-gpu)
 RStudio|Apple Silicon|[rstudio-mac](docker/rstudio-mac)
+
+Dockerの使い方は，2.3節を参照してください．

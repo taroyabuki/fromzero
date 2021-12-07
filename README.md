@@ -1,4 +1,4 @@
-[講談社サイエンティフィク](https://www.kspub.co.jp/) ／ [実践Data Scienceシリーズ](https://www.kspub.co.jp/book/series/S069.html) ／ ゼロからはじめるデータサイエンス入門
+[講談社サイエンティフィク](https://www.kspub.co.jp/) ／ [実践Data Scienceシリーズ](https://www.kspub.co.jp/book/series/S069.html) ／ [ゼロからはじめるデータサイエンス入門](https://www.kspub.co.jp/book/detail/5132326.html)
 
 # ゼロからはじめるデータサイエンス入門（講談社, 2021）サポートサイト
 

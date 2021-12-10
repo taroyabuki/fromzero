@@ -277,7 +277,8 @@
   <td colspan="2"><img src="fig/図8.1.svg" style="width:300px;" alt="" /></td>
 </tr>
 <tr><th>図8.2</th>
-  <td colspan="2"><a href="fig-r/08-r-nnet-3-2.R"><img src="fig-r/08-r-nnet-3-2.svg" style="width:600px;" alt="" /></a></td>
+  <td><a href="fig-r/08-r-nnet-3-2.R"><img src="fig-r/08-r-nnet-3-2.svg" style="width:300px;" alt="" /></a></td>
+  <td></td>
 </tr>
 </table>
 
@@ -361,6 +362,9 @@
 <tr><th>図11.c</th>
   <td><a href="fig-r/11-r-classification.R"><img src="fig-r/11-r-classification.svg" style="width:300px;" alt="" /></a></td>
   <td><a href="fig-p/11-p-classification.py"><img src="fig-p/11-p-classification.svg" style="width:300px;" alt="" /></a></td>
+</tr>
+<tr><th>表11.1</th>
+  <td colspan="2"><img src="fig/表11.1.svg" style="width:600px;" alt="" /></td>
 </tr>
 <tr><th>表11.b</th>
   <td colspan="2"><img src="fig/表11.b.svg" style="width:600px;" alt="" /></td>

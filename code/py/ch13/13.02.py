@@ -21,6 +21,15 @@ hierarchy.dendrogram(my_result,
 hierarchy.cut_tree(my_result, 3)
 #> array([[0], [1], [0], [2]])
 
+# 補足（見やすくする）
+my_data.assign(cluster=
+  hierarchy.cut_tree(my_result, 3))
+#>     x   y  cluster
+#> A   0   0        0
+#> B -16   0        1
+#> C  10  10        0
+#> D  10 -15        2
+
 ### 13.2.2 階層的クラスタ分析とヒートマップ
 
 import pandas as pd
@@ -51,6 +60,15 @@ my_result = KMeans(
 
 my_result.labels_
 #> array([1, 0, 1, 2], dtype=int32)
+
+# 補足（見やすくする）
+my_data.assign(
+  cluster=my_result.labels_)
+#>     x   y  cluster
+#> A   0   0        1
+#> B -16   0        0
+#> C  10  10        1
+#> D  10 -15        2
 
 ### 13.2.4 クラスタ数の決定
 

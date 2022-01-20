@@ -75,7 +75,7 @@ my_sample = my_data.iloc[my_idx, ]
 X, y = my_sample[['speed']], my_sample['dist']
 
 d = 5
-X5 = PolynomialFeatures(d).fit_transform(X) # Xの1乗から5乗の変数
+X5 = PolynomialFeatures(d, include_bias=False).fit_transform(X) # Xの1乗から5乗の変数
 
 my_model = LinearRegression()
 my_model.fit(X5, y)

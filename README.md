@@ -4,7 +4,7 @@
 
 [書店へのリンク集（版元ドットコム）](https://www.hanmoto.com/bd/isbn/9784065132326)
 
-<a href="https://github.com/taroyabuki/fromzero/blob/master/cover.jpg"><img src="https://raw.githubusercontent.com/taroyabuki/fromzero/master/cover.jpg" alt="書影" style="width:300px;"/></a>
+<img src="https://www.kspub.co.jp/book/detail/images/8e2cee80a3e43a0cbbecef67a945b93613c656b0.jpg" alt="書影" style="width:300px;"/>
 
 著者：**辻真吾**（[@tsjshg](https://twitter.com/tsjshg)）・**矢吹太朗**（[@yabuki](https://twitter.com/yabuki)）
 

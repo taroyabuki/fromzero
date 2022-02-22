@@ -70,3 +70,7 @@ RStudio|Intel, AMD64（NVIDIAのGPU）|[rstudio-gpu](docker/rstudio-gpu)
 RStudio|Apple Chip|[rstudio-mac](docker/rstudio-mac)
 
 Dockerの使い方は，2.3節を参照してください．
+
+## ライセンス
+
+The contents of https://github.com/taroyabuki/fromzero by Shingo Tsuji and Taro Yabuki is licensed under the [Apache License, Version 2.0](LICENSE).

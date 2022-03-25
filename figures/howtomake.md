@@ -31,7 +31,7 @@ cd fromzero/figures
 ```bash
 cd fig-r
 #make clean # すべて生成し直す場合
-make -j 16
+make -j
 cd ..
 ```
 
@@ -40,6 +40,6 @@ cd ..
 ```bash
 cd fig-p
 #make clean # すべて生成し直す場合
-make -j 16
+make -j
 cd ..
 ```

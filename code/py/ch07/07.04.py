@@ -93,7 +93,7 @@ np.corrcoef(y, y_)[0, 1]**2
 tmp = pd.DataFrame({'speed': np.linspace(min(my_data.speed),
                                          max(my_data.speed),
                                          100)})
-X5 = PolynomialFeatures(d).fit_transform(tmp)
+X5 = PolynomialFeatures(d, include_bias=False).fit_transform(tmp)
 tmp['model'] = my_model.predict(X5)
 
 my_sample = my_sample.assign(sample=y)

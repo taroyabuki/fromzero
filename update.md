@@ -11,5 +11,5 @@ p. 194 Pythonのコード（2箇所）|`PolynomialFeatures(d)`|`PolynomialFeatur
 
 ## 補足
 
-- [7.4.3 当てはまりの良さの指標の問題点](addendum/07.04.03.ipynb)
 - [7.3.2 予測値の期待値の信頼区間](addendum/07.03.02/)
+- [7.4.3 当てはまりの良さの指標の問題点](addendum/07.04.03.ipynb)

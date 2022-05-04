@@ -24,7 +24,7 @@ my_search.cv_results_['mean_test_score']
 
 ### 9.4.2 ブースティング
 
-warnings.simplefilter('ignore', UserWarning) # これ以降，警告を表示しない．
+warnings.simplefilter('ignore') # これ以降，警告を表示しない．
 my_search = GridSearchCV(
     xgboost.XGBClassifier(eval_metric='mlogloss'),
     param_grid={'n_estimators'    : [50, 100, 150],
@@ -36,7 +36,7 @@ my_search = GridSearchCV(
                 'subsample'       : [0.5, 0.75, 1]},
     cv=5, # 5分割交差検証
     n_jobs=1).fit(X, y) # n_jobs=-1ではない．
-warnings.simplefilter('default', UserWarning) # これ以降，警告を表示する．
+warnings.simplefilter('default') # これ以降，警告を表示する．
 
 my_search.best_params_
 #> {'colsample_bytree': 0.6,

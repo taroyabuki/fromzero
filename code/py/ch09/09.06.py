@@ -24,8 +24,8 @@ from sklearn.preprocessing import StandardScaler
 my_data = sm.datasets.get_rdataset('iris', 'datasets').data
 X, y = my_data.iloc[:, 0:4], my_data.Species
 
-my_pipeline = Pipeline([('sc', StandardScaler()),  # 標準化
-                        ('mlp', MLPClassifier())]) # ニューラルネットワーク
+my_pipeline = Pipeline([('sc',  StandardScaler()),              # 標準化
+                        ('mlp', MLPClassifier(max_iter=1000))]) # ニューラルネットワーク
 my_scores = cross_val_score(my_pipeline, X, y, cv=LeaveOneOut(), n_jobs=-1)
 my_scores.mean()
 #> 0.9533333333333334

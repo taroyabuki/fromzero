@@ -38,10 +38,10 @@ my_scores.mean()
 
 ### 9.5.3 方針2：欠損があっても使える手法で学習する．
 
-warnings.simplefilter('ignore', UserWarning)  # これ以降，警告を表示しない．
+warnings.simplefilter('ignore')  # これ以降，警告を表示しない．
 my_scores = cross_val_score(
     xgboost.XGBClassifier(eval_metric='mlogloss'), X, y, cv=5)
-warnings.simplefilter('default', UserWarning) # これ以降，警告を表示する．
+warnings.simplefilter('default') # これ以降，警告を表示する．
 
 my_scores.mean()
 #> 0.9666666666666668

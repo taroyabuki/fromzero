@@ -49,11 +49,11 @@ RやPythonのコード（具体的なコンピュータプログラム）の読�
 コード|言語|形式|実行環境
 --|--|--|--
 [R (Google Colab)](code/R-notebook)|R|ノートブック|Google Colab
-[R (.ipynb)](code/R-notebook)|R|ノートブック|Jupyter Notebook
+[R (.ipynb)](code/R-notebook)|R|ノートブック|Jupyter Notebook, [Amazon Sagemaker Studio Lab](addendum/sagemaker)
 [R (.r)](code/R)|R|スクリプト|RStudio
 [R Markdown (.Rmd)](code/Rmd)|R|R Markdown|RStudio
 [Python (Google Colab)](code/Python-notebook)|Python|ノートブック|Google Colab
-[Python (.ipynb)](code/Python-notebook)|Python|ノートブック|Jupyter Notebook
+[Python (.ipynb)](code/Python-notebook)|Python|ノートブック|Jupyter Notebook, [Amazon Sagemaker Studio Lab](addendum/sagemaker)
 [Python (.py)](code/py)|Python|スクリプト|一般のPython環境
 
 コードの使い方は，2.6節を参照してください．

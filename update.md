@@ -11,5 +11,9 @@ p. 194 Pythonのコード（2箇所）|`PolynomialFeatures(d)`|`PolynomialFeatur
 
 ## 補足
 
+- Amazon SageMaker Studio Labでの動作を確認しました（[解説](addendum/sagemaker)）．
 - [7.3.2 予測値の期待値の信頼区間](addendum/07.03.02/)
 - [7.4.3 当てはまりの良さの指標の問題点](addendum/07.04.03.ipynb)
+- 8.6.3項のPythonのコードで警告がたくさん出る場合は，事前に`warnings.simplefilter('ignore')`を実行してみてください．「`n_jobs=-1`」としていると効果がないという[報告](https://stackoverflow.com/a/55595680)もありますが．
+- 9.4.2, 9.5.3項のPythonのコードで警告がたくさん出る場合は，`warnings.simplefilter`の引数の「`, UserWarning`」を削除してみてください．配布しているコードはそのように修正しています．
+- 9.6.2項のPythonのコードで警告がたくさん出る場合は，`MLPClassifier()`を`MLPClassifier(max_iter=1000)`に変更してみてください．配布しているコードはそのように修正しています．

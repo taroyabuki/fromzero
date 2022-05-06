@@ -22,7 +22,7 @@ conda env create --file fromzero/addendum/sagemaker/sage-python.yml
 
 画面左のファイルブラウザーがあります．
 
-Rのためのノートブックは[fromzero/code/R-notebook](fromzero/code/R-notebook)，Pythonのためのノードブックは[fromzero/code/Python-notebook](fromzero/code/Python-notebook)にあります．
+Rのためのノートブックは[fromzero/code/R-notebook](/code/R-notebook)，Pythonのためのノードブックは[fromzero/code/Python-notebook](/code/Python-notebook)にあります．
 
 ノートブックのファイル（.ipynb）をダブルクリックするとカーネル選択のダイアログが出るので，Rの場合はsage-r:R，Pythonの場合はsage-python:Pythonを選択してください．
 

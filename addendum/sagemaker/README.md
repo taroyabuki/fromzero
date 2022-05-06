@@ -1,6 +1,6 @@
 # Amazon SageMaker Studio Lab
 
-無料のAmazon SageMaker Studio Lab（以下，Studio Lab）で本書のコードを動かすための環境を作ります（GPU動作確認済）．Studio Labの概要は，[Amazon SageMaker Studio Lab入門](https://atmarkit.itmedia.co.jp/ait/subtop/features/di/sagemakerstudiolab_index.html)を参照してください．
+無料の[Amazon SageMaker Studio Lab](https://studiolab.sagemaker.aws/)（以下，Studio Lab）で本書のコードを動かすための環境を作ります（GPU動作確認済）．Studio Labの概要は，[Amazon SageMaker Studio Lab入門](https://atmarkit.itmedia.co.jp/ait/subtop/features/di/sagemakerstudiolab_index.html)を参照してください．
 
 TerminalでGitHubリポジトリをクローンします．
 

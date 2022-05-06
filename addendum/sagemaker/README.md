@@ -73,7 +73,6 @@ conda install -y -c conda-forge r-vcd
 conda install -y -c conda-forge r-xgboost==1.4.1
 conda install -y -c bioconda r-ggbiplot
 
-#Rscript -e 'keras::install_keras(tensorflow = "gpu")'
 Rscript -e 'keras::install_keras()'
 
 conda env export -n sage-r > sage-r.yml

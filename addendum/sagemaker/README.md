@@ -26,6 +26,13 @@ Rのためのノートブックは[fromzero/code/R-notebook](/code/R-notebook)�
 
 ノートブックのファイル（.ipynb）をダブルクリックするとカーネル選択のダイアログが出るので，Rの場合はsage-r:R，Pythonの場合はsage-python:Pythonを選択してください．
 
+補足：Jupyter Notebook（Python）の出力を本書と同じにするためには，最初に次のコードを実行してください．54頁の脚註24のようにしてもかまいません．
+
+```python
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = "all"
+```
+
 ## 仮想環境の削除
 
 ```bash
@@ -45,32 +52,34 @@ conda remove -n sage-python --all -y
 conda create -y -n sage-r python=3.8.8
 conda activate sage-r
 
-conda install -y -c conda-forge r-caret
-conda install -y -c conda-forge r-doparallel
-conda install -y -c conda-forge r-exactci
-conda install -y -c conda-forge r-fable
-conda install -y -c conda-forge r-factoextra
-conda install -y -c conda-forge r-feasts
-conda install -y -c conda-forge r-furrr
-conda install -y -c conda-forge r-ggfortify
-conda install -y -c conda-forge r-ggmosaic
-conda install -y -c conda-forge r-glmnetutils
-conda install -y -c conda-forge r-h2o==3.34.0.3
-conda install -y -c conda-forge r-igraph
-conda install -y -c conda-forge r-irkernel
-conda install -y -c conda-forge r-keras
-conda install -y -c conda-forge r-neuralnet
-conda install -y -c conda-forge r-pastecs
-conda install -y -c conda-forge r-prophet
-conda install -y -c conda-forge r-prroc
-conda install -y -c conda-forge r-psych
-conda install -y -c conda-forge r-randomforest
-conda install -y -c conda-forge r-remotes
-conda install -y -c conda-forge r-rpart.plot
-conda install -y -c conda-forge r-tidyverse
-conda install -y -c conda-forge r-urca
-conda install -y -c conda-forge r-vcd
-conda install -y -c conda-forge r-xgboost==1.4.1
+conda install -y -c conda-forge \
+  r-caret \
+  r-doparallel \
+  r-exactci \
+  r-fable \
+  r-factoextra \
+  r-feasts \
+  r-furrr \
+  r-ggfortify \
+  r-ggmosaic \
+  r-glmnetutils \
+  r-h2o==3.34.0.3 \
+  r-igraph \
+  r-irkernel \
+  r-keras \
+  r-neuralnet \
+  r-pastecs \
+  r-prophet \
+  r-prroc \
+  r-psych \
+  r-randomforest \
+  r-remotes \
+  r-rpart.plot \
+  r-tidyverse \
+  r-urca \
+  r-vcd \
+  r-xgboost==1.4.1
+
 conda install -y -c bioconda r-ggbiplot
 
 Rscript -e 'keras::install_keras()'

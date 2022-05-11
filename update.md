@@ -1,3 +1,17 @@
+# 更新情報・正誤表
+
+## 更新情報
+
+場所|説明
+--|--
+p. 6|Windows 11には，脚註4で紹介しているWindows Terminalが搭載されています．
+p. 20|[Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済みです．表2.1のクラウド・ノートブックに相当します．
+p. 184|[予測値の期待値の信頼区間](addendum/07.03.02/)
+p. 194|[「7.4.3 当てはまりの良さの指標の問題点」についての補足](addendum/07.04.03.ipynb)
+p. 245|8.6.3項のPythonのコードで警告がたくさん出る場合は，事前に`warnings.simplefilter('ignore')`を実行してみてください．「`n_jobs=-1`」としていると効果がないという[報告](https://stackoverflow.com/a/55595680)もありますが．
+p. 271, 275|9.4.2, 9.5.3項のPythonのコードで警告がたくさん出る場合は，`warnings.simplefilter`の引数の「`, UserWarning`」を削除してみてください．配布しているコードはそのように修正しています．
+p. 277|9.6.2項のPythonのコードで警告がたくさん出る場合は，`MLPClassifier()`を`MLPClassifier(max_iter=1000)`に変更してみてください．配布しているコードはそのように修正しています．
+
 ## 正誤表
 
 場所|誤|正
@@ -14,12 +28,3 @@ p. 240 旁註|`sfs`と`lm`|`sfs`と`lr`
 p. 272 下から2行目|Sepal.With|Sepal.Width
 p. 341 脚註5|`autoplot(level = c(80, 90))`|`autoplot(level = c(80, 95))`
 p. 349 本文上から3行目|描かれいます|描かれています
-
-## 補足
-
-- Amazon SageMaker Studio Labでの動作を確認しました（[解説](addendum/sagemaker)）．
-- [7.3.2 予測値の期待値の信頼区間](addendum/07.03.02/)
-- [7.4.3 当てはまりの良さの指標の問題点](addendum/07.04.03.ipynb)
-- 8.6.3項のPythonのコードで警告がたくさん出る場合は，事前に`warnings.simplefilter('ignore')`を実行してみてください．「`n_jobs=-1`」としていると効果がないという[報告](https://stackoverflow.com/a/55595680)もありますが．
-- 9.4.2, 9.5.3項のPythonのコードで警告がたくさん出る場合は，`warnings.simplefilter`の引数の「`, UserWarning`」を削除してみてください．配布しているコードはそのように修正しています．
-- 9.6.2項のPythonのコードで警告がたくさん出る場合は，`MLPClassifier()`を`MLPClassifier(max_iter=1000)`に変更してみてください．配布しているコードはそのように修正しています．

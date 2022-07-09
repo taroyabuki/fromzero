@@ -43,6 +43,8 @@ conda remove -n sage-r --all -y
 conda remove -n sage-python --all -y
 ```
 
+すべてを削除してやり直す方法は，[Amazon SageMaker Developer Guide](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lab-use-manage.html#:~:text=Start%20runtime.-,Reset%20environment,-To%20remove%20all)に掲載されています．
+
 ## 補足
 
 環境構築に使った.ymlは次のように作成しました（このコードを実行する必要はありません）．

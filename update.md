@@ -6,6 +6,11 @@
 --|--
 p. 6|Windows 11には，脚註4で紹介しているWindows Terminalが搭載されています．
 p. 20|[Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済みです．表2.1のクラウド・ノートブックに相当します．
+p. 27|表2.4のオプション`-v`．PowerShellでは「`-v "$(pwd):/home/rstudio/work"`」としてください．
+p. 28|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/jovyan/work" \`」としてください．
+p. 29|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/rstudio/work" \`」としてください．
+p. 46|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/jovyan/work" \`」としてください．
+p. 47|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/rstudio/work" \`」としてください．
 p. 184|[予測値の期待値の信頼区間](addendum/07.03.02/)
 p. 194|[「7.4.3 当てはまりの良さの指標の問題点」についての補足](addendum/07.04.03.ipynb)
 p. 245|8.6.3項のPythonのコードで警告がたくさん出る場合は，事前に`warnings.simplefilter('ignore')`を実行してみてください．「`n_jobs=-1`」としていると効果がないという[報告](https://stackoverflow.com/a/55595680)もありますが．

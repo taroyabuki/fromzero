@@ -6,6 +6,7 @@
 --|--
 p. 6|Windows 11には，脚註4で紹介しているWindows Terminalが搭載されています．
 p. 20|[Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済みです．表2.1のクラウド・ノートブックに相当します．
+p. 22 脚註3|Google Colabでノートブックを新規作成した後で，ランタイム→ランタイムのタイプを変更によってRを選択できるようになりました．
 p. 27|表2.4のオプション`-v`．PowerShellでは「`-v "$(pwd):/home/rstudio/work"`」としてください．
 p. 28|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/jovyan/work" \`」としてください．
 p. 29|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/rstudio/work" \`」としてください．

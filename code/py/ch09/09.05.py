@@ -10,6 +10,7 @@ from sklearn import tree
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import cross_val_score, LeaveOneOut
 from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import LabelEncoder
 
 my_data = sm.datasets.get_rdataset('iris', 'datasets').data
 
@@ -25,7 +26,9 @@ my_data.describe() # countの値が135の変数に，150-135=15個の欠損が�
 #> mean       5.843333     3.057333      3.751852     1.197037
 # 以下省略
 
-X, y = my_data.iloc[:, 0:4], my_data.Species
+X = my_data.iloc[:, 0:4]
+label_encoder = LabelEncoder()
+y = label_encoder.fit_transform(my_data.Species)
 
 ### 9.5.2 方針1：欠損を埋めて学習する．
 

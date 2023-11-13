@@ -43,7 +43,7 @@ my_df.to_csv('exam2.csv', index=False, encoding='UTF-8')
 
 ### 5.1.3 ウェブ上の表
 
-my_url = 'https://github.com/taroyabuki/fromzero/blob/master/data/exam.csv'
+my_url = 'https://taroyabuki.github.io/fromzero/exam.html'
 my_tables = pd.read_html(my_url)
 
 my_tables

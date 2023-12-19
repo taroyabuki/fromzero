@@ -21,6 +21,7 @@ p. 271, 275|XGBoostで`ValueError: Invalid classes inferred from unique values o
 p. 271, 275|9.4.2, 9.5.3項のPythonのコードで警告がたくさん出る場合は，`warnings.simplefilter`の引数の「`, UserWarning`」を削除してみてください．配布しているコードはそのように修正しています．
 p. 277|9.6.2項のPythonのコードで警告がたくさん出る場合は，`MLPClassifier()`を`MLPClassifier(max_iter=1000)`に変更してみてください．配布しているコードはそのように修正しています．
 p. 292, 298|scikit-learnのバージョンによっては，Pythonのコードの`get_feature_names()`を`get_feature_names_out()`に変更する必要があります．配布しているコードはそのように修正しています．
+p. 342|Pythonのコードの`from fbprophet import Prophet`を`from prophet import Prophet`に変更する必要がある場合があります．配布しているコードでは有効な方を使うように修正しています．
 
 ## 正誤表
 

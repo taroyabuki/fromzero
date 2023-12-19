@@ -30,8 +30,6 @@ z2.mean(), np.std(z2, ddof=1)
 ### 5.2.2 ワンホットエンコーディング
 
 import pandas as pd
-import sklearn
-from packaging import version
 from sklearn.preprocessing import (
     OneHotEncoder)
 
@@ -42,10 +40,7 @@ my_df = pd.DataFrame({
 my_enc = OneHotEncoder()
 tmp = my_enc.fit_transform(
     my_df[['class']]).toarray()
-if version.parse(sklearn.__version__) >= version.parse("1.0"):
-    my_names = my_enc.get_feature_names_out()
-else:
-    my_names = my_enc.get_feature_names()
+my_names = my_enc.get_feature_names_out() if hasattr(my_enc, 'get_feature_names_out') else my_enc.get_feature_names()
 pd.DataFrame(tmp, columns=my_names)
 #>    x0_A  x0_B  x0_C
 #> 0   1.0   0.0   0.0
@@ -69,10 +64,7 @@ my_enc = OneHotEncoder(drop='first')
 
 tmp = my_enc.fit_transform(
     my_df[['class']]).toarray()
-if version.parse(sklearn.__version__) >= version.parse("1.0"):
-    my_names = my_enc.get_feature_names_out()
-else:
-    my_names = my_enc.get_feature_names()
+my_names = my_enc.get_feature_names_out() if hasattr(my_enc, 'get_feature_names_out') else my_enc.get_feature_names()
 pd.DataFrame(tmp, columns=my_names)
 #>    x0_B  x0_C
 #> 0   0.0   0.0

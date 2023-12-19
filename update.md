@@ -13,7 +13,7 @@ p. 29|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/rstudio
 p. 46|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/jovyan/work" \`」としてください．
 p. 47|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/rstudio/work" \`」としてください．
 p. 151|GitHub上でのCSVファイルの表示方法が変更されたことへの対応です．https://github.com/taroyabuki/fromzero/blob/master/data/exam.csv をhttps://taroyabuki.github.io/fromzero/exam.html に変更してください．脚註4の「CSVのように見えますが，これはHTMLページのURLです．」をカットしてください．|
-p. 160, 161|scikit-learn 1.2以降では，`my_names = my_enc.get_feature_names()`がエラーになります．代わりに，`my_names = my_enc.get_feature_names_out()`としてください．
+p. 160, 161|scikit-learnのバージョンによっては，Pythonのコードの`get_feature_names()`を`get_feature_names_out()`に変更する必要があります．配布しているコードはそのように修正しています．
 p. 184|[予測値の期待値の信頼区間](addendum/07.03.02/)
 p. 194|[「7.4.3 当てはまりの良さの指標の問題点」についての補足](addendum/07.04.03.ipynb)
 p. 245|8.6.3項のPythonのコードで警告がたくさん出る場合は，事前に`warnings.simplefilter('ignore')`を実行してみてください．「`n_jobs=-1`」としていると効果がないという[報告](https://stackoverflow.com/a/55595680)もありますが．

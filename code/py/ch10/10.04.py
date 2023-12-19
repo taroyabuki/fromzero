@@ -29,7 +29,7 @@ my_lr  = my_pipeline.named_steps.lr
 my_lr.intercept_[0]
 #> 2.043878162056783
 
-tmp = my_ohe.get_feature_names()
+tmp = my_ohe.get_feature_names_out() if hasattr(my_ohe, 'get_feature_names_out') else my_ohe.get_feature_names()
 pd.Series(my_lr.coef_[0],
           index=tmp)
 #> x0_2nd     -1.018069

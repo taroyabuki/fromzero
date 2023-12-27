@@ -28,7 +28,7 @@ p. 342|Pythonのコードの`from fbprophet import Prophet`を`from prophet impo
 場所|誤|正
 --|--|--
 p. 258 本文3行目|グラフの中で|連結グラフ（任意の2点を線をつないで結べるグラフ）の中で
-p. 351 Pythonのコード|`vals, vecs = np.linalg.eig(S)   # 固有値と固有ベクトル`|`vals, vecs = np.linalg.eig(S)   # 固有値と固有ベクトル`<br>`idx = np.argsort(vals)[::-1]         # 固有値の大きい順の番号`<br>`vals, vecs = vals[idx], vecs[:, idx] # 固有値の大きい順での並べ替え`
+p. 351 Pythonのコード|`vals, vecs = np.linalg.eig(S)   # 固有値と固有ベクトル`|`vals, vecs = np.linalg.eig(S)   # 固有値と固有ベクトル`<br>`idx = np.argsort(-vals)              # 固有値の大きい順の番号`<br>`vals, vecs = vals[idx], vecs[:, idx] # 固有値の大きい順での並べ替え`
 
 以下の誤りは第4刷で修正しました．
 

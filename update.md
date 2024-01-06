@@ -6,17 +6,11 @@
 --|--
 p. 6|Windows 11には，脚註4で紹介しているWindows Terminalが搭載されています．
 p. 20|[Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済みです．表2.1のクラウド・ノートブックに相当します．
-p. 22 脚註3|Google Colabでノートブックを新規作成した後で，ランタイム→ランタイムのタイプを変更によってRを選択できるようになりました．
-p. 27|表2.4のオプション`-v`．PowerShellでは「`-v "$(pwd):/home/rstudio/work"`」としてください．
-p. 28|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/jovyan/work" \`」としてください．
-p. 29|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/rstudio/work" \`」としてください．
-p. 46|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/jovyan/work" \`」としてください．
-p. 47|ターミナルでの入力．PowerShellでは「`-v "$(pwd):/home/rstudio/work" \`」としてください．
-p. 151|GitHub上でのCSVファイルの表示方法が変更されたことへの対応です．https://github.com/taroyabuki/fromzero/blob/master/data/exam.csv をhttps://taroyabuki.github.io/fromzero/exam.html に変更してください．脚註4の「CSVのように見えますが，これはHTMLページのURLです．」をカットしてください．|
+p. 22 脚註3|Google Colabでノートブックを新規作成した後で，ランタイム→ランタイムのタイプを変更で，Rを選択できるようになりました．
+p. 151|GitHub上でのCSVファイルの表示方法が変更されたので，https://github.com/taroyabuki/fromzero/blob/master/data/exam.csv の代わりにhttps://taroyabuki.github.io/fromzero/exam.html を使ってください．
 p. 160, 161|scikit-learnのバージョンによっては，Pythonのコードの`get_feature_names()`を`get_feature_names_out()`に変更する必要があります．配布しているコードはそのように修正しています．
 p. 184|[予測値の期待値の信頼区間](addendum/07.03.02/)
 p. 194|[「7.4.3 当てはまりの良さの指標の問題点」についての補足](addendum/07.04.03.ipynb)
-p. 245|8.6.3項のPythonのコードで警告がたくさん出る場合は，事前に`warnings.simplefilter('ignore')`を実行してみてください．「`n_jobs=-1`」としていると効果がないという[報告](https://stackoverflow.com/a/55595680)もありますが．
 p. 271, 275|XGBoostで`ValueError: Invalid classes inferred from unique values of y. Expected: [0 1 2], got ['setosa' 'versicolor' 'virginica']`というエラーが出る場合は，`LabelEncoder`を使ってラベルを数値に変換してください．配布しているコードはそのように修正しています．
 p. 271, 275|9.4.2, 9.5.3項のPythonのコードで警告がたくさん出る場合は，`warnings.simplefilter`の引数の「`, UserWarning`」を削除してみてください．配布しているコードはそのように修正しています．
 p. 277|9.6.2項のPythonのコードで警告がたくさん出る場合は，`MLPClassifier()`を`MLPClassifier(max_iter=1000)`に変更してみてください．配布しているコードはそのように修正しています．

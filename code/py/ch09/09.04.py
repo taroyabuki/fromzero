@@ -11,9 +11,8 @@ from sklearn.model_selection import GridSearchCV, LeaveOneOut
 from sklearn.preprocessing import LabelEncoder
 
 my_data = sm.datasets.get_rdataset('iris', 'datasets').data
-X = my_data.iloc[:, 0:4]
-label_encoder = LabelEncoder()
-y = label_encoder.fit_transform(my_data.Species)
+X, y = my_data.iloc[:, 0:4], my_data.Species
+label_encoder = LabelEncoder(); y = label_encoder.fit_transform(y)
 
 my_search = GridSearchCV(RandomForestClassifier(),
                          param_grid={'max_features': [2, 3, 4]},

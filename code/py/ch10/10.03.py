@@ -40,7 +40,8 @@ my_tree = my_pipeline.named_steps['tree'] # パイプラインから木を取り
 my_dot = tree.export_graphviz(
     decision_tree=my_tree,
     out_file=None,
-    feature_names=my_enc.get_feature_names_out() if hasattr(my_enc, 'get_feature_names_out') else my_enc.get_feature_names(),
+    feature_names=my_enc.get_feature_names() \
+    if hasattr(my_enc, 'get_feature_names') else my_enc.get_feature_names_out(),
     class_names=my_pipeline.classes_,
     filled=True)
 graphviz.Source(my_dot)

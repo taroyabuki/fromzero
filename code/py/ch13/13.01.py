@@ -59,13 +59,13 @@ Z  = np.matrix(tmp)                       # 標準化しない場合
 #Z = np.matrix(tmp / my_data.std(ddof=0)) # pca(normalize=True)に合わせる場合
 
 n = len(my_data)
-S = np.cov(Z, rowvar=0, ddof=0) # 分散共分散行列
-#S = Z.T @ Z / n                # （同じ結果）
-vals, vecs = np.linalg.eig(S)   # 固有値と固有ベクトル
+S = np.cov(Z, rowvar=0, ddof=0)      # 分散共分散行列
+#S = Z.T @ Z / n                     # （同じ結果）
+vals, vecs = np.linalg.eig(S)        # 固有値と固有ベクトル
 idx = np.argsort(-vals)              # 固有値の大きい順の番号
 vals, vecs = vals[idx], vecs[:, idx] # 固有値の大きい順での並べ替え
-Z @ vecs                        # 主成分スコア（結果は割愛）
-vals.cumsum() / vals.sum()      # 累積寄与率
+Z @ vecs                             # 主成分スコア（結果は割愛）
+vals.cumsum() / vals.sum()           # 累積寄与率
 #> array([0.88848331, 0.97962854, 0.99858005, 1.        , 1.        ])
 
 U, d, V =  np.linalg.svd(Z, full_matrices=False)     # 特異値分解

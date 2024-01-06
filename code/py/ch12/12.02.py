@@ -98,10 +98,8 @@ plt.legend(loc='upper left')
 
 ### 12.2.4 Prophetによる時系列予測
 
-try:
-  from prophet import Prophet
-except ImportError:
-  from fbprophet import Prophet
+try: from fbprophet import Prophet
+except ImportError: from prophet import Prophet
 my_prophet_model = Prophet(seasonality_mode='multiplicative')
 my_prophet_model.fit(my_train)
 

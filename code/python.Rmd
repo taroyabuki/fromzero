@@ -1,0 +1,3479 @@
+---
+title: "Python　ゼロからはじめるデータサイエンス入門"
+output:
+  html_document:
+    toc: true
+    toc_depth: 1
+    toc_float: true
+---
+
+[辻真吾・矢吹太朗『ゼロからはじめるデータサイエンス入門』（講談社,\ 2021）](https://github.com/taroyabuki/fromzero)
+
+RStudioでKnitする方法
+
+1. `docker run -d -e PASSWORD=password -e ROOT=TRUE -p 8787:8787 -v "$(pwd)":/home/rstudio/work rocker/ml`
+2. ブラウザで，http://localhost:8787 にアクセスする．
+3. RStudioのFilesタブで，work/python.Rmd を開く．
+4. Knit
+
+```{r setup}
+reticulate::py_install(packages=c("lxml", "graphviz", "h2o", "keras", "matplotlib", "pmdarima", "pandas==1.5.3", "pandarallel", "pca", "prophet", "scikit-learn==1.1.3", "scipy", "seaborn", "statsmodels", "tensorflow", "xgboost"));
+```
+
+```{python}
+# これはPythonのコードの例です．
+1 + 1
+```
+
+# 1 コンピュータとネットワーク
+
+## 1.1 コンピュータの基本操作
+
+## 1.2 ネットワークの仕組み
+
+# 2 データサイエンスのための環境
+
+## 2.1 実行環境の選択
+
+## 2.2 クラウド
+
+## 2.3 Docker
+
+## 2.4 ターミナルの使い方
+
+## 2.5 RとPython
+
+## 2.6 サンプルコードの利用
+
+```{python}
+1 + 1
+# 2 # これは表示されない．
+
+print(1 + 2)
+# 3 # 表示される．
+
+1 + 3
+# 4 # 表示される．
+```
+
+# 3 RとPython
+
+## 3.1 入門
+
+```{python}
+0x10
+```
+
+```{python}
+1.23e5
+```
+
+```{python}
+2 * 3
+```
+
+```{python}
+10 / 3
+```
+
+```{python}
+10 // 3 # 商
+
+10 % 3  # 余り
+```
+
+```{python}
+x = 2
+y = 3
+x * y
+
+x, y = 20, 30 # まとめて名付け
+x * y
+```
+
+```{python}
+x = 1 + 1
+# この段階では結果は表示されない
+
+x # 変数名を評価する．
+```
+
+```{python}
+my_s = 'abcde'
+```
+
+```{python}
+len(my_s)
+```
+
+```{python}
+'This is' ' a' ' pen.'
+# あるいは
+'This is ' + 'a' + ' pen.'
+```
+
+```{python}
+my_s[1:4]
+```
+
+```{python}
+tmp = "{} is {}."
+tmp.format('This', 'a pen')
+```
+
+```{python}
+1 <= 2
+
+1 < 0
+```
+
+```{python}
+0.1 + 0.1 + 0.1 == 0.3
+
+import math
+math.isclose(0.1 + 0.1 + 0.1, 0.3)
+```
+
+```{python}
+True and False # 論理積（かつ）
+
+True or False  # 論理和（または）
+
+not True       # 否定（でない）
+```
+
+```{python}
+0 if 3 < 5 else 10
+```
+
+```{python}
+import os
+os.getcwd()
+```
+
+```{python}
+os.chdir('..')
+os.getcwd()
+```
+
+## 3.2 関数
+
+```{python}
+import math
+math.sqrt(4)
+```
+
+```{python}
+math.log(100, 10)
+```
+
+```{python}
+math.log(100)         # 自然対数
+# あるいは
+math.log(100, math.e) # 省略しない場合
+
+```
+
+```{python}
+math.log10(100) # 常用対数
+
+math.log2(1024) # 底が2の対数
+```
+
+```{python}
+def f(a, b):
+    return a - b
+```
+
+```{python}
+f(3, 5)
+```
+
+```{python}
+def f(a, b=5):
+    return a - b
+
+f(3) # f(3, 5)と同じこと
+```
+
+```{python}
+(lambda a, b: a - b)(3, 5)
+```
+
+## 3.3 コレクション
+
+```{python}
+x = ['foo', 'bar', 'baz']
+```
+
+```{python}
+len(x)
+```
+
+```{python}
+x[1]
+```
+
+```{python}
+x[1] = 'BAR'
+x # 結果の確認
+
+x[1] = 'bar' # 元に戻す．
+```
+
+```{python}
+x[-2]
+```
+
+```{python}
+x + ['qux']
+```
+
+```{python}
+x = x + ['qux']
+# あるいは
+#x.append('qux')
+
+x # 結果の確認
+```
+
+```{python}
+list(range(5))
+```
+
+```{python}
+list(range(0, 11, 2))
+```
+
+```{python}
+import numpy as np
+np.arange(0, 1.1, 0.5)
+```
+
+```{python}
+np.linspace(0, 100, 5)
+```
+
+```{python}
+[10] * 5
+```
+
+```{python}
+import numpy as np
+x = np.array([2, 3, 5, 7])
+
+x + 10 # 加算
+
+x * 10 # 乗算
+```
+
+```{python}
+x = [2, 3]
+np.sin(x)
+```
+
+```{python}
+x = np.array([2,  3,   5,    7])
+y = np.array([1, 10, 100, 1000])
+x + y
+
+x * y
+```
+
+```{python}
+np.dot(x, y)
+# あるいは
+x @ y
+
+```
+
+```{python}
+x = np.array([True, False])
+y = np.array([True, True])
+x & y
+```
+
+```{python}
+u = np.array([1, 2, 3])
+v = np.array([1, 2, 3])
+w = np.array([1, 2, 4])
+
+all(u == v) # 全体の比較
+
+all(u == w) # 全体の比較
+
+u == v      # 要素ごとの比較
+
+u == w      # 要素ごとの比較
+```
+
+```{python}
+(u == w).sum()  # 同じ要素の数
+
+(u == w).mean() # 同じ要素の割合
+```
+
+```{python}
+x = [1, "two"]
+```
+
+```{python}
+x[1]
+```
+
+```{python}
+x = {'apple' : 'りんご',
+     'orange': 'みかん'}
+```
+
+```{python}
+x['grape'] = 'ぶどう'
+```
+
+```{python}
+x['apple']
+# あるいは
+tmp = 'apple'
+x[tmp]
+
+```
+
+```{python}
+x = ['foo', 'bar', 'baz']
+y = x
+y[1] = 'BAR' # yを更新する．
+y
+
+x            # xも変わる．
+```
+
+```{python}
+x = ['foo', 'bar', 'baz']
+y = x.copy()             # 「y = x」とせずに，コピーする．
+x == y, x is y
+
+y[1] = 'BAR'             # yを更新しても，
+x
+```
+
+## 3.4 データフレーム
+
+```{python}
+import pandas as pd
+```
+
+```{python}
+my_df = pd.DataFrame({
+    'name':    ['A', 'B', 'C', 'D'],
+    'english': [ 60,  90,  70,  90],
+    'math':    [ 70,  80,  90, 100],
+    'gender':  ['f', 'm', 'm', 'f']})
+```
+
+```{python}
+my_df = pd.DataFrame([
+    ['A', 60,  70, 'f'],
+    ['B', 90,  80, 'm'],
+    ['C', 70,  90, 'm'],
+    ['D', 90, 100, 'f']],
+    columns=['name', 'english',
+             'math', 'gender'])
+```
+
+```{python}
+my_df.head()
+# 結果は割愛
+```
+
+```{python}
+r, c = my_df.shape # 行数と列数
+r, c
+
+r # 行数（len(my_df)も可）
+
+c # 列数
+```
+
+```{python}
+from itertools import product
+my_df2 = pd.DataFrame(
+    product([1, 2, 3],
+            [10, 100]),
+    columns=['X', 'Y'])
+my_df2
+```
+
+```{python}
+my_df2.columns
+```
+
+```{python}
+my_df2.columns = ['P', 'Q']
+my_df2
+# 以下省略
+```
+
+```{python}
+list(my_df.index)
+```
+
+```{python}
+my_df2.index = [
+    'a', 'b', 'c', 'd', 'e', 'f']
+my_df2
+# 以下省略
+```
+
+```{python}
+my_df3 = pd.DataFrame({
+    'english': [ 60,  90,  70,  90],
+    'math':    [ 70,  80,  90, 100],
+    'gender':  ['f', 'm', 'm', 'f']},
+    index=     ['A', 'B', 'C', 'D'])
+my_df3
+```
+
+```{python}
+tmp = pd.DataFrame({
+    'name'   : ['E'],
+    'english': [80],
+    'math'   : [80],
+    'gender' : ['m']})
+my_df2 = my_df.append(tmp)
+```
+
+```{python}
+my_df2 = my_df.assign(id=[1, 2, 3, 4])
+```
+
+```{python}
+my_df3 = my_df.copy()       # コピー
+my_df3['id'] = [1, 2, 3, 4] # 更新
+my_df3 # 結果の確認（割愛）
+```
+
+```{python}
+my_df.iloc[0, 1]
+```
+
+```{python}
+x = my_df.iloc[:, 1]
+# あるいは
+x = my_df['english']
+# あるいは
+x = my_df.english
+# あるいは
+tmp = 'english'
+x = my_df[tmp]
+
+x # 結果の確認（割愛）
+```
+
+```{python}
+x = my_df[['name', 'math']]
+# あるいは
+x = my_df.loc[:, ['name', 'math']]
+```
+
+```{python}
+x = my_df.take([0, 2], axis=1)
+# あるいは
+x = my_df.iloc[:, [0, 2]]
+```
+
+```{python}
+x = my_df.drop(
+    columns=['english', 'gender'])
+# あるいは
+x = my_df.drop(
+    columns=my_df.columns[[1, 3]])
+```
+
+```{python}
+x = my_df.take([0, 2])
+# あるいは
+x = my_df.iloc[[0, 2], :]
+```
+
+```{python}
+x = my_df.drop([1, 3])
+```
+
+```{python}
+x = my_df[my_df['gender'] == 'm']
+# あるいは
+x = my_df.query('gender == "m"')
+```
+
+```{python}
+x = my_df[(my_df['english'] > 80) & (my_df['gender'] == "m")]
+# あるいは
+x = my_df.query('english > 80 and gender == "m"')
+```
+
+```{python}
+x = my_df[my_df['english'] == my_df['english'].max()]
+# あるいは
+tmp = my_df['english'].max()
+x = my_df.query('english == @tmp')
+```
+
+```{python}
+my_df2 = my_df.copy() # コピー
+my_df2.loc[my_df['gender'] == 'm', 'gender'] = 'M'
+```
+
+```{python}
+my_df2
+```
+
+```{python}
+x = my_df.sort_values('english')
+```
+
+```{python}
+x = my_df.sort_values('english',
+    ascending=False)
+```
+
+```{python}
+import numpy as np
+x = [2, 3, 5, 7, 11, 13, 17, 19, 23,
+     29, 31, 37]
+A = np.array(x).reshape(3, 4)
+A
+```
+
+```{python}
+A = my_df.iloc[:, [1, 2]].values
+A
+```
+
+```{python}
+pd.DataFrame(A)
+```
+
+```{python}
+A.T
+```
+
+```{python}
+A.T @ A
+```
+
+```{python}
+my_df = pd.DataFrame({
+    'day': [25, 26, 27],
+    'min': [20, 21, 15],
+    'max': [24, 27, 21]})
+```
+
+```{python}
+my_longer = my_df.melt(id_vars='day')
+my_longer
+```
+
+```{python}
+my_wider = my_longer.pivot(
+    index='day',
+    columns='variable',
+    values='value')
+my_wider
+```
+
+```{python}
+my_wider.plot(
+    style='o-',
+    xticks=my_wider.index, # x軸目盛り
+    ylabel='temperature')  # y軸ラベル
+```
+
+## 3.5 1次元データの（非）類似度
+
+```{python}
+import numpy as np
+from scipy.spatial import distance
+from scipy.stats import pearsonr
+
+A = np.array([3,   4,  5])
+B = np.array([3,   4, 29])
+C = np.array([9, -18,  8])
+
+distance.euclidean(A, B)
+
+distance.euclidean(A, C)
+```
+
+```{python}
+distance.cityblock(A, B)
+
+distance.cityblock(A, C)
+```
+
+```{python}
+1 - distance.cosine(A, B)
+
+1 - distance.cosine(A, C)
+```
+
+```{python}
+1 - distance.correlation(A, B)
+# あるいは
+pearsonr(A, B)[0]
+
+1 - distance.correlation(A, C)
+# あるいは
+pearsonr(A, C)[0]
+```
+
+```{python}
+# 小数点以下は3桁表示
+np.set_printoptions(precision=3)
+import pandas as pd
+
+my_df = pd.DataFrame({
+    'x': [3,  3,   9],
+    'y': [4,  4, -18],
+    'z': [5, 29,   8]},
+    index=['A', 'B', 'C'])
+
+# ユークリッド距離
+distance.cdist(my_df, my_df,
+               metric='euclidean')
+
+# マンハッタン距離
+distance.cdist(my_df, my_df,
+               metric='cityblock')
+
+# コサイン類似度
+1 - distance.cdist(my_df, my_df,
+    metric='cosine')
+
+# 相関係数
+1 - distance.cdist(my_df, my_df,
+    metric='correlation')
+```
+
+## 3.6 Rのパッケージ，Pythonのモジュール
+
+```{python}
+import math
+import numpy as np
+import pandas as pd
+```
+
+```{python}
+import numpy
+numpy.array([1, 2, 3, 4])
+```
+
+```{python}
+import numpy as np
+np.array([1, 2, 3, 4])
+```
+
+```{python}
+from numpy import array
+array([1, 2, 3, 4])
+```
+
+```{python}
+from numpy import *
+array([1, 2, 3, 4])
+```
+
+## 3.7 反復処理
+
+```{python}
+import numpy as np
+import pandas as pd
+```
+
+```{python}
+def f1(x):
+    tmp = np.random.random(x)
+    return np.mean(tmp)
+
+f1(10)                # 動作確認
+```
+
+```{python}
+[f1(10) for i in range(3)]
+```
+
+```{python}
+[f1(10)] * 3
+```
+
+```{python}
+v = [5, 10, 100]
+[f1(x) for x in v] # 方法1
+
+# あるいは
+
+v = pd.Series([5, 10, 100])
+v.apply(f1)        # 方法2
+```
+
+```{python}
+pd.Series([10] * 3).apply(f1)
+# 結果は割愛
+```
+
+```{python}
+def f2(n):
+    tmp = np.random.random(n)
+    return pd.Series([
+        n,
+        tmp.mean(),
+        tmp.std(ddof=1)],
+        index=['x', 'p', 'q'])
+
+f2(10) # 動作確認
+```
+
+```{python}
+v = pd.Series([5, 10, 100])
+v.apply(f2)
+```
+
+```{python}
+def f3(x, y):
+    tmp = np.random.random(x) * y
+    return pd.Series([
+        x,
+        y,
+        tmp.mean(),
+        tmp.std(ddof=1)],
+        index=['x', 'y', 'p', 'q'])
+
+f3(10, 6) # 動作確認
+```
+
+```{python}
+my_df = pd.DataFrame({
+    'x': [5, 10, 100,  5, 10, 100],
+    'y': [6,  6,   6, 12, 12,  12]})
+
+my_df.apply(
+  lambda row: f3(row['x'], row['y']),
+  axis=1)
+# あるいは
+my_df.apply(lambda row:
+            f3(*row), axis=1)
+
+```
+
+```{python}
+from pandarallel import pandarallel
+pandarallel.initialize() # 準備
+
+v = pd.Series([5, 10, 100])
+v.parallel_apply(f1)
+# 結果は割愛
+```
+
+## 3.8 その他
+
+```{python}
+x = 123
+type(x)
+```
+
+```{python, eval=FALSE}
+%whos
+```
+
+```{python, eval=FALSE}
+import math
+?math.log
+# あるいは
+help(math.log)
+```
+
+```{python}
+import numpy as np
+v = [1, np.nan, 3]
+v
+```
+
+```{python}
+np.isnan(v[1])
+
+v[1] == np.nan # 誤り
+```
+
+# 4 統計入門
+
+## 4.1 記述統計
+
+```{python}
+import numpy as np
+import pandas as pd
+
+x = [165, 170, 175, 180, 185]
+np.mean(x) # リストの場合
+
+x = np.array( # アレイ
+    [165, 170, 175, 180, 185])
+x.mean() # np.mean(x)も可
+
+x = pd.Series( # シリーズ
+    [165, 170, 175, 180, 185])
+x.mean() # np.mean(x)も可
+```
+
+```{python}
+n = len(x) # サンプルサイズ
+sum(x) / n
+```
+
+```{python}
+y = [173, 174, 175, 176, 177]
+np.mean(y)
+```
+
+```{python}
+np.var(x, ddof=1) # xの分散
+
+np.var(y, ddof=1) # yの分散
+```
+
+```{python}
+sum((x - np.mean(x))**2) / (n - 1)
+```
+
+```{python}
+np.std(x, ddof=1) # xの標準偏差
+
+np.std(y, ddof=1) # yの標準偏差
+```
+
+```{python}
+np.var(x, ddof=1)**0.5 # xの標準偏差
+```
+
+```{python}
+s = pd.Series(x)
+s.describe()
+```
+
+```{python}
+# s.describe()で計算済み
+```
+
+```{python}
+x = [165, 170, 175, 180, 185]
+
+np.var(x, ddof=1) # 不偏分散
+
+np.var(x, ddof=0) # 標本分散
+```
+
+```{python}
+np.std(x, ddof=1) # √不偏分散
+
+np.std(x, ddof=0) # √標本分散
+```
+
+```{python}
+np.std(x, ddof=1) / len(x)**0.5
+```
+
+```{python}
+import numpy as np
+import pandas as pd
+
+my_df = pd.DataFrame({
+    'name':    ['A', 'B', 'C', 'D'],
+    'english': [ 60,  90,  70,  90],
+    'math':    [ 70,  80,  90, 100],
+    'gender':  ['f', 'm', 'm', 'f']})
+```
+
+```{python}
+my_df['english'].var(ddof=1)
+# あるいは
+np.var(my_df['english'], ddof=1)
+
+```
+
+```{python}
+my_df.var()
+# あるいは
+my_df.apply('var')
+# あるいは
+my_df.iloc[:, [1, 2]].apply(
+    lambda x: np.var(x, ddof=1))
+
+```
+
+```{python}
+my_df.describe()
+```
+
+```{python}
+from collections import Counter
+Counter(my_df.gender)
+
+# あるいは
+
+my_df.groupby('gender').apply(len)
+```
+
+```{python}
+my_df2 = my_df.assign(
+    excel=my_df.math >= 80)
+pd.crosstab(my_df2.gender,
+            my_df2.excel)
+```
+
+```{python}
+my_df.groupby('gender').mean()
+# あるいは
+my_df.groupby('gender').agg('mean')
+# あるいは
+my_df.groupby('gender').agg(np.mean)
+
+```
+
+## 4.2 データの可視化
+
+```{python}
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+iris = sm.datasets.get_rdataset('iris', 'datasets').data
+iris.head()
+```
+
+```{python}
+iris.hist('Sepal.Length')
+```
+
+```{python}
+my_df = pd.DataFrame(
+    {'x': [10, 20, 30]})
+my_df.hist('x', bins=2) # 階級数は2
+```
+
+```{python}
+x = iris['Sepal.Length']
+tmp = np.linspace(min(x), max(x), 10)
+iris.hist('Sepal.Length',
+          bins=tmp.round(2))
+```
+
+```{python}
+iris.plot('Sepal.Length',
+          'Sepal.Width',
+          kind='scatter')
+```
+
+```{python}
+iris.boxplot()
+```
+
+```{python}
+pd.options.display.float_format = (
+    '{:.2f}'.format)
+my_df = (iris.describe().transpose()
+    [['mean', 'std']])
+my_df['se'] = (my_df['std'] /
+               len(iris)**0.5)
+my_df
+```
+
+```{python}
+my_df.plot(y='mean', kind='bar', yerr='se', capsize=10)
+```
+
+```{python}
+my_group = iris.groupby('Species')                    # 品種ごとに，
+my_df = my_group.agg('mean')                          # 各変数の，平均と
+my_se = my_group.agg(lambda x: x.std() / len(x)**0.5) # 標準誤差を求める．
+my_se
+```
+
+```{python}
+my_group.agg('mean').plot(kind='bar', yerr=my_se, capsize=5)
+```
+
+```{python}
+from statsmodels.graphics.mosaicplot \
+    import mosaic
+
+my_df = pd.DataFrame({
+    'Species': iris.Species,
+    'w_Sepal': iris['Sepal.Width'] > 3})
+
+my_table = pd.crosstab( # 分割表
+    my_df['Species'],
+    my_df['w_Sepal'])
+my_table
+
+mosaic(my_df,
+       index=['Species', 'w_Sepal'])
+```
+
+```{python}
+my_table.columns = [str(x) for x in my_table.columns]
+my_table.index   = [str(x) for x in my_table.index]
+mosaic(my_df, index=['Species', 'w_Sepal'], labelizer=lambda k: my_table.loc[k])
+```
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(-2, 2, 100)
+y = x**3 - x
+plt.plot(x, y)
+```
+
+## 4.3 乱数
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+rng = np.random.default_rng()
+```
+
+```{python}
+x = np.random.choice(
+    a=range(1, 7), # 1から6
+    size=10000,    # 乱数の数
+    replace=True)  # 重複あり
+# あるいは
+x = np.random.randint(
+# あるいは
+#x = rng.integers(
+    low=1,      # 最小
+    high=7,     # 最大+1
+    size=10000) # 乱数の数
+
+plt.hist(x, bins=6) # ヒストグラム
+```
+
+```{python}
+x = np.random.random(size=1000)
+# あるいは
+x = rng.random(size=10000)
+# あるいは
+x = np.random.uniform(
+    low=0,     # 最小
+    high=1,    # 最大
+    size=1000) # 乱数の数
+plt.hist(x)
+```
+
+```{python}
+tmp = np.random.uniform(
+    low=1,     # 最小
+    high=7,    # 最大 + 1
+    size=1000) # 乱数の数
+x = [int(k) for k in tmp]
+plt.hist(x, bins=6) # 結果は割愛
+```
+
+```{python}
+n = 100
+p = 0.5
+r = 10000
+x = np.random.binomial(
+# あるいは
+#x = rng.binomial(
+    n=n,    # 試行回数
+    p=p,    # 確率
+    size=r) # 乱数の数
+plt.hist(x, bins=max(x) - min(x))
+```
+
+```{python}
+r = 10000
+x = np.random.normal(
+# あるいは
+#x = rng.normal(
+    loc=50,  # 平均
+    scale=5, # 標準偏差
+    size=r)  # 乱数の数
+plt.hist(x, bins=40)
+```
+
+```{python}
+import numpy as np
+import pandas as pd
+
+def f(k):
+    n = 10000
+    tmp = [g(np.random.normal(size=k, scale=3)) for _ in range(n)]
+    return pd.Series([k,
+                      np.mean(tmp),                  # 平均
+                      np.std(tmp, ddof=1) / n**0.5], # 標準誤差
+                     index=['k', 'mean', 'se'])
+```
+
+```{python}
+def g(x):
+    return np.var(x, ddof=1)
+pd.Series([10, 20, 30]).apply(f)
+```
+
+```{python}
+def g(x):
+    return np.std(x, ddof=1)
+pd.Series([10, 20, 30]).apply(f)
+```
+
+```{python}
+from math import gamma
+
+def g(x):
+    n = len(x)
+    return (np.std(x, ddof=1) *
+            (np.sqrt((n - 1) / 2) *
+             gamma((n - 1) / 2) /
+             gamma(n / 2)))
+pd.Series([10, 20, 30]).apply(f)
+```
+
+## 4.4 統計的推測
+
+```{python}
+from statsmodels.stats.proportion import binom_test, proportion_confint
+
+binom_test(count=2,                 # 当たった回数
+           nobs=15,                 # くじを引いた回数
+           prop=4 / 10,             # 当たる確率（仮説）
+           alternative='two-sided') # 両側検定（デフォルト）
+                                    # 左片側検定なら'smaller'
+                                    # 右片側検定なら'larger'
+```
+
+```{python}
+import numpy as np
+import pandas as pd
+from scipy import stats
+
+t = 4 / 10                        # 当たる確率
+n = 15                            # くじを引いた回数
+x = np.array(range(0, n + 1))     # 当たった回数
+my_pr  = stats.binom.pmf(x, n, t) # x回当たる確率
+my_pr2 = stats.binom.pmf(2, n, t) # 2回当たる確率
+
+my_data = pd.DataFrame({'x': x, 'y1': my_pr, 'y2': my_pr})
+my_data.loc[my_pr >  my_pr2, 'y1'] = np.nan # 当たる確率が，2回当たる確率超過
+my_data.loc[my_pr <= my_pr2, 'y2'] = np.nan # 当たる確率が，2回当たる確率以下
+ax = my_data.plot(x='x', style='o', ylabel='probability',
+                  legend=False)         # 凡例を表示しない．
+ax.hlines(y=my_pr2, xmin=0, xmax=15)    # 水平線
+ax.vlines(x=x,      ymin=0, ymax=my_pr) # 垂直線
+```
+
+```{python}
+a = 0.05
+proportion_confint(
+    count=2, # 当たった回数
+    nobs=15, # くじを引いた回数
+    alpha=a, # 有意水準（省略可）
+    method='binom_test')
+```
+
+```{python}
+a = 0.05 # 有意水準
+tmp = np.linspace(0, 1, 100)
+
+my_df = pd.DataFrame({
+    't': tmp,                                                  # 当たる確率
+    'q': a,                                                    # 水平線
+    'p': [binom_test(count=2, nobs=15, prop=t) for t in tmp]}) # p値
+
+my_df.plot(x='t', legend=None, xlabel=r'$\theta$', ylabel=r'p-value')
+```
+
+```{python}
+from statsmodels.stats.weightstats import CompareMeans, DescrStatsW
+
+X = [32.1, 26.2, 27.5, 31.8, 32.1, 31.2, 30.1, 32.4, 32.3, 29.9,
+     29.6, 26.6, 31.2, 30.9, 29.3]
+Y = [35.4, 34.6, 31.1, 32.4, 33.3, 34.7, 35.3, 34.3, 32.1, 28.3,
+     33.3, 30.5, 32.6, 33.3, 32.2]
+
+a = 0.05          # 有意水準（デフォルト） = 1 - 信頼係数
+alt = 'two-sided' # 両側検定（デフォルト）
+                  # 左片側検定なら'smaller'
+                  # 右片側検定なら'larger'
+
+d = DescrStatsW(np.array(X) - np.array(Y)) # 対標本の場合
+d.ttest_mean(alternative=alt)[1]           # p値
+
+d.tconfint_mean(alpha=a, alternative=alt) # 信頼区間
+```
+
+```{python}
+c = CompareMeans(DescrStatsW(X), DescrStatsW(Y)) # 対標本でない場合
+
+ve = 'pooled' # 等分散を仮定する（デフォルト）．仮定しないなら'unequal'．
+c.ttest_ind(alternative=alt, usevar=ve)[1] # p値
+
+c.tconfint_diff(alpha=a, alternative=alt, usevar=ve) # 信頼区間
+```
+
+```{python}
+import pandas as pd
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/smoker.csv')
+my_data = pd.read_csv(my_url)
+```
+
+```{python}
+my_data.head()
+```
+
+```{python}
+my_table = pd.crosstab(
+    my_data['alive'],
+    my_data['smoker'])
+my_table
+```
+
+```{python}
+from scipy.stats import chi2_contingency
+chi2_contingency(my_table, correction=False)[1]
+```
+
+```{python}
+X = [0] * 13 + [1] * 2 # 手順1
+X
+
+tmp = np.random.choice(X, 15, replace=True) # 手順2
+tmp
+
+sum(tmp) # 手順3
+
+n = 10**5
+result = [sum(np.random.choice(X, len(X), replace=True)) for _ in range(n)] # 手順4
+```
+
+```{python}
+import matplotlib.pyplot as plt
+plt.hist(result, bins=range(0, 16))
+```
+
+```{python}
+np.quantile(result, [0.025, 0.975])
+```
+
+# 5 前処理
+
+## 5.1 データの読み込み
+
+```{r}
+system("wget https://raw.githubusercontent.com/taroyabuki/fromzero/master/data/exam.csv")
+```
+
+```{python}
+import pandas as pd
+my_df = pd.read_csv('exam.csv')
+my_df
+```
+
+```{python}
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/exam.csv')
+my_df = pd.read_csv(my_url)
+```
+
+```{python}
+my_df2 = pd.read_csv('exam.csv',
+    index_col='name')
+my_df2
+```
+
+```{python}
+my_df.to_csv('exam2.csv', index=False)
+```
+
+```{python}
+my_df2.to_csv('exam3.csv')
+```
+
+```{python}
+my_df = pd.read_csv('exam.csv',
+    encoding='UTF-8')
+```
+
+```{python}
+my_df.to_csv('exam2.csv', index=False, encoding='UTF-8')
+```
+
+```{python}
+my_url = 'https://taroyabuki.github.io/fromzero/exam.html'
+my_tables = pd.read_html(my_url)
+```
+
+```{python}
+my_tables
+```
+
+```{python}
+my_tables[0]
+```
+
+```{python}
+# 1列目以降を取り出す．
+my_data = my_tables[0].iloc[:, 1:]
+my_data
+```
+
+```{python}
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/exam.json')
+my_data = pd.read_json(my_url)
+#my_data = pd.read_json('exam.json') # （ファイルを使う場合）
+my_data
+```
+
+```{python}
+import xml.etree.ElementTree as ET
+from urllib.request import urlopen
+
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/exam.xml')
+with urlopen(my_url) as f:
+    my_tree = ET.parse(f)       # XMLデータの読み込み
+
+#my_tree = ET.parse('exam.xml') # （ファイルを使う場合）
+my_ns = '{https://www.example.net/ns/1.0}' # 名前空間
+```
+
+```{python}
+my_records = my_tree.findall(f'.//{my_ns}record')
+```
+
+```{python}
+def f(record):
+    my_dic1 = record.attrib # 属性を取り出す．
+    # 子要素の名前と内容のペアを辞書にする．
+    my_dic2 = {child.tag.replace(my_ns, ''): child.text for child in list(record)}
+    return {**my_dic1, **my_dic2} # 辞書を結合する．
+```
+
+```{python}
+my_data = pd.DataFrame([f(record) for record in my_records])
+my_data['english'] = pd.to_numeric(my_data['english'])
+my_data['math']    = pd.to_numeric(my_data['math'])
+my_data
+```
+
+## 5.2 データの変換
+
+```{python}
+import numpy as np
+from scipy.stats import zscore
+
+x1 = [1, 2, 3]
+
+z1 = ((x1 - np.mean(x1)) /
+      np.std(x1, ddof=1))
+# あるいは
+z1 = zscore(x1, ddof=1)
+
+z1
+```
+
+```{python}
+z1.mean(), np.std(z1, ddof=1)
+```
+
+```{python}
+z1 * np.std(x1, ddof=1) + np.mean(x1)
+```
+
+```{python}
+x2 = [1, 3, 5]
+z2 = ((x2 - np.mean(x1)) /
+      np.std(x1, ddof=1))
+z2.mean(), np.std(z2, ddof=1)
+```
+
+```{python}
+import pandas as pd
+from sklearn.preprocessing import (
+    OneHotEncoder)
+
+my_df = pd.DataFrame({
+    'id':    [ 1 ,  2 ,  3 ],
+    'class': ['A', 'B', 'C']})
+
+my_enc = OneHotEncoder()
+tmp = my_enc.fit_transform(
+    my_df[['class']]).toarray()
+my_names = my_enc.get_feature_names() \
+if hasattr(my_enc, 'get_feature_names') \
+else my_enc.get_feature_names_out()
+pd.DataFrame(tmp, columns=my_names)
+```
+
+```{python}
+my_df2 = pd.DataFrame({
+    'id':    [ 4 ,  5,   6 ],
+    'class': ['B', 'C', 'B']})
+tmp = my_enc.transform(
+    my_df2[['class']]).toarray()
+pd.DataFrame(tmp, columns=my_names)
+```
+
+```{python}
+my_enc = OneHotEncoder(drop='first')
+
+tmp = my_enc.fit_transform(
+    my_df[['class']]).toarray()
+my_names = my_enc.get_feature_names() \
+if hasattr(my_enc, 'get_feature_names') \
+else my_enc.get_feature_names_out()
+pd.DataFrame(tmp, columns=my_names)
+
+tmp = my_enc.transform(
+    my_df2[['class']]).toarray()
+pd.DataFrame(tmp, columns=my_names)
+```
+
+# 6 機械学習の目的・データ・手法
+
+## 6.1 機械学習の目的（本書の場合）
+
+## 6.2 機械学習のためのデータ
+
+```{python}
+import statsmodels.api as sm
+iris = sm.datasets.get_rdataset('iris', 'datasets').data
+iris.head()
+# 以下省略
+```
+
+```{python}
+import seaborn as sns
+iris = sns.load_dataset('iris')
+iris.head()
+# 以下省略
+```
+
+```{python}
+import pandas as pd
+from sklearn.datasets import load_iris
+tmp = load_iris()
+iris = pd.DataFrame(tmp.data, columns=tmp.feature_names)
+iris['target'] = tmp.target_names[tmp.target]
+iris.head()
+# 以下省略
+```
+
+## 6.3 機械学習のための手法
+
+# 7 回帰1（単回帰）
+
+## 7.1 自動車の停止距離
+
+## 7.2 データの確認
+
+```{python}
+import statsmodels.api as sm
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+```
+
+```{python}
+my_data.shape
+```
+
+```{python}
+my_data.head()
+```
+
+```{python}
+my_data.describe()
+```
+
+```{python}
+my_data.plot(x='speed', style='o')
+```
+
+## 7.3 回帰分析
+
+```{python}
+import seaborn as sns
+import statsmodels.api as sm
+
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+ax = sns.regplot(x='speed', y='dist', data=my_data)
+ax.vlines(x=21.5, ymin=-5, ymax=67,   linestyles='dotted')
+ax.hlines(y=67,   xmin=4,  xmax=21.5, linestyles='dotted')
+ax.set_xlim(4, 25)
+ax.set_ylim(-5, 125)
+```
+
+```{python}
+import statsmodels.api as sm
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+X, y = my_data[['speed']], my_data['dist']
+```
+
+```{python}
+# モデルの指定
+from sklearn.linear_model import LinearRegression
+my_model = LinearRegression()
+
+# 訓練（モデルをデータにフィットさせる．）
+my_model.fit(X, y)
+
+# まとめて実行してもよい．
+# my_model = LinearRegression().fit(X, y)
+```
+
+```{python}
+my_model.intercept_, my_model.coef_
+```
+
+```{python}
+tmp = [[21.5]]
+my_model.predict(tmp)
+```
+
+```{python}
+import numpy as np
+import pandas as pd
+
+tmp = pd.DataFrame({'speed': np.linspace(min(my_data.speed),
+                                         max(my_data.speed),
+                                         100)})
+tmp['model'] = my_model.predict(tmp)
+```
+
+```{python}
+pd.concat([my_data, tmp]).plot(
+    x='speed', style=['o', '-'])
+```
+
+## 7.4 当てはまりの良さの指標
+
+```{python}
+import pandas as pd
+import statsmodels.api as sm
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+X, y = my_data[['speed']], my_data['dist']
+
+my_model = LinearRegression()
+my_model.fit(X, y)
+y_ = my_model.predict(X)
+my_data['y_'] = y_
+```
+
+```{python}
+pd.options.display.float_format = (
+    '{:.2f}'.format)
+my_data['residual'] = y - y_
+my_data.head()
+```
+
+```{python}
+ax = my_data.plot(x='speed', y='dist', style='o', legend=False)
+my_data.plot(x='speed', y='y_', style='-', legend=False, ax=ax)
+ax.vlines(x=X, ymin=y, ymax=y_, linestyles='dotted')
+```
+
+```{python}
+mean_squared_error(y, y_)**0.5
+# あるいは
+(my_data['residual']**2).mean()**0.5
+
+```
+
+```{python}
+my_model.score(X, y)
+# あるいは
+r2_score(y_true=y, y_pred=y_)
+```
+
+```{python}
+import numpy as np
+np.corrcoef(y, y_)[0, 1]**2
+```
+
+```{python}
+my_test = my_data[:3]
+X = my_test[['speed']]
+y = my_test['dist']
+y_ = my_model.predict(X)
+
+my_model.score(X, y)
+# あるいは
+r2_score(y_true=y, y_pred=y_)
+
+np.corrcoef(y, y_)[0, 1]**2
+```
+
+```{python}
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+
+my_idx = [1, 10, 26, 33, 38, 43]
+my_sample = my_data.iloc[my_idx, ]
+X, y = my_sample[['speed']], my_sample['dist']
+```
+
+```{python}
+d = 5
+X5 = PolynomialFeatures(d, include_bias=False).fit_transform(X) # Xの1乗から5乗の変数
+
+my_model = LinearRegression()
+my_model.fit(X5, y)
+y_ = my_model.predict(X5)
+```
+
+```{python}
+((y - y_)**2).mean()**0.5
+
+my_model.score(X5, y)
+
+np.corrcoef(y, y_)[0, 1]**2
+```
+
+```{python}
+tmp = pd.DataFrame({'speed': np.linspace(min(my_data.speed),
+                                         max(my_data.speed),
+                                         100)})
+X5 = PolynomialFeatures(d, include_bias=False).fit_transform(tmp)
+tmp['model'] = my_model.predict(X5)
+
+my_sample = my_sample.assign(sample=y)
+my_df = pd.concat([my_data, my_sample, tmp])
+my_df.plot(x='speed', style=['o', 'o', '-'], ylim=(0, 130))
+```
+
+## 7.5 K最近傍法
+
+```{python}
+# 準備
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+from sklearn.neighbors import KNeighborsRegressor
+
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+X, y = my_data[['speed']], my_data['dist']
+
+# 訓練
+my_model = KNeighborsRegressor()
+my_model.fit(X, y)
+
+# 可視化の準備
+tmp = pd.DataFrame({'speed': np.linspace(min(my_data.speed),
+                                         max(my_data.speed),
+                                         100)})
+tmp['model'] = my_model.predict(tmp)
+```
+
+```{python}
+pd.concat([my_data, tmp]).plot(
+    x='speed', style=['o', '-'])
+```
+
+```{python}
+y_ = my_model.predict(X)
+
+((y - y_)**2).mean()**0.5
+
+my_model.score(X, y)
+
+np.corrcoef(y, y_)[0, 1]**2
+```
+
+## 7.6 検証
+
+```{python}
+import statsmodels.api as sm
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import cross_val_score
+
+# データの準備
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+X, y = my_data[['speed']], my_data['dist']
+
+# モデルの指定
+my_model = LinearRegression()
+
+# 検証（5分割交差検証）
+my_scores = cross_val_score(my_model, X, y)
+
+# 5個の決定係数1を得る．
+my_scores
+
+# 平均を決定係数1（検証）とする．
+my_scores.mean()
+```
+
+```{python}
+my_scores = cross_val_score(my_model, X, y,
+                            scoring='neg_root_mean_squared_error')
+-my_scores.mean()
+```
+
+```{python}
+import numpy as np
+import statsmodels.api as sm
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.model_selection import cross_val_score, LeaveOneOut
+
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+X, y = my_data[['speed']], my_data['dist']
+my_model = LinearRegression().fit(X, y)
+y_ = my_model.predict(X)
+```
+
+```{python}
+# RMSE（訓練）
+mean_squared_error(y, y_)**0.5
+
+# 決定係数1（訓練）
+my_model.score(X, y)
+# あるいは
+r2_score(y_true=y, y_pred=y_)
+
+# 決定係数6（訓練）
+np.corrcoef(y, y_)[0, 1]**2
+```
+
+```{python}
+my_scores = cross_val_score(my_model, X, y,
+                            scoring='neg_root_mean_squared_error')
+-my_scores.mean()
+
+my_scores = cross_val_score(my_model, X, y, scoring='r2') # scoring='r2'は省略可
+my_scores.mean()
+```
+
+```{python}
+# 方法1
+my_scores1 = cross_val_score(my_model, X, y, cv=LeaveOneOut(),
+                             scoring='neg_mean_squared_error')
+(-my_scores1.mean())**0.5
+
+# 方法2
+my_scores2 = cross_val_score(my_model, X, y, cv=LeaveOneOut(),
+                             scoring='neg_root_mean_squared_error')
+(my_scores2**2).mean()**0.5
+```
+
+```{python}
+-my_scores2.mean()
+```
+
+```{python}
+import pandas as pd
+import statsmodels.api as sm
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import cross_val_score, LeaveOneOut
+from sklearn.neighbors import KNeighborsRegressor
+
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+X, y = my_data[['speed']], my_data['dist']
+
+my_lm_scores = cross_val_score(
+    LinearRegression(),
+    X, y, cv=LeaveOneOut(), scoring='neg_mean_squared_error')
+
+my_knn_socres = cross_val_score(
+    KNeighborsRegressor(n_neighbors=5),
+    X, y, cv=LeaveOneOut(), scoring='neg_mean_squared_error')
+```
+
+```{python}
+(-my_lm_scores.mean())**0.5
+
+(-my_knn_socres.mean())**0.5
+```
+
+```{python}
+my_df = pd.DataFrame({
+    'lm': -my_lm_scores,
+    'knn': -my_knn_socres})
+my_df.head()
+```
+
+```{python}
+my_df.boxplot().set_ylabel("$r^2$")
+```
+
+```{python}
+from statsmodels.stats.weightstats import DescrStatsW
+d = DescrStatsW(my_df.lm - my_df.knn)
+d.ttest_mean()[1] # p値
+
+d.tconfint_mean(alpha=0.05, alternative='two-sided') # 信頼区間
+```
+
+## 7.7 パラメータチューニング
+
+```{python}
+import pandas as pd
+import statsmodels.api as sm
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import GridSearchCV, LeaveOneOut
+from sklearn.neighbors import KNeighborsRegressor
+
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+X, y = my_data[['speed']], my_data['dist']
+
+my_params = {'n_neighbors': range(1, 16)} # 探索範囲（1以上16未満の整数）
+
+my_search = GridSearchCV(estimator=KNeighborsRegressor(),
+                         param_grid=my_params,
+                         cv=LeaveOneOut(),
+                         scoring='neg_mean_squared_error')
+my_search.fit(X, y)
+```
+
+```{python}
+tmp = my_search.cv_results_                # チューニングの詳細
+my_scores = (-tmp['mean_test_score'])**0.5 # RMSE
+my_results = pd.DataFrame(tmp['params']).assign(validation=my_scores)
+```
+
+```{python}
+my_results.head()
+```
+
+```{python}
+my_results.plot(x='n_neighbors',
+                style='o-',
+                ylabel='RMSE')
+```
+
+```{python}
+my_search.best_params_
+```
+
+```{python}
+(-my_search.best_score_)**0.5
+```
+
+```{python}
+my_model = my_search.best_estimator_
+y_ = my_model.predict(X)
+mean_squared_error(y_, y)**0.5
+```
+
+```{python}
+import pandas as pd
+import statsmodels.api as sm
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import cross_val_score, LeaveOneOut
+from sklearn.neighbors import KNeighborsRegressor
+
+my_data = sm.datasets.get_rdataset('cars', 'datasets').data
+X, y = my_data[['speed']], my_data['dist']
+
+def my_loocv(k):
+    my_model = KNeighborsRegressor(n_neighbors=k)
+    my_scores = cross_val_score(estimator=my_model, X=X, y=y,
+                                cv=LeaveOneOut(),
+                                scoring='neg_mean_squared_error')
+    y_ = my_model.fit(X, y).predict(X)
+    return pd.Series([k,
+                      (-my_scores.mean())**0.5,        # RMSE（検証）
+                      mean_squared_error(y_, y)**0.5], # RMSE（訓練）
+                     index=['n_neighbors', 'validation', 'training'])
+
+my_results = pd.Series(range(1, 16)).apply(my_loocv)
+```
+
+```{python}
+my_results.plot(x='n_neighbors',
+                style='o-',
+                ylabel='RMSE')
+```
+
+# 8 回帰2（重回帰）
+
+## 8.1 ブドウの生育条件とワインの価格
+
+```{python}
+import pandas as pd
+my_url = 'http://www.liquidasset.com/winedata.html'
+tmp = pd.read_table(my_url, skiprows=62, nrows=38, sep='\\s+', na_values='.')
+tmp.describe()
+# 以下省略
+```
+
+```{python}
+my_data = tmp.iloc[:, 2:].dropna()
+my_data.head()
+```
+
+```{python}
+my_data.shape
+```
+
+```{python}
+my_data.to_csv('wine.csv',
+               index=False)
+```
+
+```{python}
+#my_data = pd.read_csv('wine.csv') # 作ったファイルを使う場合
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
+my_data = pd.read_csv(my_url)
+```
+
+## 8.2 重回帰分析
+
+```{python}
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import cross_val_score, LeaveOneOut
+
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
+my_data = pd.read_csv(my_url)
+X, y = my_data.drop(columns=['LPRICE2']), my_data['LPRICE2']
+
+my_model = LinearRegression().fit(X, y)
+```
+
+```{python}
+my_model.intercept_
+
+pd.Series(my_model.coef_,
+          index=X.columns)
+```
+
+```{python}
+my_test = [[500, 17, 120, 2]]
+my_model.predict(my_test)
+```
+
+```{python}
+y_ = my_model.predict(X)
+
+mean_squared_error(y_, y)**0.5
+
+my_model.score(X, y)
+
+np.corrcoef(y, y_)[0, 1]**2
+```
+
+```{python}
+my_scores = cross_val_score(my_model, X, y,
+                            cv=LeaveOneOut(),
+                            scoring='neg_mean_squared_error')
+(-my_scores.mean())**0.5
+```
+
+```{python}
+import numpy as np
+M = np.matrix(X.assign(b0=1))
+b = np.linalg.pinv(M) @ y
+pd.Series(b,
+    index=list(X.columns) + ['b0'])
+```
+
+## 8.3 標準化
+
+```{python}
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
+my_data = pd.read_csv(my_url)
+X, y = my_data.drop(columns=['LPRICE2']), my_data['LPRICE2']
+
+# StandardScalerで標準化した結果をデータフレームに戻してから描画する．
+pd.DataFrame(StandardScaler().fit_transform(X), columns=X.columns
+            ).boxplot(showmeans=True)
+```
+
+```{python}
+my_pipeline = Pipeline([
+    ('sc', StandardScaler()),
+    ('lr', LinearRegression())])
+my_pipeline.fit(X, y)
+```
+
+```{python}
+# 線形回帰の部分だけを取り出す．
+my_lr = my_pipeline.named_steps.lr
+my_lr.intercept_
+
+pd.Series(my_lr.coef_,
+          index=X.columns)
+```
+
+```{python}
+my_test = [[500, 17, 120, 2]]
+my_pipeline.predict(my_test)
+```
+
+## 8.4 入力変数の数とモデルの良さ
+
+```{python}
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import cross_val_score, LeaveOneOut
+
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
+my_data = pd.read_csv(my_url)
+
+n = len(my_data)
+my_data2 = my_data.assign(v1=[i % 2 for i in range(n)],
+                          v2=[i % 3 for i in range(n)])
+my_data2.head()
+```
+
+```{python}
+X, y = my_data2.drop(columns=['LPRICE2']), my_data2['LPRICE2']
+my_model2 = LinearRegression().fit(X, y)
+
+y_ = my_model2.predict(X)
+mean_squared_error(y_, y)**0.5
+
+my_scores = cross_val_score(my_model2, X, y,
+                            cv=LeaveOneOut(),
+                            scoring='neg_mean_squared_error')
+(-my_scores.mean())**0.5
+```
+
+## 8.5 変数選択
+
+```{python}
+import pandas as pd
+from sklearn.feature_selection import SequentialFeatureSelector
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import GridSearchCV, LeaveOneOut
+from sklearn.pipeline import Pipeline
+
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
+my_data = pd.read_csv(my_url)
+
+n = len(my_data)
+my_data2 = my_data.assign(v1=[i % 2 for i in range(n)],
+                          v2=[i % 3 for i in range(n)])
+X, y = my_data2.drop(columns=['LPRICE2']), my_data2['LPRICE2']
+```
+
+```{python}
+my_sfs = SequentialFeatureSelector(
+    estimator=LinearRegression(),
+    direction='forward', # 変数増加法
+    cv=LeaveOneOut(),
+    scoring='neg_mean_squared_error')
+
+my_pipeline = Pipeline([         # 変数選択の後で再訓練を行うようにする．
+    ('sfs', my_sfs),             # 変数選択
+    ('lr', LinearRegression())]) # 回帰分析
+
+my_params = {'sfs__n_features_to_select': range(1, 6)} # 選択する変数の上限
+my_search = GridSearchCV(estimator=my_pipeline,
+                         param_grid=my_params,
+                         cv=LeaveOneOut(),
+                         scoring='neg_mean_squared_error',
+                         n_jobs=-1).fit(X, y)
+my_model = my_search.best_estimator_ # 最良のパラメータで再訓練したモデル
+my_search.best_estimator_.named_steps.sfs.get_support()
+```
+
+## 8.6 補足：正則化
+
+```{python}
+import numpy as np
+import pandas as pd
+import warnings
+from sklearn.exceptions import ConvergenceWarning
+from sklearn.linear_model import ElasticNet, enet_path
+from sklearn.model_selection import GridSearchCV, LeaveOneOut
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from scipy.stats import zscore
+warnings.simplefilter('ignore', ConvergenceWarning) # これ以降，警告を表示しない．
+
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
+my_data = pd.read_csv(my_url)
+X, y = my_data.drop(columns=['LPRICE2']), my_data['LPRICE2']
+```
+
+```{python}
+A = 2
+B = 0.1
+
+my_pipeline = Pipeline([
+    ('sc', StandardScaler()),
+    ('enet', ElasticNet(
+        alpha=A,
+        l1_ratio=B))])
+my_pipeline.fit(X, y)
+```
+
+```{python}
+my_enet = my_pipeline.named_steps.enet
+my_enet.intercept_
+
+pd.Series(my_enet.coef_,
+          index=X.columns)
+```
+
+```{python}
+my_test = pd.DataFrame(
+    [[500, 17, 120, 2]])
+my_pipeline.predict(my_test)
+```
+
+```{python}
+As = np.e**np.arange(2, -5.5, -0.1)
+B = 0.1
+
+_, my_path, _ = enet_path(
+    zscore(X), zscore(y),
+    alphas=As,
+    l1_ratio=B)
+
+pd.DataFrame(
+    my_path.T,
+    columns=X.columns,
+    index=np.log(As)
+).plot(
+    xlabel='log A ( = log alpha)',
+    ylabel='Coefficients')
+```
+
+```{python}
+As = np.linspace(0, 0.1, 21)
+Bs = np.linspace(0, 0.1,  6)
+
+my_pipeline = Pipeline([('sc', StandardScaler()),
+                        ('enet', ElasticNet())])
+my_search = GridSearchCV(
+    estimator=my_pipeline,
+    param_grid={'enet__alpha': As, 'enet__l1_ratio': Bs},
+    cv=LeaveOneOut(),
+    scoring='neg_mean_squared_error',
+    n_jobs=-1).fit(X, y)
+my_model = my_search.best_estimator_ # 最良モデル
+
+my_search.best_params_               # 最良パラメータ
+```
+
+```{python}
+tmp = my_search.cv_results_                # チューニングの詳細
+my_scores = (-tmp['mean_test_score'])**0.5 # RMSE
+
+my_results = pd.DataFrame(tmp['params']).assign(RMSE=my_scores).pivot(
+    index='enet__alpha',
+    columns='enet__l1_ratio',
+    values='RMSE')
+
+my_results.plot(style='o-', xlabel='A ( = alpha)', ylabel='RMSE').legend(
+    title='B ( = l1_ratio)')
+```
+
+```{python}
+(-my_search.best_score_)**0.5
+```
+
+## 8.7 ニューラルネットワーク
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.linspace(-6, 6, 100)
+y = 1 / (1 + np.exp(-x))
+plt.plot(x, y)
+```
+
+```{python}
+import pandas as pd
+import warnings
+from sklearn.exceptions import ConvergenceWarning
+from sklearn.neural_network import MLPRegressor
+from sklearn.model_selection import cross_val_score, GridSearchCV, LeaveOneOut
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
+my_data = pd.read_csv(my_url)
+X, y = my_data.drop(columns=['LPRICE2']), my_data['LPRICE2']
+```
+
+```{python}
+warnings.simplefilter("ignore", ConvergenceWarning)  # これ以降，警告を表示しない．
+my_pipeline = Pipeline([('sc', StandardScaler()),    # 標準化
+                        ('mlp', MLPRegressor())])    # ニューラルネットワーク
+my_pipeline.fit(X, y)                                # 訓練
+
+my_scores = cross_val_score(my_pipeline, X, y, cv=LeaveOneOut(),
+                            scoring='neg_mean_squared_error')
+warnings.simplefilter("default", ConvergenceWarning) # これ以降，警告を表示する．
+```
+
+```{python}
+(-my_scores.mean())**0.5
+```
+
+```{python}
+my_pipeline = Pipeline([
+    ('sc', StandardScaler()),
+    ('mlp', MLPRegressor(tol=1e-5,         # 改善したと見なす基準
+                         max_iter=5000))]) # 改善しなくなるまでの反復数
+my_layers = (1, 3, 5,                                         # 隠れ層1層の場合
+             (1, 1), (3, 1), (5, 1), (1, 2), (3, 2), (5, 2))  # 隠れ層2層の場合
+my_params = {'mlp__hidden_layer_sizes': my_layers}
+my_search = GridSearchCV(estimator=my_pipeline,
+                         param_grid=my_params,
+                         cv=LeaveOneOut(),
+                         scoring='neg_mean_squared_error',
+                         n_jobs=-1).fit(X, y)
+my_model = my_search.best_estimator_ # 最良モデル
+
+my_search.best_params_               # 最良パラメータ
+```
+
+```{python}
+(-my_search.best_score_)**0.5
+```
+
+# 9 分類1（多値分類）
+
+## 9.1 アヤメのデータ
+
+```{python}
+import statsmodels.api as sm
+my_data = sm.datasets.get_rdataset('iris', 'datasets').data
+my_data.head()
+```
+
+```{python}
+my_data.describe()
+# 以下省略
+```
+
+## 9.2 木による分類
+
+```{python}
+import graphviz
+import pandas as pd
+import statsmodels.api as sm
+from sklearn import tree
+
+my_data = sm.datasets.get_rdataset('iris', 'datasets').data
+X, y = my_data.iloc[:, 0:4], my_data.Species
+
+my_model = tree.DecisionTreeClassifier(max_depth=2, random_state=0)
+my_model.fit(X, y)
+```
+
+```{python}
+my_dot = tree.export_graphviz(
+    decision_tree=my_model,
+    out_file=None,                 # ファイルに出力しない．
+    feature_names=X.columns,       # 変数名
+    class_names=my_model.classes_, # カテゴリ名
+    filled=True)                   # 色を塗る．
+graphviz.Source(my_dot)
+```
+
+```{python}
+my_test = pd.DataFrame([[5.0, 3.5, 1.5, 0.5],
+                        [6.5, 3.0, 5.0, 2.0]])
+my_model.predict(my_test)
+```
+
+```{python}
+pd.DataFrame(
+    my_model.predict_proba(my_test),
+    columns=my_model.classes_)
+```
+
+## 9.3 正解率
+
+```{python}
+import graphviz
+import pandas as pd
+import statsmodels.api as sm
+from sklearn import tree
+from sklearn.metrics import confusion_matrix
+from sklearn.model_selection import cross_val_score, GridSearchCV, LeaveOneOut
+
+my_data = sm.datasets.get_rdataset('iris', 'datasets').data
+X, y = my_data.iloc[:, 0:4], my_data.Species
+
+my_model = tree.DecisionTreeClassifier(max_depth=2, random_state=0).fit(X, y)
+y_ = my_model.predict(X)
+confusion_matrix(y_true=y, y_pred=y_)
+```
+
+```{python}
+my_model.score(X, y)
+# あるいは
+y_ = my_model.predict(X)
+(y_ == y).mean()
+
+```
+
+```{python}
+cross_val_score(my_model, X, y, cv=LeaveOneOut()).mean()
+```
+
+```{python}
+my_search = GridSearchCV(estimator=tree.DecisionTreeClassifier(random_state=0),
+                         param_grid={'max_depth': range(1, 11)},
+                         cv=LeaveOneOut(),
+                         n_jobs=-1).fit(X, y)
+my_search.best_params_, my_search.best_score_
+```
+
+```{python}
+my_params = {
+    'max_depth': range(2, 6),
+    'min_samples_split': [2, 20],
+    'min_samples_leaf': range(1, 8)}
+
+my_search = GridSearchCV(
+    estimator=tree.DecisionTreeClassifier(min_impurity_decrease=0.01,
+                                          random_state=0),
+    param_grid=my_params,
+    cv=LeaveOneOut(),
+    n_jobs=-1).fit(X, y)
+my_search.best_params_, my_search.best_score_
+
+tmp = my_search.cv_results_
+my_results = pd.DataFrame(tmp['params']).assign(
+    Accuracy=tmp['mean_test_score'])
+# 正解率（検証）の最大値
+my_results[my_results.Accuracy == my_results.Accuracy.max()]
+```
+
+```{python}
+my_model = my_search.best_estimator_
+my_dot = tree.export_graphviz(
+    decision_tree=my_model,
+    out_file=None,
+    feature_names=X.columns,
+    class_names=my_model.classes_,
+    filled=True)
+graphviz.Source(my_dot)
+```
+
+## 9.4 複数の木を使う方法
+
+```{python}
+import pandas as pd
+import statsmodels.api as sm
+import warnings
+import xgboost
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV, LeaveOneOut
+from sklearn.preprocessing import LabelEncoder
+
+my_data = sm.datasets.get_rdataset('iris', 'datasets').data
+X, y = my_data.iloc[:, 0:4], my_data.Species
+label_encoder = LabelEncoder(); y = label_encoder.fit_transform(y)
+
+my_search = GridSearchCV(RandomForestClassifier(),
+                         param_grid={'max_features': [2, 3, 4]},
+                         cv=LeaveOneOut(),
+                         n_jobs=-1).fit(X, y)
+my_search.best_params_
+
+my_search.cv_results_['mean_test_score']
+```
+
+```{python}
+warnings.simplefilter('ignore') # これ以降，警告を表示しない．
+my_search = GridSearchCV(
+    xgboost.XGBClassifier(eval_metric='mlogloss'),
+    param_grid={'n_estimators'    : [50, 100, 150],
+                'max_depth'       : [1, 2, 3],
+                'learning_rate'   : [0.3, 0.4],
+                'gamma'           : [0],
+                'colsample_bytree': [0.6, 0.8],
+                'min_child_weight': [1],
+                'subsample'       : [0.5, 0.75, 1]},
+    cv=5, # 5分割交差検証
+    n_jobs=1).fit(X, y) # n_jobs=-1ではない．
+warnings.simplefilter('default') # これ以降，警告を表示する．
+
+my_search.best_params_
+
+my_search.best_score_
+```
+
+```{python}
+my_model = RandomForestClassifier().fit(X, y)
+tmp = pd.Series(my_model.feature_importances_, index=X.columns)
+tmp.sort_values().plot(kind='barh')
+```
+
+## 9.5 欠損のあるデータでの学習
+
+```{python}
+import numpy as np
+import statsmodels.api as sm
+import warnings
+import xgboost
+from sklearn import tree
+from sklearn.impute import SimpleImputer
+from sklearn.model_selection import cross_val_score, LeaveOneOut
+from sklearn.pipeline import Pipeline
+
+my_data = sm.datasets.get_rdataset('iris', 'datasets').data
+
+n = len(my_data)
+my_data['Petal.Length'] = [np.nan if i % 10 == 0 else
+                           my_data['Petal.Length'][i] for i in range(n)]
+my_data['Petal.Width']  = [np.nan if i % 10 == 1 else
+                           my_data['Petal.Width'][i]  for i in range(n)]
+
+my_data.describe() # countの値が135の変数に，150-135=15個の欠損がある．
+# 以下省略
+
+X, y = my_data.iloc[:, 0:4], my_data.Species
+```
+
+```{python}
+my_pipeline = Pipeline([
+    ('imputer', SimpleImputer(strategy='median')), # 欠損を中央値で埋める．
+    ('tree', tree.DecisionTreeClassifier(random_state=0))])
+my_scores = cross_val_score(my_pipeline, X, y, cv=LeaveOneOut(), n_jobs=-1)
+my_scores.mean()
+```
+
+```{python}
+from sklearn.preprocessing import LabelEncoder
+label_encoder = LabelEncoder()
+y = label_encoder.fit_transform(y)
+
+warnings.simplefilter('ignore')  # これ以降，警告を表示しない．
+my_scores = cross_val_score(
+    xgboost.XGBClassifier(eval_metric='mlogloss'), X, y, cv=5)
+warnings.simplefilter('default') # これ以降，警告を表示する．
+
+my_scores.mean()
+```
+
+## 9.6 他の分類手法
+
+```{python}
+import statsmodels.api as sm
+from sklearn.model_selection import cross_val_score, LeaveOneOut
+from sklearn.neighbors import KNeighborsClassifier
+
+my_data = sm.datasets.get_rdataset('iris', 'datasets').data
+X, y = my_data.iloc[:, 0:4], my_data.Species
+
+my_scores = cross_val_score(KNeighborsClassifier(), X, y, cv=LeaveOneOut())
+my_scores.mean()
+```
+
+```{python}
+import statsmodels.api as sm
+from sklearn.model_selection import cross_val_score, LeaveOneOut
+from sklearn.neural_network import MLPClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+
+my_data = sm.datasets.get_rdataset('iris', 'datasets').data
+X, y = my_data.iloc[:, 0:4], my_data.Species
+
+my_pipeline = Pipeline([('sc',  StandardScaler()),              # 標準化
+                        ('mlp', MLPClassifier(max_iter=1000))]) # ニューラルネットワーク
+my_scores = cross_val_score(my_pipeline, X, y, cv=LeaveOneOut(), n_jobs=-1)
+my_scores.mean()
+```
+
+# 10 分類2（2値分類）
+
+## 10.1 2値分類の性能指標
+
+```{python}
+import numpy as np
+from sklearn.metrics import classification_report, confusion_matrix
+
+y       = np.array([  0,   1,   1,   0,   1,   0,    1,   0,   0,   1])
+y_score = np.array([0.7, 0.8, 0.3, 0.4, 0.9, 0.6, 0.99, 0.1, 0.2, 0.5])
+```
+
+```{python}
+y_ = np.array([1 if 0.5 <= p else 0 for p in y_score])
+y_
+```
+
+```{python}
+confusion_matrix(y_true=y, y_pred=y_)
+
+print(classification_report(y_true=y, y_pred=y_))
+```
+
+## 10.2 トレードオフ
+
+```{python}
+import numpy as np
+from sklearn.metrics import (roc_curve, RocCurveDisplay,
+    precision_recall_curve, PrecisionRecallDisplay, auc)
+
+y       = np.array([  0,   1,   1,   0,   1,   0,    1,   0,   0,   1])
+y_score = np.array([0.7, 0.8, 0.3, 0.4, 0.9, 0.6, 0.99, 0.1, 0.2, 0.5])
+y_      = np.array([1 if 0.5 <= p else 0 for p in y_score])
+
+[sum((y == 0) & (y_ == 1)) / sum(y == 0), # FPR
+ sum((y == 1) & (y_ == 1)) / sum(y == 1)] # TPR
+```
+
+```{python}
+my_fpr, my_tpr, _ = roc_curve(y_true=y,
+                              y_score=y_score,
+                              pos_label=1) # 1が陽性である．
+RocCurveDisplay(fpr=my_fpr, tpr=my_tpr).plot()
+```
+
+```{python}
+auc(x=my_fpr, y=my_tpr)
+```
+
+```{python}
+[sum((y == 1) & (y_ == 1)) / sum(y  == 1), # Recall == TPR
+ sum((y == 1) & (y_ == 1)) / sum(y_ == 1)] # Precision
+```
+
+```{python}
+my_precision, my_recall, _ = precision_recall_curve(y_true=y,
+                                                    probas_pred=y_score,
+                                                    pos_label=1)
+PrecisionRecallDisplay(precision=my_precision, recall=my_recall).plot()
+```
+
+```{python}
+auc(x=my_recall, y=my_precision)
+```
+
+## 10.3 タイタニック
+
+```{python}
+import graphviz
+import pandas as pd
+from sklearn import tree
+from sklearn.metrics import roc_curve, RocCurveDisplay, auc
+from sklearn.model_selection import cross_val_score, LeaveOneOut
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder
+
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/titanic.csv')
+my_data = pd.read_csv(my_url)
+```
+
+```{python}
+my_data.head()
+```
+
+```{python}
+X, y = my_data.iloc[:, 0:3], my_data.Survived
+
+my_pipeline = Pipeline([
+    ('ohe', OneHotEncoder(drop='first')),
+    ('tree', tree.DecisionTreeClassifier(max_depth=2, random_state=0,
+                                         min_impurity_decrease=0.01))])
+my_pipeline.fit(X, y)
+```
+
+```{python}
+my_enc  = my_pipeline.named_steps['ohe']  # パイプラインからエンコーダを取り出す．
+my_tree = my_pipeline.named_steps['tree'] # パイプラインから木を取り出す．
+
+my_dot = tree.export_graphviz(
+    decision_tree=my_tree,
+    out_file=None,
+    feature_names=my_enc.get_feature_names() \
+    if hasattr(my_enc, 'get_feature_names') else my_enc.get_feature_names_out(),
+    class_names=my_pipeline.classes_,
+    filled=True)
+graphviz.Source(my_dot)
+```
+
+```{python}
+my_scores = cross_val_score(
+    my_pipeline, X, y,
+    cv=LeaveOneOut(),
+    n_jobs=-1)
+my_scores.mean()
+```
+
+```{python}
+tmp = pd.DataFrame(
+    my_pipeline.predict_proba(X),
+    columns=my_pipeline.classes_)
+y_score = tmp.Yes
+
+my_fpr, my_tpr, _ = roc_curve(y_true=y,
+                              y_score=y_score,
+                              pos_label='Yes')
+my_auc = auc(x=my_fpr, y=my_tpr)
+my_auc
+
+RocCurveDisplay(fpr=my_fpr, tpr=my_tpr, roc_auc=my_auc).plot()
+```
+
+## 10.4 ロジスティック回帰
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(-6, 6, 0.1)
+y = 1 / (1 + np.exp(-x))
+plt.plot(x, y)
+```
+
+```{python}
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score, LeaveOneOut
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder
+
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/titanic.csv')
+my_data = pd.read_csv(my_url)
+
+X, y = my_data.iloc[:, 0:3], my_data.Survived
+
+my_pipeline = Pipeline([('ohe', OneHotEncoder(drop='first')),
+                        ('lr', LogisticRegression(penalty='none'))])
+my_pipeline.fit(X, y)
+```
+
+```{python}
+my_ohe = my_pipeline.named_steps.ohe
+my_lr  = my_pipeline.named_steps.lr
+
+my_lr.intercept_[0]
+
+tmp = my_ohe.get_feature_names() \
+if hasattr(my_ohe, 'get_feature_names') \
+else my_ohe.get_feature_names_out()
+pd.Series(my_lr.coef_[0],
+          index=tmp)
+```
+
+```{python}
+my_scores = cross_val_score(
+    my_pipeline, X, y,
+    cv=LeaveOneOut(),
+    n_jobs=-1)
+my_scores.mean()
+```
+
+# 11 深層学習とAutoML
+
+## 11.1 Kerasによる回帰
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from keras import activations, callbacks, layers, models
+from sklearn.preprocessing import StandardScaler
+from sklearn.utils import shuffle
+
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
+tmp = pd.read_csv(my_url)
+```
+
+```{python}
+my_data = shuffle(tmp)
+```
+
+```{python}
+my_scaler = StandardScaler()
+X = my_scaler.fit_transform(
+    my_data.drop(columns=['LPRICE2']))
+y = my_data['LPRICE2']
+```
+
+```{python}
+x = np.linspace(-3, 3, 100)
+plt.plot(x, activations.relu(x))
+plt.xlabel('x')
+plt.ylabel('ReLU(x)')
+```
+
+```{python}
+my_model = models.Sequential()
+my_model.add(layers.Dense(units=3, activation='relu', input_shape=[4]))
+my_model.add(layers.Dense(units=1))
+
+my_model.summary() # ネットワークの概要
+```
+
+```{python}
+my_model.compile(
+    loss='mse',
+    optimizer='rmsprop')
+```
+
+```{python}
+my_cb = callbacks.EarlyStopping(
+    patience=20,
+    restore_best_weights=True)
+```
+
+```{python}
+my_history = my_model.fit(
+    x=X,
+    y=y,
+    validation_split=0.25,
+    batch_size=10,
+    epochs=500,
+    callbacks=[my_cb],
+    verbose=0)
+```
+
+```{python}
+tmp = pd.DataFrame(my_history.history)
+tmp.plot(xlabel='epoch')
+```
+
+```{python}
+tmp.iloc[-1, ]
+```
+
+```{python}
+y_ = my_model.predict(X)
+((y_.ravel() - y)**2).mean()
+```
+
+## 11.2 Kerasによる分類
+
+```{python}
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+from keras import callbacks, layers, losses, models
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.utils import shuffle
+
+tmp = sm.datasets.get_rdataset('iris', 'datasets').data
+my_data = shuffle(tmp)
+```
+
+```{python}
+my_scaler = StandardScaler()
+X = my_scaler.fit_transform(
+    my_data.drop(columns=['Species']))
+my_enc = LabelEncoder()
+y = my_enc.fit_transform(
+    my_data['Species'])
+```
+
+```{python}
+my_model = models.Sequential()
+my_model.add(layers.Dense(units=3, activation='relu', input_shape=[4]))
+my_model.add(layers.Dense(units=3, activation='softmax'))
+```
+
+```{python}
+my_model.compile(loss='sparse_categorical_crossentropy',
+                 optimizer='rmsprop',
+                 metrics=['accuracy'])
+```
+
+```{python}
+my_cb = callbacks.EarlyStopping(
+    patience=20,
+    restore_best_weights=True)
+
+my_history = my_model.fit(
+    x=X,
+    y=y,
+    validation_split=0.25,
+    batch_size=10,
+    epochs=500,
+    callbacks=[my_cb],
+    verbose=0)
+
+tmp = pd.DataFrame(my_history.history)
+tmp.plot(xlabel='epoch')
+```
+
+```{python}
+tmp.iloc[-1, ]
+```
+
+```{python}
+tmp = my_model.predict(X)
+y_ = np.argmax(tmp, axis=-1)
+(y_ == y).mean()
+```
+
+```{python}
+-np.log([0.8, 0.7, 0.3, 0.8]).mean()
+
+-np.log([0.7, 0.6, 0.2, 0.7]).mean()
+```
+
+```{python}
+y = [2, 1, 0, 1]
+y_1 = [[0.1, 0.1, 0.8],
+       [0.1, 0.7, 0.2],
+       [0.3, 0.4, 0.3],
+       [0.1, 0.8, 0.1]]
+y_2 = [[0.1, 0.2, 0.7],
+       [0.2, 0.6, 0.2],
+       [0.2, 0.5, 0.3],
+       [0.2, 0.7, 0.1]]
+```
+
+```{python}
+[losses.sparse_categorical_crossentropy(y_true=y, y_pred=y_1).numpy().mean(),
+ losses.sparse_categorical_crossentropy(y_true=y, y_pred=y_2).numpy().mean()]
+```
+
+## 11.3 MNIST：手書き数字の分類
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import tensorflow as tf
+from random import sample
+from keras import callbacks, layers, models
+from sklearn.metrics import confusion_matrix
+
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+```
+
+```{python}
+x_train.shape
+```
+
+```{python}
+np.set_printoptions(linewidth=170)
+x_train[4, :, :]
+```
+
+```{python}
+plt.matshow(x_train[4, :, :])
+```
+
+```{python}
+y_train
+```
+
+```{python}
+x_train.min(), x_train.max()
+```
+
+```{python}
+x_train = x_train / 255
+x_test  = x_test  / 255
+```
+
+```{python}
+my_index = sample(range(60000), 6000)
+x_train = x_train[my_index, :, :]
+y_train = y_train[my_index]
+```
+
+```{python}
+my_model = models.Sequential()
+my_model.add(layers.Flatten(input_shape=[28, 28]))
+my_model.add(layers.Dense(units=256, activation="relu"))
+my_model.add(layers.Dense(units=10, activation="softmax"))
+
+my_model.summary()
+
+my_model.compile(loss='sparse_categorical_crossentropy',
+                 optimizer='rmsprop',
+                 metrics=['accuracy'])
+
+my_cb = callbacks.EarlyStopping(patience=5, restore_best_weights=True)
+```
+
+```{python}
+my_history = my_model.fit(
+    x=x_train,
+    y=y_train,
+    validation_split=0.2,
+    batch_size=128,
+    epochs=20,
+    callbacks=[my_cb],
+    verbose=0)
+
+tmp = pd.DataFrame(my_history.history)
+tmp.plot(xlabel='epoch', style='o-')
+```
+
+```{python}
+tmp = my_model.predict(x_test)
+y_ = np.argmax(tmp, axis=-1)
+confusion_matrix(y_true=y_test,
+                 y_pred=y_)
+```
+
+```{python}
+```
+
+```{python}
+(y_ == y_test).mean()
+```
+
+```{python}
+my_model.evaluate(x=x_test, y=y_test)
+```
+
+```{python}
+x_train2d = x_train.reshape(-1, 28, 28, 1)
+x_test2d = x_test.reshape(-1, 28, 28, 1)
+```
+
+```{python}
+my_model = models.Sequential()
+my_model.add(layers.Conv2D(filters=32, kernel_size=3, # 畳み込み層
+                           activation='relu',
+                           input_shape=[28, 28, 1]))
+my_model.add(layers.MaxPooling2D(pool_size=2))        # プーリング層
+my_model.add(layers.Flatten())
+my_model.add(layers.Dense(128, activation='relu'))
+my_model.add(layers.Dense(10, activation='softmax'))
+
+my_model.summary()
+
+my_model.compile(loss='sparse_categorical_crossentropy',
+                 optimizer='rmsprop',
+                 metrics=['accuracy'])
+
+from keras.callbacks import EarlyStopping
+my_cb = EarlyStopping(patience=5,
+                      restore_best_weights=True)
+```
+
+```{python}
+my_history = my_model.fit(
+    x=x_train2d,
+    y=y_train,
+    validation_split=0.2,
+    batch_size=128,
+    epochs=20,
+    callbacks=my_cb,
+    verbose=0)
+
+tmp = pd.DataFrame(my_history.history)
+tmp.plot(xlabel='epoch', style='o-')
+```
+
+```{python}
+my_model.evaluate(x=x_test2d, y=y_test)
+```
+
+```{python}
+my_model = models.Sequential()
+my_model.add(layers.Conv2D(filters=20, kernel_size=5, activation='relu',
+                           input_shape=(28, 28, 1)))
+my_model.add(layers.MaxPooling2D(pool_size=2, strides=2))
+my_model.add(layers.Conv2D(filters=20, kernel_size=5, activation='relu'))
+my_model.add(layers.MaxPooling2D(pool_size=2, strides=2))
+my_model.add(layers.Dropout(rate=0.25))
+my_model.add(layers.Flatten())
+my_model.add(layers.Dense(500, activation='relu'))
+my_model.add(layers.Dropout(rate=0.5))
+my_model.add(layers.Dense(10, activation='softmax'))
+
+my_model.compile(loss='sparse_categorical_crossentropy',
+                 optimizer='rmsprop',
+                 metrics=['accuracy'])
+
+my_cb = callbacks.EarlyStopping(patience=5,
+                                restore_best_weights=True)
+```
+
+```{python}
+my_history = my_model.fit(
+    x=x_train2d,
+    y=y_train,
+    validation_split=0.2,
+    batch_size=128,
+    epochs=20,
+    callbacks=my_cb,
+    verbose=0)
+
+tmp = pd.DataFrame(my_history.history)
+tmp.plot(xlabel='epoch', style='o-')
+```
+
+```{python}
+my_model.evaluate(x=x_test2d, y=y_test)
+```
+
+```{python}
+y_prob = my_model.predict(x_test2d)                    # カテゴリに属する確率
+
+tmp = pd.DataFrame({
+    'y_prob': np.max(y_prob, axis=1),                  # 確率の最大値
+    'y_': np.argmax(y_prob, axis=1),                   # 予測カテゴリ
+    'y': y_test,                                       # 正解
+    'id': range(len(y_test))})                         # 番号
+
+tmp = tmp[tmp.y_ != tmp.y]                             # 予測がはずれたものを残す
+my_result = tmp.sort_values('y_prob', ascending=False) # 確率の大きい順に並び替える
+```
+
+```{python}
+my_result.head()
+```
+
+```{python}
+for i in range(5):
+    plt.subplot(1, 5, i + 1)
+    ans = my_result['y'].iloc[i]
+    id = my_result['id'].iloc[i]
+    plt.title(f'{ans} ({id})')
+    plt.imshow(x_test[id])
+    plt.axis('off')
+```
+
+## 11.4 AutoML
+
+```{python}
+import h2o
+import pandas as pd
+import tensorflow as tf
+from h2o.automl import H2OAutoML
+from random import sample
+
+h2o.init()
+h2o.no_progress()
+# h2o.cluster().shutdown() # 停止
+```
+
+```{python}
+my_url = ('https://raw.githubusercontent.com/taroyabuki'
+          '/fromzero/master/data/wine.csv')
+my_data = pd.read_csv(my_url)
+my_frame = h2o.H2OFrame(my_data) # 通常のデータフレームをH2OFrameに変換する．
+# あるいは
+my_frame = h2o.import_file(my_url, header=1) # データを読み込む．
+```
+
+```{python}
+my_frame.head(5)
+
+# 通常のデータフレームに戻す．
+h2o.as_list(my_frame).head()
+# 結果は割愛（見た目は同じ）
+```
+
+```{python, results="hide"}
+my_model = H2OAutoML(
+    max_runtime_secs=60)
+my_model.train(
+    y='LPRICE2',
+    training_frame=my_frame)
+```
+
+```{python}
+my_model.leaderboard['rmse'].min()
+```
+
+```{python}
+tmp = h2o.as_list(
+    my_model.predict(my_frame))
+
+pd.DataFrame({
+    'y': my_data['LPRICE2'],
+    'y_': tmp['predict']}
+).plot('y', 'y_', kind='scatter')
+```
+
+```{python}
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+my_index = sample(range(60000), 6000)
+x_train = x_train[my_index, :, :]
+y_train = y_train[my_index]
+```
+
+```{python}
+tmp = pd.DataFrame(
+    x_train.reshape(-1, 28 * 28))
+y = 'y'
+tmp[y] = y_train
+my_train = h2o.H2OFrame(tmp)
+my_train[y] = my_train[y].asfactor()
+
+tmp = pd.DataFrame(
+    x_test.reshape(-1, 28 * 28))
+my_test = h2o.H2OFrame(tmp)
+```
+
+```{python, results="hide"}
+my_model = H2OAutoML(
+    max_runtime_secs=120)
+my_model.train(
+    y=y,
+    training_frame=my_train)
+```
+
+```{python}
+my_model.leaderboard[
+    'mean_per_class_error'].min()
+```
+
+```{python}
+tmp = h2o.as_list(
+    my_model.predict(my_test))
+y_ = tmp.predict
+
+(y_ == y_test).mean()
+```
+
+# 12 時系列予測
+
+## 12.1 日時と日時の列
+
+```{python}
+import pandas as pd
+pd.to_datetime('2020-01-01')
+```
+
+```{python}
+pd.date_range(start='2021-01-01', end='2023-01-01', freq='1A')
+
+pd.date_range(start='2021-01-01', end='2023-01-01', freq='1AS')
+
+pd.date_range(start='2021-01-01', end='2021-03-01', freq='2M')
+
+pd.date_range(start='2021-01-01', end='2021-03-01', freq='2MS')
+
+pd.date_range(start='2021-01-01', end='2021-01-03', freq='1D')
+
+pd.date_range(start='2021-01-01 00:00:00', end='2021-01-01 03:00:00', freq='2H')
+```
+
+## 12.2 時系列データの予測
+
+```{python}
+import matplotlib.pyplot as plt
+import pandas as pd
+from pmdarima.datasets import airpassengers
+from sklearn.metrics import mean_squared_error
+
+my_data = airpassengers.load_airpassengers()
+```
+
+```{python}
+n = len(my_data) # データ数（144）
+k = 108          # 訓練データ数
+```
+
+```{python}
+my_ds = pd.date_range(
+    start='1949/01/01',
+    end='1960/12/01',
+    freq='MS')
+my_df = pd.DataFrame({
+    'ds': my_ds,
+    'x': range(n),
+    'y': my_data},
+    index=my_ds)
+my_df.head()
+```
+
+```{python}
+my_train = my_df[        :k]
+my_test  = my_df[-(n - k): ]
+y = my_test.y
+```
+
+```{python}
+plt.plot(my_train.y, label='train')
+plt.plot(my_test.y,  label='test')
+plt.legend()
+```
+
+```{python}
+from sklearn.linear_model import LinearRegression
+
+my_lm_model = LinearRegression()
+my_lm_model.fit(my_train[['x']], my_train.y)
+
+X = my_test[['x']]
+y_ = my_lm_model.predict(X)
+mean_squared_error(y, y_)**0.5 # RMSE（テスト）
+```
+
+```{python}
+y_ = my_lm_model.predict(my_df[['x']])
+tmp = pd.DataFrame(y_,
+                   index=my_df.index)
+plt.plot(my_train.y, label='train')
+plt.plot(my_test.y,  label='test')
+plt.plot(tmp, label='model')
+plt.legend()
+```
+
+```{python}
+import pmdarima as pm
+my_arima_model = pm.auto_arima(my_train.y, m=12, trace=True)
+```
+
+```{python}
+y_, my_ci = my_arima_model.predict(len(my_test),         # 期間はテストデータと同じ．
+                                   alpha=0.05,           # 有意水準（デフォルト）
+                                   return_conf_int=True) # 信頼区間を求める．
+tmp = pd.DataFrame({'y': y_,
+                    'Lo': my_ci[:, 0],
+                    'Hi': my_ci[:, 1]},
+                   index=my_test.index)
+tmp.head()
+```
+
+```{python}
+mean_squared_error(y, y_)**0.5
+```
+
+```{python}
+plt.plot(my_train.y, label='train')
+plt.plot(my_test.y,  label='test')
+plt.plot(tmp.y,      label='model')
+plt.fill_between(tmp.index,
+                 tmp.Lo,
+                 tmp.Hi,
+                 alpha=0.25) # 不透明度
+plt.legend(loc='upper left')
+```
+
+```{python}
+try: from fbprophet import Prophet
+except ImportError: from prophet import Prophet
+my_prophet_model = Prophet(seasonality_mode='multiplicative')
+my_prophet_model.fit(my_train)
+```
+
+```{python}
+tmp = my_prophet_model.predict(my_test)
+tmp[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].head()
+```
+
+```{python}
+y_ = tmp.yhat
+mean_squared_error(y, y_)**0.5
+```
+
+```{python}
+# my_prophet_model.plot(tmp) # 予測結果のみでよい場合
+
+fig = my_prophet_model.plot(tmp)
+fig.axes[0].plot(my_train.ds, my_train.y)
+fig.axes[0].plot(my_test.ds, my_test.y, color='red')
+```
+
+# 13 教師なし学習
+
+## 13.1 主成分分析
+
+```{python}
+import numpy as np
+import pandas as pd
+from pca import pca
+from scipy.stats import zscore
+
+my_data = pd.DataFrame(
+    {'language': [  0,  20,  20,  25,  22,  17],
+     'english':  [  0,  20,  40,  20,  24,  18],
+     'math':     [100,  20,   5,  30,  17,  25],
+     'science':  [  0,  20,   5,  25,  16,  23],
+     'society':  [  0,  20,  30,   0,  21,  17]},
+    index=       ['A', 'B', 'C', 'D', 'E', 'F'])
+my_model = pca(n_components=5)
+my_result = my_model.fit_transform(my_data) # 主成分分析の実行
+```
+
+```{python}
+my_result['PC'] # 主成分スコア
+```
+
+```{python}
+my_model.biplot(legend=False)
+```
+
+```{python}
+my_result['loadings']
+```
+
+```{python}
+my_result['explained_var']
+```
+
+```{python}
+tmp = zscore(my_data, ddof=1) # 標準化
+my_result = my_model.fit_transform(
+    tmp)
+my_result['PC'] # 主成分スコア
+```
+
+```{python}
+tmp = my_data - my_data.mean()
+Z  = np.matrix(tmp)                       # 標準化しない場合
+#Z = np.matrix(tmp / my_data.std(ddof=1)) # √不偏分散で標準化する場合
+#Z = np.matrix(tmp / my_data.std(ddof=0)) # pca(normalize=True)に合わせる場合
+
+n = len(my_data)
+S = np.cov(Z, rowvar=0, ddof=0)      # 分散共分散行列
+#S = Z.T @ Z / n                     # （同じ結果）
+vals, vecs = np.linalg.eig(S)        # 固有値と固有ベクトル
+idx = np.argsort(-vals)              # 固有値の大きい順の番号
+vals, vecs = vals[idx], vecs[:, idx] # 固有値の大きい順での並べ替え
+Z @ vecs                             # 主成分スコア（結果は割愛）
+vals.cumsum() / vals.sum()           # 累積寄与率
+```
+
+```{python}
+U, d, V =  np.linalg.svd(Z, full_matrices=False)     # 特異値分解
+W = np.diag(d)
+
+[np.isclose(Z, U @ W @ V).all(),                     # 確認1
+ np.isclose(U.T @ U, np.identity(U.shape[1])).all(), # 確認2
+ np.isclose(V @ V.T, np.identity(V.shape[0])).all()] # 確認3
+
+U @ W                # 主成分スコア（結果は割愛）
+
+e = d ** 2 / n       # 分散共分散行列の固有値
+e.cumsum() / e.sum() # 累積寄与率
+```
+
+## 13.2 クラスタ分析
+
+```{python}
+import pandas as pd
+from scipy.cluster import hierarchy
+
+my_data = pd.DataFrame(
+    {'x': [  0, -16,  10,  10],
+     'y': [  0,   0,  10, -15]},
+    index=['A', 'B', 'C', 'D'])
+
+my_result = hierarchy.linkage(
+    my_data,
+    metric='euclidean', # 省略可
+    method='complete')
+```
+
+```{python}
+hierarchy.dendrogram(my_result,
+    labels=my_data.index)
+```
+
+```{python}
+hierarchy.cut_tree(my_result, 3)
+
+# 補足（見やすくする）
+my_data.assign(cluster=
+  hierarchy.cut_tree(my_result, 3))
+```
+
+```{python}
+import pandas as pd
+import seaborn as sns
+
+my_data = pd.DataFrame(
+    {'language': [  0,  20,  20,  25,  22,  17],
+     'english':  [  0,  20,  40,  20,  24,  18],
+     'math':     [100,  20,   5,  30,  17,  25],
+     'science':  [  0,  20,   5,  25,  16,  23],
+     'society':  [  0,  20,  30,   0,  21,  17]},
+    index=       ['A', 'B', 'C', 'D', 'E', 'F'])
+
+sns.clustermap(my_data, z_score=1) # 列ごとの標準化
+```
+
+```{python}
+import pandas as pd
+from sklearn.cluster import KMeans
+
+my_data = pd.DataFrame(
+    {'x': [  0, -16,  10,  10],
+     'y': [  0,   0,  10, -15]},
+    index=['A', 'B', 'C', 'D'])
+
+my_result = KMeans(
+    n_clusters=3).fit(my_data)
+```
+
+```{python}
+my_result.labels_
+
+# 補足（見やすくする）
+my_data.assign(
+  cluster=my_result.labels_)
+```
+
+```{python}
+import pandas as pd
+import statsmodels.api as sm
+from sklearn.cluster import KMeans
+
+iris = sm.datasets.get_rdataset('iris', 'datasets').data
+my_data = iris.iloc[:, 0:4]
+
+k = range(1, 11)
+my_df = pd.DataFrame({
+    'k': k,
+    'inertia': [KMeans(k).fit(my_data).inertia_ for k in range(1, 11)]})
+my_df.plot(x='k', style='o-', legend=False)
+```
+
+```{python}
+import seaborn as sns
+import statsmodels.api as sm
+from pca import pca
+from scipy.cluster import hierarchy
+from scipy.stats import zscore
+from sklearn.cluster import KMeans
+
+iris = sm.datasets.get_rdataset('iris', 'datasets').data
+my_data = zscore(iris.iloc[:, 0:4])
+
+my_model = pca() # 主成分分析
+my_result = my_model.fit_transform(my_data)['PC']
+my_result['Species'] = list(iris.Species)
+
+# 非階層的クラスタ分析の場合
+my_result['cluster'] = KMeans(n_clusters=3).fit(my_data).labels_
+
+# 階層的クラスタ分析の場合
+#my_result['cluster'] = hierarchy.cut_tree(
+#    hierarchy.linkage(my_data, method='complete'), 3)[:,0]
+
+sns.scatterplot(x='PC1', y='PC2', data=my_result, legend=False,
+                hue='cluster',   # 色でクラスタを表現する．
+                style='Species', # 形で品種を表現する．
+                palette='bright')
+```
+

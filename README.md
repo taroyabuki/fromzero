@@ -55,7 +55,7 @@ Python|R Markdown|[python.Rmd](code/python.Rmd)|[python.html](https://taroyabuki
 
 コードの使い方は，2.6節を参照してください[^1]．
 
-[^1]: [Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済みです．
+[^1]: [Amazon SageMaker Studio Lab](https://github.com/taroyabuki/fromzero/tree/main/addendum/sagemaker)での動作も確認済みです．
 
 ## Docker
 

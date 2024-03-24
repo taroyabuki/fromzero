@@ -21,55 +21,50 @@ RやPythonのコード（具体的なコンピュータプログラム）の読�
 
 ## 目次
 
-内容を想像していただけるように，ドラフト版の画像をリンク先に掲載しています．
-
-- [はじめに](figures#はじめに)
+- はじめに
 - 第1部
-    - [第1章 コンピュータとネットワーク](figures#第1章-コンピュータとネットワーク)
-    - [第2章 データサイエンスのための環境](figures#第2章-データサイエンスのための環境)
-    - [第3章 RとPython](figures#第3章-RとPython)
-    - [第4章 統計入門](figures#第4章-統計入門)
+    - 第1章 コンピュータとネットワーク
+    - 第2章 データサイエンスのための環境
+    - 第3章 RとPython
+    - 第4章 統計入門
     - 第5章 前処理
 - 第2部
-    - [第6章 機械学習の目的・データ・手法](figures#第6章-機械学習の目的データ手法)
-    - [第7章 回帰1（単回帰）](figures#第7章-回帰1単回帰)
-    - [第8章 回帰2（重回帰）](figures#第8章-回帰2重回帰)
-    - [第9章 分類1（多値分類）](figures#第9章-分類1多値分類)
-    - [第10章 分類2（2値分類）](figures#第10章-分類22値分類)
-    - [第11章 深層学習とAutoML](figures#第11章-深層学習とAutoML)
-    - [第12章 時系列予測](figures#第12章-時系列予測)
-    - [第13章 教師なし学習](figures#第13章-教師なし学習)
-- [付録A 環境構築](figures#付録A-環境構築)
-- [おわりに](figures#おわりに)
+    - 第6章 機械学習の目的・データ・手法
+    - 第7章 回帰1（単回帰）
+    - 第8章 回帰2（重回帰）
+    - 第9章 分類1（多値分類）
+    - 第10章 分類2（2値分類）
+    - 第11章 深層学習とAutoML
+    - 第12章 時系列予測
+    - 第13章 教師なし学習
+- 付録A 環境構築
+- おわりに
 - 参考文献
 - 索引
 
 ## コード
 
-コード|言語|形式|実行環境
+言語|システム|コード|実行結果
 --|--|--|--
-[R (Google Colab)](code/R-notebook)|R|ノートブック|Google Colab
-[R (.ipynb)](code/R-notebook)|R|ノートブック|Jupyter Notebook, [Amazon Sagemaker Studio Lab](addendum/sagemaker)
-[R (.r)](code/R)|R|スクリプト|RStudio
-[R Markdown (.Rmd)](code/Rmd)|R|R Markdown|RStudio
-[Python (Google Colab)](code/Python-notebook)|Python|ノートブック|Google Colab
-[Python (.ipynb)](code/Python-notebook)|Python|ノートブック|Jupyter Notebook, [Amazon Sagemaker Studio Lab](addendum/sagemaker)
-[Python (.py)](code/py)|Python|スクリプト|一般のPython環境
+R|Google Colab|[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taroyabuki/fromzero/blob/master/code/r.ipynb)|[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taroyabuki/fromzero/blob/master/code/r-results.ipynb)
+R|Jupyter|[r.ipynb](code/r.ipynb)|[r-results.ipynb](code/r-results.ipynb)
+R|R Markdown|[r.Rmd](code/r.Rmd)|[r.html](https://taroyabuki.github.io/fromzero/r.html)
+Python|Google Colab|[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taroyabuki/fromzero/blob/master/code/python.ipynb)|[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taroyabuki/fromzero/blob/master/code/python-results.ipynb)
+Python|Jupyter|[python.ipynb](code/python.ipynb)|[python-results.ipynb](code/python-results.ipynb)
+Python|R Markdown|[python.Rmd](code/python.Rmd)|[python.html](https://taroyabuki.github.io/fromzero/python.html)
 
 コードの使い方は，2.6節を参照してください．
 
-## [画像とそのソースコード](figures)
-
 ## Docker
 
-環境|ハードウェア|説明
+環境|言語|説明
 --|--|--
-Jupyter Notebook|Intel, AMD64, Apple Chip（GPU無効）|[jupyter](docker/jupyter)
-RStudio|Intel, AMD64（GPU無効）|[rstudio](docker/rstudio)
-RStudio|Intel, AMD64（NVIDIAのGPU）|[rstudio-gpu](docker/rstudio-gpu)
-RStudio|Apple Chip|[rstudio-mac](docker/rstudio-mac)
+Jupyter Notebook|R, Python|[Jupyter Notebook](docker/jupyter)
+RStudio|R|[rstudio](docker/rstudio)
 
 Dockerの使い方は，2.3節を参照してください．
+
+## [画像とそのソースコード](figures)
 
 ## ライセンス
 

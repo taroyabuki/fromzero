@@ -1,6 +1,6 @@
 # Amazon SageMaker Studio Lab
 
-無料の[Amazon SageMaker Studio Lab](https://studiolab.sagemaker.aws/)（以下，Studio Lab）で本書のコードを動かすための環境を作ります（GPU動作確認済）．Studio Labの概要は，[Amazon SageMaker Studio Lab入門](https://atmarkit.itmedia.co.jp/ait/subtop/features/di/sagemakerstudiolab_index.html)を参照してください．
+無料の[Amazon SageMaker Studio Lab](https://studiolab.sagemaker.aws/)（以下，Studio Lab）で本書のコードを動かすための環境を作ります．Studio Labの概要は，[Amazon SageMaker Studio Lab入門](https://atmarkit.itmedia.co.jp/ait/subtop/features/di/sagemakerstudiolab_index.html)を参照してください．
 
 TerminalでGitHubリポジトリをクローンします．
 
@@ -22,7 +22,7 @@ conda env create --file fromzero/addendum/sagemaker/sage-python.yml
 
 画面左のファイルブラウザーがあります．
 
-Rのためのノートブックは[fromzero/code/R-notebook](/code/R-notebook)，Pythonのためのノードブックは[fromzero/code/Python-notebook](/code/Python-notebook)にあります．
+Rのためのノートブックはfromzero/code/r.ipynb（全体）やfromzero/code/R-notebook（各章ごと），Pythonのためのノードブックはfromzero/code/python.ipynb（全体）やfromzero/code/Python-notebook（各章ごと）にあります．
 
 ノートブックのファイル（.ipynb）をダブルクリックするとカーネル選択のダイアログが出るので，Rの場合はsage-r:R，Pythonの場合はsage-python:Pythonを選択してください．
 

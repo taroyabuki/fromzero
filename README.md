@@ -53,7 +53,9 @@ Python|Google Colab|[![Open in Colab](https://colab.research.google.com/assets/c
 Python|Jupyter|[python.ipynb](code/python.ipynb)|[python-results.ipynb](code/python-results.ipynb)
 Python|R Markdown|[python.Rmd](code/python.Rmd)|[python.html](https://taroyabuki.github.io/fromzero/python.html)
 
-コードの使い方は，2.6節を参照してください．
+コードの使い方は，2.6節を参照してください[^1]．
+
+[^1]: [Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済みです．
 
 ## Docker
 

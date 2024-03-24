@@ -122,7 +122,7 @@ c(mean(as.array(loss_sparse_categorical_crossentropy(y_true = y, y_pred = y_1)))
 
 library(keras)
 library(tidyverse)
-c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
+keras::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
 
 dim(x_train)
 #> [1] 60000    28    28
@@ -372,7 +372,7 @@ plot(y, y_)
 
 ### 11.4.4 AutoMLによる分類
 
-c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
+keras::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
 my_index <- sample(1:60000, 6000)
 x_train <- x_train[my_index, , ]
 y_train <- y_train[my_index]

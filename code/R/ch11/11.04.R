@@ -54,7 +54,7 @@ plot(y, y_)
 
 ### 11.4.4 AutoMLによる分類
 
-c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
+keras::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
 my_index <- sample(1:60000, 6000)
 x_train <- x_train[my_index, , ]
 y_train <- y_train[my_index]

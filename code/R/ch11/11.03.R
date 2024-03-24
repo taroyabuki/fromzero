@@ -4,7 +4,7 @@
 
 library(keras)
 library(tidyverse)
-c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
+keras::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
 
 dim(x_train)
 #> [1] 60000    28    28

@@ -7,6 +7,7 @@
 p. 6|Windows 11には，脚註4で紹介しているWindows Terminalが搭載されています．
 p. 20|[Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済みです．表2.1のクラウド・ノートブックに相当します．
 p. 22 脚註3|Google Colabでノートブックを新規作成した後で，ランタイム→ランタイムのタイプを変更で，Rを選択できるようになりました．
+p. 56|Rのコード`左辺 %<-% 右辺`が正しく動作しない場合は，``keras::`%<-%`(左辺, 右辺)``に変更してください．配布しているコードはそのように修正しています．
 p. 151|GitHub上でのCSVファイルの表示方法が変更されたので，https://github.com/taroyabuki/fromzero/blob/master/data/exam.csv の代わりにhttps://taroyabuki.github.io/fromzero/exam.html を使ってください．
 p. 160, 161|scikit-learnのバージョンによっては，Pythonのコードの`get_feature_names()`を`get_feature_names_out()`に変更する必要があります．配布しているコードはそのように修正しています．
 p. 184|[予測値の期待値の信頼区間](addendum/07.03.02/)
@@ -15,16 +16,19 @@ p. 271, 275|XGBoostで`ValueError: Invalid classes inferred from unique values o
 p. 271, 275|9.4.2, 9.5.3項のPythonのコードで警告がたくさん出る場合は，`warnings.simplefilter`の引数の「`, UserWarning`」を削除してみてください．配布しているコードはそのように修正しています．
 p. 277|9.6.2項のPythonのコードで警告がたくさん出る場合は，`MLPClassifier()`を`MLPClassifier(max_iter=1000)`に変更してみてください．配布しているコードはそのように修正しています．
 p. 292, 298|scikit-learnのバージョンによっては，Pythonのコードの`get_feature_names()`を`get_feature_names_out()`に変更する必要があります．配布しているコードはそのように修正しています．
+p. 310, 329|Rのコード`左辺 %<-% 右辺`が正しく動作しない場合は，``keras::`%<-%`(左辺, 右辺)``に変更してください．配布しているコードはそのように修正しています．
 p. 342|Pythonのコードの`from fbprophet import Prophet`を`from prophet import Prophet`に変更する必要がある場合があります．配布しているコードでは有効な方を使うように修正しています．
 
 ## 正誤表
+
+次の誤りは第5刷で修正しました．
 
 場所|誤|正
 --|--|--
 p. 258 本文3行目|グラフの中で|連結グラフ（任意の2点を線をつないで結べるグラフ）の中で
 p. 351 Pythonのコード|`vals, vecs = np.linalg.eig(S)   # 固有値と固有ベクトル`|`vals, vecs = np.linalg.eig(S)   # 固有値と固有ベクトル`<br>`idx = np.argsort(-vals)              # 固有値の大きい順の番号`<br>`vals, vecs = vals[idx], vecs[:, idx] # 固有値の大きい順での並べ替え`
 
-以下の誤りは第4刷で修正しました．
+次の誤りは第4刷で修正しました．
 
 場所|誤|正
 --|--|--

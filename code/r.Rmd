@@ -1,0 +1,3376 @@
+---
+title: "R　ゼロからはじめるデータサイエンス入門"
+output:
+  html_document:
+    toc: true
+    toc_depth: 1
+    toc_float: true
+---
+
+[辻真吾・矢吹太朗『ゼロからはじめるデータサイエンス入門』（講談社,\ 2021）](https://github.com/taroyabuki/fromzero)
+
+RStudioでKnitする方法
+
+1. `docker run -d -e PASSWORD=password -e ROOT=TRUE -p 8787:8787 -v "$(pwd)":/home/rstudio/work taroyabuki/rstudio`
+2. ブラウザで，http://localhost:8787 にアクセスする．
+3. RStudioのFilesタブで，work/r.Rmd を開く．
+4. RStudioのConsoleで次を実行する．
+
+```{r, eval=FALSE}
+install.packages(c("knitr", "markdown", "rmarkdown"))
+```
+
+5. Knit
+
+```{r}
+# これはRのコードの例です．
+1 + 1
+```
+
+# 1 コンピュータとネットワーク
+
+## 1.1 コンピュータの基本操作
+
+## 1.2 ネットワークの仕組み
+
+# 2 データサイエンスのための環境
+
+## 2.1 実行環境の選択
+
+## 2.2 クラウド
+
+## 2.3 Docker
+
+## 2.4 ターミナルの使い方
+
+## 2.5 RとPython
+
+## 2.6 サンプルコードの利用
+
+```{r}
+1 + 1
+
+print(1 + 2)
+
+1 + 3
+```
+
+# 3 RとPython
+
+```{r}
+# Google Colaboratoryの環境設定
+if (file.exists("/content")) {
+  options(Ncpus = parallel::detectCores())
+  installed_packages <- rownames(installed.packages())
+  packages_to_install <- c("furrr", "keras", "proxy")
+  install.packages(setdiff(packages_to_install, installed_packages))
+}
+```
+
+## 3.1 入門
+
+```{r}
+0x10
+```
+
+```{r}
+1.23e5
+```
+
+```{r}
+2 * 3
+```
+
+```{r}
+10 / 3
+```
+
+```{r}
+10 %/% 3 # 商
+
+10 %% 3  # 余り
+```
+
+```{r}
+x <- 2
+y <- 3
+x * y
+
+keras::`%<-%`(c(x, y), c(20, 30)) # まとめて名付け
+x * y
+```
+
+```{r}
+x <- 1 + 1
+# この段階では結果は表示されない
+
+x # 変数名を評価する．
+```
+
+```{r}
+my_s <- "abcde"
+```
+
+```{r}
+nchar(my_s)
+```
+
+```{r}
+library(tidyverse)
+str_c("This is ", "a", " pen.")
+```
+
+```{r}
+substr(x = my_s, start = 2, stop = 4)
+```
+
+```{r}
+tmp <- "%s is %s."
+sprintf(tmp, "This", "a pen")
+```
+
+```{r}
+1 <= 2
+
+1 < 0
+```
+
+```{r}
+0.1 + 0.1 + 0.1 == 0.3
+
+all.equal(0.1 + 0.1 + 0.1, 0.3)
+```
+
+```{r}
+TRUE & FALSE # 論理積（かつ）
+
+TRUE | FALSE # 論理和（または）
+
+!TRUE        # 否定（でない）
+```
+
+```{r}
+ifelse(3 < 5, 0, 10)
+```
+
+```{r}
+getwd()
+```
+
+```{r}
+setwd("..")
+getwd()
+```
+
+## 3.2 関数
+
+```{r}
+sqrt(4)
+```
+
+```{r}
+log(100, 10)
+```
+
+```{r}
+log(100)         # 自然対数
+# あるいは
+log(100, exp(1)) # 省略しない場合
+
+```
+
+```{r}
+log10(100) # 常用対数
+
+log2(1024) # 底が2の対数
+```
+
+```{r}
+library(tidyverse)
+4 %>% sqrt
+```
+
+```{r}
+exp(log(5))       # 通常の書き方
+# あるいは
+5 %>% log %>% exp # パイプを使う書き方
+
+```
+
+```{r}
+f <- function(a, b) {
+  a - b
+}
+```
+
+```{r}
+f(3, 5)
+```
+
+```{r}
+f <- function(a, b = 5) {
+  a - b
+}
+
+f(3) # f(3, 5)と同じこと
+```
+
+```{r}
+(function(a, b) { a - b })(3, 5)
+```
+
+## 3.3 コレクション
+
+```{r}
+x <- c("foo", "bar", "baz")
+```
+
+```{r}
+length(x)
+```
+
+```{r}
+x[2]
+```
+
+```{r}
+x[2] <- "BAR"
+x # 結果の確認
+
+x[2] <- "bar" # 元に戻す．
+```
+
+```{r}
+x[-2]
+```
+
+```{r}
+c(x, "qux")
+```
+
+```{r}
+x <- c(x, "qux")
+x # 結果の確認
+```
+
+```{r}
+1:5
+```
+
+```{r}
+seq(from = 0, to = 10, by = 2)
+```
+
+```{r}
+seq(from = 0, to = 1, by = 0.5)
+```
+
+```{r}
+seq(from = 0, to = 100, length.out = 5)
+```
+
+```{r}
+rep(x = 10, times = 5)
+```
+
+```{r}
+tmp <- c("グー", "パー", "グー", "パー")
+x <- factor(tmp, levels = c("グー", "チョキ", "パー"))
+x
+```
+
+```{r}
+x <- c(2, 3, 5, 7)
+
+x + 10 # 加算
+
+x * 10 # 乗算
+```
+
+```{r}
+x <- c(2, 3)
+sin(x)
+```
+
+```{r}
+x <- c(2,  3,   5,    7)
+y <- c(1, 10, 100, 1000)
+x + y
+
+x * y
+```
+
+```{r}
+sum(x * y)
+```
+
+```{r}
+x <- c(TRUE, FALSE)
+y <- c(TRUE, TRUE)
+x & y
+```
+
+```{r}
+u <- c(1, 2, 3)
+v <- c(1, 2, 3)
+w <- c(1, 2, 4)
+
+identical(u, v) # 全体の比較
+
+identical(u, w) # 全体の比較
+
+u == v          # 要素ごとの比較
+
+u == w          # 要素ごとの比較
+```
+
+```{r}
+sum(u == w)  # 同じ要素の数
+
+mean(u == w) # 同じ要素の割合
+```
+
+```{r}
+x <- list(1, "two")
+```
+
+```{r}
+x[[2]]
+```
+
+```{r}
+x <- list("apple"  = "りんご",
+          "orange" = "みかん")
+```
+
+```{r}
+x[["grape"]] <- "ぶどう"
+```
+
+```{r}
+x$apple
+# あるいは
+x$"apple"
+# あるいは
+x[["apple"]]
+# あるいは
+tmp <- "apple"
+x[[tmp]]
+
+```
+
+```{r}
+x <- c("foo", "bar", "baz")
+y <- x
+y[2] <- "BAR" # yを更新する．
+y
+
+x             # xは変わらない．
+```
+
+## 3.4 データフレーム
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_df <- data.frame(
+  name    = c("A", "B", "C", "D"),
+  english = c( 60,  90,  70,  90),
+  math    = c( 70,  80,  90, 100),
+  gender  = c("f", "m", "m", "f"))
+```
+
+```{r}
+my_df <- tribble(
+  ~name, ~english, ~math, ~gender,
+  "A",         60,    70,     "f",
+  "B",         90,    80,     "m",
+  "C",         70,    90,     "m",
+  "D",         90,   100,     "f")
+```
+
+```{r}
+head(my_df)
+# 結果は割愛
+```
+
+```{r}
+dim(my_df)  # 行数と列数
+
+nrow(my_df) # 行数
+
+ncol(my_df) # 列数
+```
+
+```{r}
+my_df2 <- expand.grid(
+  X = c(1, 2, 3),
+  Y = c(10, 100))
+my_df2
+```
+
+```{r}
+colnames(my_df2)
+```
+
+```{r}
+colnames(my_df2) <- c("P", "Q")
+my_df2
+# 以下省略
+```
+
+```{r}
+row.names(my_df)
+```
+
+```{r}
+row.names(my_df2) <-
+  c("a", "b", "c", "d", "e", "f")
+my_df2
+# 以下省略
+```
+
+```{r}
+my_df3 <- data.frame(
+  english =   c( 60,  90,  70,  90),
+  math    =   c( 70,  80,  90, 100),
+  gender  =   c("f", "m", "m", "f"),
+  row.names = c("A", "B", "C", "D"))
+my_df3
+```
+
+```{r}
+tmp <- data.frame(
+  name    = "E",
+  english =  80,
+  math    =  80,
+  gender  = "m")
+my_df2 <- rbind(my_df, tmp)
+```
+
+```{r}
+my_df2 <- my_df %>%
+  mutate(id = c(1, 2, 3, 4))
+```
+
+```{r}
+my_df3 <- my_df               # コピー
+my_df3["id"] <- c(1, 2, 3, 4) # 更新
+my_df3 # 結果の確認（割愛）
+```
+
+```{r}
+my_df[1, 2]
+```
+
+```{r}
+x <- my_df[, 2]
+# あるいは
+x <- my_df$english
+# あるいは
+x <- my_df$"english"
+# あるいは
+x <- my_df[["english"]]
+# あるいは
+tmp <- "english"
+x <- my_df[[tmp]]
+
+x # 結果の確認（割愛）
+```
+
+```{r}
+x <- my_df %>% select(name, math)
+```
+
+```{r}
+x <- my_df[, c(1, 3)]
+```
+
+```{r}
+x <- my_df %>%
+  select(-c(english, gender))
+# あるいは
+x <- my_df[, -c(2, 4)]
+```
+
+```{r}
+x <- my_df[c(1, 3), ]
+```
+
+```{r}
+x <- my_df[-c(2, 4), ]
+```
+
+```{r}
+x <- my_df[my_df$gender == "m", ]
+# あるいは
+x <- my_df %>% filter(gender == "m")
+```
+
+```{r}
+x <- my_df[my_df$english > 80 & my_df$gender == "m", ]
+# あるいは
+x <- my_df %>% filter(english > 80 & gender == "m")
+```
+
+```{r}
+x <- my_df[my_df$english == max(my_df$english), ]
+# あるいは
+x <- my_df %>% filter(english == max(my_df$english))
+```
+
+```{r}
+my_df2 <- my_df # コピー
+my_df2[my_df$gender == "m", ]$gender <- "M"
+```
+
+```{r}
+my_df2
+```
+
+```{r}
+x <- my_df %>% arrange(english)
+```
+
+```{r}
+x <- my_df %>% arrange(-english)
+```
+
+```{r}
+x <- c(2, 3, 5, 7, 11, 13, 17, 19, 23,
+       29, 31, 37)
+A <- matrix(
+  data = x,     # 1次元データ
+  nrow = 3,     # 行数
+  byrow = TRUE) # 行ごとの生成
+A
+```
+
+```{r}
+A <- my_df[, c(2, 3)] %>% as.matrix
+A
+```
+
+```{r}
+as.data.frame(A)
+```
+
+```{r}
+t(A)
+```
+
+```{r}
+t(A) %*% A
+```
+
+```{r}
+my_wider <- data.frame(
+  day = c(25, 26, 27),
+  min = c(20, 21, 15),
+  max = c(24, 27, 21))
+```
+
+```{r}
+my_longer <- my_wider %>%
+  pivot_longer(-day)
+my_longer
+```
+
+```{r}
+my_longer %>% pivot_wider()
+```
+
+```{r}
+my_longer %>%
+  ggplot(aes(x = day, y = value,
+             color = name)) +
+  geom_point() +
+  geom_line() +
+  ylab("temperature") + # y軸ラベル
+  scale_x_continuous(
+    breaks = my_longer$day) # x軸目盛り
+```
+
+## 3.5 1次元データの（非）類似度
+
+```{r}
+A <- c(3,   4,  5)
+B <- c(3,   4, 29)
+C <- c(9, -18,  8)
+AB <- B - A
+AC <- C - A
+
+sum(AB^2)^0.5
+
+sum(AC^2)^0.5
+```
+
+```{r}
+sum(abs(AB))
+
+sum(abs(AC))
+```
+
+```{r}
+sum(A * B) /
+  sum(A * A)^0.5 / sum(B * B)^0.5
+
+sum(A * C) /
+  sum(A * A)^0.5 / sum(C * C)^0.5
+```
+
+```{r}
+cor(A, B)
+
+cor(A, C)
+```
+
+```{r}
+library(tidyverse)
+
+
+
+my_df <- data.frame(
+  x = c(3,  3,   9),
+  y = c(4,  4, -18),
+  z = c(5, 29,   8),
+  row.names = c("A", "B", "C"))
+
+# ユークリッド距離
+my_df %>% proxy::dist("Euclidean")
+
+
+# マンハッタン距離
+my_df %>% proxy::dist("Manhattan")
+
+
+# コサイン類似度
+my_df %>% proxy::simil("cosine")
+
+
+# 相関係数
+my_df %>% proxy::simil("correlation")
+```
+
+## 3.6 Rのパッケージ，Pythonのモジュール
+
+```{r}
+library(tidyverse)
+```
+
+## 3.7 反復処理
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+f1 <- function(x) {
+  tmp <- runif(x)
+  mean(tmp)
+}
+
+f1(10)           # 動作確認
+```
+
+```{r}
+replicate(n = 3, expr = f1(10))
+```
+
+```{r}
+rep(x = f1(10), times = 3)
+```
+
+```{r}
+v <- c(5, 10, 100)
+v %>% map_dbl(f1)
+```
+
+```{r}
+rep(x = 10, times = 3) %>% map_dbl(f1)
+# 結果は割愛
+```
+
+```{r}
+f2 <- function(n) {
+  tmp <- runif(n)
+  list(x = n,
+       p = mean(tmp),
+       q = sd(tmp))
+}
+
+f2(10) # 動作確認
+```
+
+```{r}
+v <- c(5, 10, 100)
+v %>% map_dfr(f2)
+```
+
+```{r}
+f3 <- function(x, y) {
+  tmp <- runif(x, min = 1,
+                  max = y + 1) %>%
+    as.integer
+  list(x = x,
+       y = y,
+       p = mean(tmp),
+       q = sd(tmp))
+}
+
+f3(x = 10, y = 6) # 動作確認
+```
+
+```{r}
+my_df <- data.frame(
+  x = c(5, 10, 100,  5, 10, 100),
+  y = c(6,  6,   6, 12, 12,  12))
+
+my_df %>% pmap_dfr(f3)
+```
+
+```{r}
+library(furrr)
+plan(multisession) # 準備
+
+v <- c(5, 10, 100)
+v %>% future_map_dbl(f1, .options =
+  furrr_options(seed = TRUE))
+# 結果は割愛
+```
+
+## 3.8 その他
+
+```{r}
+x <- 123
+typeof(x)
+```
+
+```{r, eval=FALSE}
+?log
+# あるいは
+help(log)
+```
+
+```{r}
+v <- c(1, NA, 3)
+v
+```
+
+```{r}
+is.na(v[2])
+
+v[2] == NA # 誤り
+```
+
+# 4 統計入門
+
+```{r}
+# Google Colaboratoryの環境設定
+if (file.exists("/content")) {
+  options(Ncpus = parallel::detectCores())
+  installed_packages <- rownames(installed.packages())
+  packages_to_install <- c("exactci", "ggmosaic", "pastecs", "psych", "vcd")
+  install.packages(setdiff(packages_to_install, installed_packages))
+}
+```
+
+## 4.1 記述統計
+
+```{r}
+x <- c(165, 170, 175, 180, 185)
+mean(x) # 平均
+```
+
+```{r}
+n <- length(x) # サンプルサイズ
+sum(x) / n
+```
+
+```{r}
+y <- c(173, 174, 175, 176, 177)
+mean(y)
+```
+
+```{r}
+var(x) # xの分散
+
+var(y) # yの分散
+```
+
+```{r}
+sum((x - mean(x))^2) / (n - 1)
+```
+
+```{r}
+sd(x) # xの標準偏差
+
+sd(y) # yの標準偏差
+```
+
+```{r}
+var(x)**0.5 # xの標準偏差
+```
+
+```{r}
+psych::describe(x)
+
+# あるいは
+
+pastecs::stat.desc(x)
+```
+
+```{r}
+quantile(x)
+```
+
+```{r}
+x <- c(165, 170, 175, 180, 185)
+
+var(x)                # 不偏分散
+
+mean((x - mean(x))^2) # 標本分散
+# あるいは
+n <- length(x)
+var(x) * (n - 1) / n  # 標本分散
+```
+
+```{r}
+sd(x)                     # √不偏分散
+
+mean((x - mean(x))^2)^0.5 # √標本分散
+# あるいは
+sd(x) * sqrt((n - 1) / n) # √標本分散
+```
+
+```{r}
+sd(x) / length(x)**0.5
+```
+
+```{r}
+library(tidyverse)
+
+my_df <- data.frame(
+  name    = c("A", "B", "C", "D"),
+  english = c( 60,  90,  70,  90),
+  math    = c( 70,  80,  90, 100),
+  gender  = c("f", "m", "m", "f"))
+```
+
+```{r}
+var(my_df$english)
+```
+
+```{r}
+# 結果はベクタ
+my_df[, c(2, 3)] %>% sapply(var)
+
+# 結果はリスト
+my_df[, c(2, 3)] %>% lapply(var)
+
+# 結果はデータフレーム
+my_df[, c(2, 3)] %>% # 2, 3列目
+  summarize(across(  # の
+    everything(),    # 全ての
+    var))            # 不偏分散
+# あるいは
+my_df %>%              # データフレーム
+  summarize(across(    # の
+    where(is.numeric), # 数値の列の
+    var))              # 不偏分散
+# あるいは
+my_df %>%              # データフレーム
+  summarize(across(    # の
+    where(is.numeric), # 数値の列の
+    function(x) { var(x) })) # 不偏分散
+
+```
+
+```{r}
+psych::describe(my_df)
+
+# あるいは
+
+pastecs::stat.desc(my_df)
+# 以下省略
+```
+
+```{r}
+table(my_df$gender)
+
+```
+
+```{r}
+my_df2 <- data.frame(
+  gender = my_df$gender,
+  excel = my_df$math >= 80)
+table(my_df2)
+
+```
+
+```{r}
+my_df %>% group_by(gender) %>%
+  summarize(across(
+    where(is.numeric), mean),
+    .groups = "drop") # グループ化解除
+
+```
+
+## 4.2 データの可視化
+
+```{r}
+head(iris)
+```
+
+```{r}
+hist(iris$Sepal.Length)
+```
+
+```{r}
+x <- c(10, 20, 30)
+hist(x, breaks = 2) # 階級数は2
+```
+
+```{r}
+x <- iris$Sepal.Length
+tmp <- seq(min(x), max(x),
+           length.out = 10)
+hist(x, breaks = tmp, right = FALSE)
+```
+
+```{r}
+plot(iris$Sepal.Length,
+     iris$Sepal.Width)
+```
+
+```{r}
+boxplot(iris[, -5])
+```
+
+```{r}
+library(tidyverse)
+my_df <- psych::describe(iris[, -5])
+my_df %>% select(mean, sd, se)
+```
+
+```{r}
+tmp <- rownames(my_df)
+my_df %>% ggplot(aes(x = factor(tmp, levels = tmp), y = mean)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = mean - se, ymax = mean + se)) +
+  xlab(NULL)
+```
+
+```{r}
+my_group <- iris %>% group_by(Species)       # 品種ごとに，
+
+my_df <- my_group %>%                        # 各変数の，平均と
+  summarize(across(everything(), mean)) %>%
+  pivot_longer(-Species)
+
+tmp <- my_group %>%                          # 標準誤差を求める．
+  summarize(across(everything(), ~ sd(.) / length(.)**0.5)) %>%
+  pivot_longer(-Species)
+
+my_df$se <- tmp$value
+head(my_df)
+```
+
+```{r}
+my_df %>%
+  ggplot(aes(x = Species, y = value, fill = name)) +
+  geom_col(position = "dodge") +
+  geom_errorbar(aes(ymin = value - se, ymax = value + se), position = "dodge")
+```
+
+```{r}
+# 各変数の平均
+iris %>% pivot_longer(-Species) %>%
+  ggplot(aes(x = name, y = value)) +
+  geom_bar(stat = "summary", fun = mean) +
+  stat_summary(geom = "errorbar", fun.data = mean_se) +
+  xlab(NULL)
+
+# 各変数の平均（品種ごと）
+iris %>% pivot_longer(-Species) %>%
+  ggplot(aes(x = Species, y = value, fill = name)) +
+  geom_bar(stat = "summary", fun = mean, position = "dodge") +
+  stat_summary(geom = "errorbar", fun.data = mean_se, position = "dodge")
+```
+
+```{r}
+my_df <- data.frame(
+  Species = iris$Species,
+  w_Sepal = iris$Sepal.Width > 3)
+table(my_df) # 分割表
+
+mosaicplot(
+  formula = ~ Species + w_Sepal,
+  data = my_df)
+```
+
+```{r}
+library(vcd)
+vcd::mosaic(formula = ~w_Sepal + Species, data = my_df,
+            labeling = labeling_values)
+```
+
+```{r}
+curve(x^3 - x, -2, 2)
+```
+
+```{r}
+x <- iris$Sepal.Length
+tmp <- seq(min(x), max(x),
+           length.out = 10)
+iris %>%
+  ggplot(aes(x = Sepal.Length)) +
+  geom_histogram(breaks = tmp,
+                 closed = "left")
+```
+
+```{r}
+iris %>%
+  ggplot(aes(x = Sepal.Length,
+             y = Sepal.Width)) +
+  geom_point()
+```
+
+```{r}
+iris %>%
+  pivot_longer(-Species) %>%
+  ggplot(aes(
+    x = factor(name,
+               levels = names(iris)),
+    y = value)) +
+  geom_boxplot() +
+  xlab(NULL)
+```
+
+```{r}
+library(ggmosaic)
+my_df <- data.frame(
+  Species = iris$Species,
+  w_Sepal = iris$Sepal.Width > 3)
+my_df %>%
+  ggplot() +
+  geom_mosaic(
+    aes(x = product(w_Sepal, Species)))
+```
+
+```{r}
+f <- function(x) { x^3 - x }
+data.frame(x = c(-2, 2)) %>%
+  ggplot(aes(x = x)) +
+  stat_function(fun = f)
+```
+
+## 4.3 乱数
+
+```{r}
+x <- sample(x = 1:6,        # 範囲
+            size = 10000,   # 乱数の数
+            replace = TRUE) # 重複あり
+hist(x, breaks = 0:6) # ヒストグラム
+```
+
+```{r}
+x <- runif(min = 0,  # 最小
+           max = 1,  # 最大
+           n = 1000) # 乱数の数
+hist(x)
+```
+
+```{r}
+x <- as.integer(      # 整数に変換
+  runif(min = 1,      # 最小
+        max = 7,      # 最大 + 1
+        n = 1000))    # 乱数の数
+hist(x, breaks = 0:6) # 結果は割愛
+```
+
+```{r}
+n <- 100
+p <- 0.5
+r <- 10000
+x <- rbinom(size = n, # 試行回数
+            prob = p, # 確率
+            n = r)    # 乱数の数
+hist(x, breaks = max(x) - min(x))
+```
+
+```{r}
+r <- 10000
+x <- rnorm(mean = 50, # 平均
+           sd = 5,    # 標準偏差
+           n = r)     # 乱数の数
+hist(x, breaks = 40)
+```
+
+```{r}
+library(tidyverse)
+
+f <- function(k) {
+  n <- 10000
+  tmp <- replicate(n = n, expr = g(rnorm(n =  k, sd = 3)))
+  list(k = k,
+       mean = mean(tmp),       # 平均
+       se = sd(tmp) / sqrt(n)) # 標準誤差
+}
+```
+
+```{r}
+g <- var
+c(10, 20, 30) %>% map_dfr(f)
+```
+
+```{r}
+g <- sd
+c(5, 10, 15, 20) %>% map_dfr(f)
+```
+
+```{r}
+g <- function(x) {
+  n <- length(x)
+  sd(x) *
+    sqrt((n - 1) / 2) *
+    gamma((n - 1) / 2) /
+    gamma(n / 2)
+}
+c(10, 20, 30) %>% map_dfr(f)
+```
+
+## 4.4 統計的推測
+
+```{r}
+library(exactci)
+library(tidyverse)
+
+a <- 0.05                              # 有意水準
+binom.exact(x = 2,                     # 当たった回数
+            n = 15,                    # くじを引いた回数
+            p = 4 / 10,                # 当たる確率（仮説）
+            plot = TRUE,               # p値の描画（結果は次項に掲載）
+            conf.level = 1 - a,        # 信頼係数（デフォルト）
+            tsmethod = "minlike",      # p値の定義
+            alternative = "two.sided") # 両側検定（デフォルト）
+                                       # 左片側検定なら'less'
+                                       # 右片側検定なら'greater'
+
+```
+
+```{r}
+t <- 4 / 10               # 当たる確率
+n <- 15                   # くじを引いた回数
+x <- 0:n                  # 当たった回数
+my_pr  <- dbinom(x, n, t) # x回当たる確率
+my_pr2 <- dbinom(2, n, t) # 2回当たる確率
+
+my_data <- data.frame(x = x,
+                      probability = my_pr,
+                      color = my_pr <= my_pr2) # 当たる確率が，2回当たる確率以下
+
+my_data %>% ggplot(aes(x = x, y = probability, color = color)) +
+  geom_point(size = 3) +
+  geom_linerange(aes(ymin = 0, ymax = probability), ) + # 垂直線
+  geom_hline(yintercept = my_pr2) +                     # 水平線
+  theme(legend.position = "none")                       # 凡例を表示しない．
+```
+
+```{r}
+# 前項の結果（再掲）
+```
+
+```{r}
+# 前項冒頭のコード
+```
+
+```{r}
+X <- c(32.1, 26.2, 27.5, 31.8, 32.1, 31.2, 30.1, 32.4, 32.3, 29.9,
+       29.6, 26.6, 31.2, 30.9, 29.3)
+Y <- c(35.4, 34.6, 31.1, 32.4, 33.3, 34.7, 35.3, 34.3, 32.1, 28.3,
+       33.3, 30.5, 32.6, 33.3, 32.2)
+
+t.test(x = X, y = Y,
+       conf.level = 0.95,         # 信頼係数（デフォルト）
+       paired = TRUE,             # 対標本である．
+       alternative = "two.sided") # 両側検定（デフォルト）
+                                  # 左片側検定なら'less'
+                                  # 右片側検定なら'greater'
+
+```
+
+```{r}
+t.test(x = X, y = Y,
+       paired = FALSE,   # 対標本ではない（デフォルト）．
+       var.equal = TRUE, # 等分散を仮定する．仮定しないならFALSE（デフォルト）．
+       alternative = "two.sided",
+       conf.level = 0.95)
+
+```
+
+```{r}
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/smoker.csv")
+my_data <- read_csv(my_url)
+```
+
+```{r}
+head(my_data)
+```
+
+```{r}
+my_table <- table(my_data)
+my_table
+```
+
+```{r}
+chisq.test(my_table, correct = FALSE)
+
+```
+
+```{r}
+X <- rep(0:1, c(13, 2)) # 手順1
+X
+
+tmp <- sample(X, size = length(X), replace = TRUE) # 手順2
+tmp
+
+sum(tmp) # 手順3
+
+n <- 10^5
+result <- replicate(n, sum(sample(X, size = length(X), replace = TRUE))) # 手順4
+```
+
+```{r}
+hist(x = result, breaks = 0:15,
+     right = FALSE)
+```
+
+```{r}
+quantile(result, c(0.025, 0.975))
+```
+
+# 5 前処理
+
+```{r}
+# Google Colaboratoryの環境設定
+if (file.exists("/content")) {
+  options(Ncpus = parallel::detectCores())
+  installed_packages <- rownames(installed.packages())
+  packages_to_install <- c("caret")
+  install.packages(setdiff(packages_to_install, installed_packages))
+}
+```
+
+## 5.1 データの読み込み
+
+```{r}
+library(tidyverse)
+system(str_c("wget https://raw.githubusercontent.com/taroyabuki",
+             "/fromzero/master/data/exam.csv"))
+```
+
+```{r}
+my_df <- read_csv("exam.csv")
+# あるいは
+my_df <- read.csv("exam.csv",
+  stringsAsFactors = FALSE)
+
+my_df
+```
+
+```{r}
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/exam.csv")
+my_df <- read_csv(my_url)
+# あるいは
+my_df <- read.csv(my_url, stringsAsFactors = FALSE)
+```
+
+```{r}
+my_df2 <- read.csv(
+  file = "exam.csv",
+  stringsAsFactors = FALSE,
+  row.names = 1)
+my_df2
+```
+
+```{r}
+my_df %>% write_csv("exam2.csv")
+# あるいは
+my_df %>% write.csv(
+  file = "exam2.csv",
+  row.names = FALSE)
+```
+
+```{r}
+my_df2 %>% write.csv("exam3.csv")
+```
+
+```{r}
+my_df <- read_csv(file = "exam.csv",
+  locale = locale(encoding = "UTF-8"))
+# あるいは
+my_df <- read.csv(file = "exam.csv",
+  stringsAsFactors = FALSE,
+  fileEncoding = "UTF-8")
+```
+
+```{r}
+my_df %>% write_csv("exam2.csv")
+# あるいは
+my_df %>% write.csv(file = "exam2.csv", row.names = FALSE,
+                    fileEncoding = "UTF-8")
+```
+
+```{r}
+my_url <- "https://taroyabuki.github.io/fromzero/exam.html"
+my_tables <- xml2::read_html(my_url) %>% rvest::html_table()
+```
+
+```{r}
+my_tables
+```
+
+```{r}
+tmp <- my_tables[[1]]
+tmp
+```
+
+```{r}
+# 1行目のデータを使って列の名前を付け直す．
+colnames(tmp) <- tmp[1, ]
+
+# 1行目と1列目を削除する．
+my_data <- tmp[-1, -1]
+my_data
+```
+
+```{r}
+library(jsonlite)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/exam.json")
+my_data <- fromJSON(my_url)
+#my_data <- fromJSON("exam.json") # （ファイルを使う場合）
+my_data
+```
+
+```{r}
+library(xml2)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/exam.xml")
+my_xml <- read_xml(my_url)      # XMLデータの読み込み
+#my_xml <- read_xml("exam.xml") # （ファイルを使う場合）
+xml_ns(my_xml)                  # 名前空間の確認（d1）
+```
+
+```{r}
+my_records <- xml_find_all(my_xml, ".//d1:record")
+```
+
+```{r}
+f <- function(record) {
+  tmp <- xml_attrs(record)                    # 属性を全て取り出し，
+  xml_children(record) %>% walk(function(e) {
+    tmp[xml_name(e)] <<- xml_text(e)          # 子要素の名前と内容を追加する．
+  })
+  tmp
+}
+```
+
+```{r}
+my_data <- my_records %>% map_dfr(f)
+my_data$english <- as.numeric(my_data$english)
+my_data$math    <- as.numeric(my_data$math)
+my_data
+```
+
+## 5.2 データの変換
+
+```{r}
+x1 <- c(1, 2, 3)
+
+z1 <- scale(x1)
+# あるいは
+z1 <- (x1 - mean(x1)) / sd(x1)
+
+z1
+```
+
+```{r}
+c(mean(z1), sd(z1))
+```
+
+```{r}
+z1 * sd(x1) + mean(x1)
+```
+
+```{r}
+x2 <- c(1, 3, 5)
+z2 <- (x2 - mean(x1)) / sd(x1)
+c(mean(z2), sd(z2))
+```
+
+```{r}
+library(caret)
+library(tidyverse)
+
+my_df <- data.frame(
+  id = c(1, 2, 3),
+  class = as.factor(
+    c("A", "B", "C")))
+
+my_enc <- my_df %>%
+  dummyVars(formula = ~ .)
+
+my_enc %>% predict(my_df)
+```
+
+```{r}
+my_df2 <- data.frame(
+  id =    c( 4 ,  5 ,  6 ),
+  class = c("B", "C", "B"))
+my_enc %>% predict(my_df2)
+```
+
+```{r}
+my_enc <- my_df %>%
+  dummyVars(formula = ~ .,
+            fullRank = TRUE)
+my_enc %>% predict(my_df)
+
+my_enc %>% predict(my_df2)
+```
+
+# 6 機械学習の目的・データ・手法
+
+## 6.1 機械学習の目的（本書の場合）
+
+## 6.2 機械学習のためのデータ
+
+```{r}
+iris
+# 以下省略
+```
+
+## 6.3 機械学習のための手法
+
+# 7 回帰1（単回帰）
+
+```{r}
+# Google Colaboratoryの環境設定
+if (file.exists("/content")) {
+  options(Ncpus = parallel::detectCores())
+  installed_packages <- rownames(installed.packages())
+  packages_to_install <- c("caret", "doParallel", "pastecs")
+  install.packages(setdiff(packages_to_install, installed_packages))
+}
+```
+
+## 7.1 自動車の停止距離
+
+## 7.2 データの確認
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- cars
+```
+
+```{r}
+dim(my_data)
+```
+
+```{r}
+head(my_data)
+```
+
+```{r}
+options(digits = 3)
+pastecs::stat.desc(my_data)
+```
+
+```{r}
+my_data %>%
+  ggplot(aes(x = speed, y = dist)) +
+  geom_point()
+```
+
+## 7.3 回帰分析
+
+```{r}
+library(tidyverse)
+
+my_data <- cars
+tmp <- data.frame(speed = 21.5, dist = 67)
+my_data %>% ggplot(aes(x = speed, y = dist)) +
+  coord_cartesian(xlim = c(4, 25), ylim = c(0, 120)) +
+  geom_point() +
+  stat_smooth(formula = y ~ x, method = "lm") +
+  geom_pointrange(data = tmp, aes(ymin = -9, ymax = dist),  linetype = "dotted") +
+  geom_pointrange(data = tmp, aes(xmin =  0, xmax = speed), linetype = "dotted")
+```
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- cars
+```
+
+```{r}
+my_model <- train(form = dist ~ speed, # モデル式（出力変数と入力変数の関係）
+                  data = my_data,      # データ
+                  method = "lm")       # 手法
+```
+
+```{r}
+coef(my_model$finalModel)
+```
+
+```{r}
+tmp <- data.frame(speed = 21.5)
+my_model %>% predict(tmp)
+```
+
+```{r}
+f <- function(x) { my_model %>% predict(data.frame(speed = x)) }
+```
+
+```{r}
+my_data %>%
+  ggplot(aes(x = speed, y = dist,
+             color = "data")) +
+  geom_point() +
+  stat_function(
+    fun = f,
+    mapping = aes(color = "model"))
+```
+
+## 7.4 当てはまりの良さの指標
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- cars
+my_model <- train(form = dist ~ speed, data = my_data, method = "lm")
+
+y  <- my_data$dist
+y_ <- my_model %>% predict(my_data)
+my_data$y_ <- y_
+```
+
+```{r}
+my_data$residual <- y - y_
+head(my_data)
+```
+
+```{r}
+my_data %>%
+  ggplot(aes(x = speed, y = dist)) +
+  geom_point() +
+  geom_line(aes(x = speed, y = y_)) +
+  geom_linerange(mapping = aes(ymin = y_, ymax = dist), linetype = "dotted")
+```
+
+```{r}
+RMSE(y_, y)
+# あるいは
+mean((my_data$residual^2))**0.5
+
+```
+
+```{r}
+R2(pred = y_, obs = y,
+   form = "traditional")
+```
+
+```{r}
+R2(pred = y_, obs = y,
+   form = "corr")
+# あるいは
+summary(my_model$finalModel)$r.squared
+```
+
+```{r}
+my_test <- my_data[1:3, ]
+y  <- my_test$dist
+y_ <- my_model %>% predict(my_test)
+
+R2(pred = y_, obs = y,
+   form = "traditional")
+
+R2(pred = y_, obs = y,
+   form = "corr")
+```
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- cars
+my_idx <- c(2, 11, 27, 34, 39, 44)
+my_sample <- my_data[my_idx, ]
+```
+
+```{r}
+options(warn = -1) # これ以降，警告を表示しない．
+my_model <- train(form = dist ~ poly(speed, degree = 5, raw = TRUE),
+                  data = my_sample,
+                  method = "lm")
+options(warn = 0)  # これ以降，警告を表示する．
+
+y  <- my_sample$dist
+y_ <- my_model %>% predict(my_sample)
+```
+
+```{r}
+RMSE(y_, y)
+
+R2(pred = y_, obs = y,
+   form = "traditional")
+
+R2(pred = y_, obs = y,
+   form = "corr")
+```
+
+```{r}
+f <- function(x) { my_model %>% predict(data.frame(speed = x)) }
+
+my_data %>%
+  ggplot(aes(x = speed, y = dist, color = "data")) +
+  geom_point() +
+  geom_point(data = my_sample, mapping = aes(color = "sample")) +
+  stat_function(fun = f, mapping = aes(color = "model")) +
+  coord_cartesian(ylim = c(0, 120))
+```
+
+## 7.5 K最近傍法
+
+```{r}
+# 準備
+library(caret)
+library(tidyverse)
+my_data <- cars
+
+# 訓練
+my_model <- train(form = dist ~ speed, data = my_data, method = "knn")
+
+# 可視化の準備
+f <- function(x) { my_model %>% predict(data.frame(speed = x))}
+```
+
+```{r}
+my_data %>%
+  ggplot(aes(x = speed,
+             y = dist,
+             color = "data")) +
+  geom_point() +
+  stat_function(
+    fun = f,
+    mapping = aes(color = "model"))
+```
+
+```{r}
+y  <- my_data$dist
+y_ <- my_model %>% predict(my_data)
+
+RMSE(y_, y)
+
+R2(pred = y_, obs = y,
+   form = "traditional")
+
+R2(pred = y_, obs = y,
+   form = "corr")
+```
+
+## 7.6 検証
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- cars
+my_model <- train(form = dist ~ speed, data = my_data, method = "lm")
+
+my_model$results
+```
+
+```{r}
+my_model <- train(form = dist ~ speed, data = my_data, method = "lm",
+                  trControl = trainControl(method = "cv", number = 5))
+my_model$results
+```
+
+```{r}
+my_model <- train(form = dist ~ speed, data = my_data, method = "lm",
+                  trControl = trainControl(method = "LOOCV"))
+my_model$results
+```
+
+```{r}
+library(doParallel)
+cl <- makeCluster(detectCores())
+registerDoParallel(cl)
+```
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- cars
+my_model <- train(form = dist ~ speed, data = my_data, method = "lm")
+y  <- my_data$dist
+y_ <- my_model %>% predict(my_data)
+```
+
+```{r}
+# RMSE（訓練）
+RMSE(y_, y)
+
+# 決定係数1（訓練）
+R2(pred = y_, obs = y,
+   form = "traditional")
+
+# 決定係数6（訓練）
+R2(pred = y_, obs = y,
+   form = "corr")
+```
+
+```{r}
+postResample(pred = y_, obs = y)
+```
+
+```{r}
+my_model <- train(form = dist ~ speed, data = my_data, method = "lm")
+my_model$results
+# 左から，RMSE（検証），決定係数6（検証），MAE（検証）
+```
+
+```{r}
+my_model <- train(form = dist ~ speed, data = my_data, method = "lm",
+                  trControl = trainControl(method = "LOOCV"))
+
+# 方法1
+my_model$results
+
+# 方法2
+y  <- my_model$pred$obs
+y_ <- my_model$pred$pred
+mean((y - y_)^2)**0.5
+```
+
+```{r}
+mean(((y - y_)^2)**0.5)
+```
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- cars
+
+my_lm_model <- train(form = dist ~ speed, data = my_data, method = "lm",
+                     trControl = trainControl(method = "LOOCV"))
+
+my_knn_model <- train(form = dist ~ speed, data = my_data, method = "knn",
+                      tuneGrid = data.frame(k = 5),
+                      trControl = trainControl(method = "LOOCV"))
+```
+
+```{r}
+my_lm_model$results$RMSE
+
+my_knn_model$results$RMSE
+```
+
+```{r}
+y     <- my_data$dist
+y_lm  <- my_lm_model$pred$pred
+y_knn <- my_knn_model$pred$pred
+
+my_df <- data.frame(
+  lm  = (y - y_lm)^2,
+  knn = (y - y_knn)^2)
+
+head(my_df)
+```
+
+```{r}
+boxplot(my_df, ylab = "r^2")
+```
+
+```{r}
+t.test(x = my_df$lm, y = my_df$knn,
+       conf.level = 0.95,
+       paired = TRUE,
+       alternative = "two.sided")
+
+```
+
+## 7.7 パラメータチューニング
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- cars
+my_model <- train(form = dist ~ speed, data = my_data, method = "knn")
+my_model$results
+```
+
+```{r}
+my_params <- expand.grid(k = 1:15)
+
+my_model <- train(form = dist ~ speed, data = my_data, method = "knn",
+                  tuneGrid = my_params,
+                  trControl = trainControl(method = "LOOCV"))
+```
+
+```{r}
+head(my_model$results)
+```
+
+```{r}
+ggplot(my_model)
+```
+
+```{r}
+my_model$bestTune
+```
+
+```{r}
+my_model$results %>%
+  filter(RMSE == min(RMSE))
+```
+
+```{r}
+y  <- my_data$dist
+y_ <- my_model %>% predict(my_data)
+RMSE(y_, y)
+```
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- cars
+
+my_loocv <- function(k) {
+  my_model <- train(form = dist ~ speed, data = my_data, method = "knn",
+                    tuneGrid = data.frame(k = k),
+                    trControl = trainControl(method = "LOOCV"))
+  y  <- my_data$dist
+  y_ <- my_model %>% predict(my_data)
+  list(k = k,
+       training = RMSE(y_, y),             # RMSE（訓練）
+       validation = my_model$results$RMSE) # RMSE（検証）
+}
+
+my_results <- 1:15 %>% map_dfr(my_loocv)
+```
+
+```{r}
+my_results %>%
+  pivot_longer(-k) %>%
+  ggplot(aes(x = k, y = value,
+             color = name)) +
+  geom_line() + geom_point() +
+  xlab("#Neighbors") + ylab("RMSE") +
+  theme(legend.position = c(1, 0),
+        legend.justification = c(1, 0))
+```
+
+```{r}
+# 並列クラスタの停止
+stopCluster(cl)
+registerDoSEQ()
+```
+
+# 8 回帰2（重回帰）
+
+```{r}
+# Google Colaboratoryの環境設定
+if (file.exists("/content")) {
+  options(Ncpus = parallel::detectCores())
+  installed_packages <- rownames(installed.packages())
+  packages_to_install <- c("caret", "ggfortify", "glmnet", "glmnetUtils", "leaps", "neuralnet", "psych")
+  install.packages(setdiff(packages_to_install, installed_packages))
+}
+```
+
+## 8.1 ブドウの生育条件とワインの価格
+
+```{r}
+library(tidyverse)
+my_url <- "http://www.liquidasset.com/winedata.html"
+tmp <- read.table(file = my_url,   # 読み込む対象
+                  header = TRUE,   # 1行目は変数名
+                  na.string = ".", # 欠損値を表す文字列
+                  skip = 62,       # 読み飛ばす行数
+                  nrows = 38)      # 読み込む行数
+psych::describe(tmp)
+```
+
+```{r}
+my_data <- na.omit(tmp[, -c(1, 2)])
+head(my_data)
+```
+
+```{r}
+dim(my_data)
+```
+
+```{r}
+my_data %>% write_csv("wine.csv")
+```
+
+```{r}
+#my_data <- read_csv("wine.csv") # 作ったファイルを使う場合
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+```
+
+## 8.2 重回帰分析
+
+```{r}
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+
+my_model <- train(form = LPRICE2 ~ WRAIN + DEGREES + HRAIN + TIME_SV,
+                  data = my_data,
+                  method = "lm",
+                  trControl = trainControl(method = "LOOCV"))
+```
+
+```{r}
+coef(my_model$finalModel) %>%
+  as.data.frame
+```
+
+```{r}
+my_test <- data.frame(
+  WRAIN = 500, DEGREES = 17,
+  HRAIN = 120, TIME_SV = 2)
+my_model %>% predict(my_test)
+```
+
+```{r}
+y  <- my_data$LPRICE2
+y_ <- my_model %>% predict(my_data)
+
+RMSE(y_, y)
+
+R2(pred = y_, obs = y,
+   form = "traditional")
+
+R2(pred = y_, obs = y,
+   form = "corr")
+```
+
+```{r}
+my_model$results
+```
+
+```{r}
+M <- my_data[, -1] %>%
+  mutate(b0 = 1) %>% as.matrix
+b <- MASS::ginv(M) %*% y
+matrix(b,
+       dimnames = list(colnames(M)))
+```
+
+## 8.3 標準化
+
+```{r}
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+
+my_data %>%
+  mutate_if(is.numeric, scale) %>% # 数値の列の標準化
+  pivot_longer(-LPRICE2) %>%
+  ggplot(aes(x = name, y = value)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", size = 3) +
+  xlab(NULL)
+```
+
+```{r}
+my_model <- train(
+  form = LPRICE2 ~ .,
+  data = my_data,
+  method = "lm",
+  preProcess = c("center", "scale"))
+```
+
+```{r}
+coef(my_model$finalModel) %>%
+  as.data.frame
+```
+
+```{r}
+my_test <- data.frame(
+  WRAIN = 500, DEGREES = 17,
+  HRAIN = 120, TIME_SV = 2)
+my_model %>% predict(my_test)
+```
+
+## 8.4 入力変数の数とモデルの良さ
+
+```{r}
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+
+n <- nrow(my_data)
+my_data2 <- my_data %>% mutate(v1 = 0:(n - 1) %% 2,
+                               v2 = 0:(n - 1) %% 3)
+head(my_data2)
+```
+
+```{r}
+my_model2 <- train(form = LPRICE2 ~ ., data = my_data2, method = "lm",
+                   trControl = trainControl(method = "LOOCV"))
+y  <- my_data2$LPRICE2
+y_ <- my_model2 %>% predict(my_data2)
+
+RMSE(y_, y)
+
+my_model2$results$RMSE
+```
+
+## 8.5 変数選択
+
+```{r}
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+n <- nrow(my_data)
+my_data2 <- my_data %>% mutate(v1 = 0:(n - 1) %% 2,
+                               v2 = 0:(n - 1) %% 3)
+```
+
+```{r}
+my_model <- train(form = LPRICE2 ~ .,
+                  data = my_data2,
+                  method = "leapForward", # 変数増加法
+                  trControl = trainControl(method = "LOOCV"),
+                  tuneGrid = data.frame(nvmax = 1:6)) # 選択する変数の上限
+summary(my_model$finalModel)$outmat
+```
+
+## 8.6 補足：正則化
+
+```{r}
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+```
+
+```{r}
+A <- 2
+B <- 0.1
+
+my_model <- train(
+  form = LPRICE2 ~ .,
+  data = my_data,
+  method = "glmnet",
+  standardize = TRUE,
+  tuneGrid = data.frame(
+    lambda = A,
+    alpha = B))
+```
+
+```{r}
+coef(my_model$finalModel, A)
+```
+
+```{r}
+my_test <- data.frame(
+  WRAIN = 500, DEGREES = 17,
+  HRAIN = 120, TIME_SV = 2)
+my_model %>% predict(my_test)
+```
+
+```{r}
+library(ggfortify)
+library(glmnetUtils)
+
+my_data2 <- my_data %>% scale %>%
+  as.data.frame
+
+B <- 0.1
+
+glmnet(
+  form = LPRICE2 ~ .,
+  data = my_data2,
+  alpha = B) %>%
+  autoplot(xvar = "lambda") +
+  xlab("log A ( = log lambda)") +
+  theme(legend.position = c(0.15, 0.25))
+```
+
+```{r}
+As <- seq(0, 0.1, length.out = 21)
+Bs <- seq(0, 0.1, length.out =  6)
+
+my_model <- train(
+  form = LPRICE2 ~ ., data = my_data, method = "glmnet", standardize = TRUE,
+  trControl = trainControl(method = "LOOCV"),
+  tuneGrid = expand.grid(lambda = As, alpha  = Bs))
+
+my_model$bestTune
+```
+
+```{r}
+tmp <- "B ( = alpha)"
+ggplot(my_model) +
+  theme(legend.position = c(0, 1), legend.justification = c(0, 1)) +
+  xlab("A ( = lambda)") +
+  guides(shape = guide_legend(tmp), color = guide_legend(tmp))
+```
+
+```{r}
+my_model$results %>%
+  filter(RMSE == min(RMSE))
+```
+
+## 8.7 ニューラルネットワーク
+
+```{r}
+curve(1 / (1 + exp(-x)), -6, 6)
+```
+
+```{r}
+library(caret)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+```
+
+```{r}
+my_model <- train(form = LPRICE2 ~ .,
+                  data = my_data,
+                  method = "neuralnet",              # ニューラルネットワーク
+                  preProcess = c("center", "scale"), # 標準化
+                  trControl = trainControl(method = "LOOCV"))
+plot(my_model$finalModel) # 訓練済ネットワークの描画
+```
+
+```{r}
+my_model$results
+```
+
+```{r}
+my_model <- train(
+  form = LPRICE2 ~ .,
+  data = my_data,
+  method = "neuralnet",
+  preProcess = c("center", "scale"),
+  trControl = trainControl(method = "LOOCV"),
+  tuneGrid = expand.grid(layer1 = 1:5,
+                         layer2 = 0:2,
+                         layer3 = 0))
+```
+
+```{r}
+my_model$results %>%
+  filter(RMSE == min(RMSE))
+```
+
+# 9 分類1（多値分類）
+
+```{r}
+# Google Colaboratoryの環境設定
+if (file.exists("/content")) {
+  options(Ncpus = parallel::detectCores())
+  installed_packages <- rownames(installed.packages())
+  packages_to_install <- c("caret", "furrr", "psych", "randomForest", "rpart.plot", "xgboost")
+  install.packages(setdiff(packages_to_install, installed_packages))
+}
+```
+
+## 9.1 アヤメのデータ
+
+```{r}
+my_data <- iris
+head(my_data)
+```
+
+```{r}
+psych::describe(my_data)
+```
+
+## 9.2 木による分類
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- iris
+my_model <- train(form = Species ~ ., data = my_data, method = "rpart")
+```
+
+```{r}
+rpart.plot::rpart.plot(my_model$finalModel, extra = 1)
+```
+
+```{r}
+my_test <- tribble(
+~Sepal.Length, ~Sepal.Width, ~Petal.Length, ~Petal.Width,
+          5.0,          3.5,           1.5,          0.5,
+          6.5,          3.0,           5.0,          2.0)
+
+my_model %>% predict(my_test)
+```
+
+```{r}
+my_model %>% predict(my_test,
+                     type = "prob")
+```
+
+## 9.3 正解率
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- iris
+my_model <- train(form = Species ~ ., data = my_data, method = "rpart2")
+
+y  <- my_data$Species
+y_ <- my_model %>% predict(my_data)
+confusionMatrix(data = y_, reference = y)
+# 以下は割愛
+```
+
+```{r}
+y  <- my_data$Species
+y_ <- my_model %>% predict(my_data)
+mean(y_ == y)
+```
+
+```{r}
+my_model <- train(form = Species ~ ., data = my_data, method = "rpart2",
+                  trControl = trainControl(method = "LOOCV"))
+my_model$results
+```
+
+```{r}
+my_model <- train(form = Species ~ ., data = my_data, method = "rpart2",
+                  tuneGrid = data.frame(maxdepth = 1:10),
+                  trControl = trainControl(method = "LOOCV"))
+my_model$results %>% filter(Accuracy == max(Accuracy))
+```
+
+```{r}
+# パラメータを与えると正解率（LOOCV）を返す関数
+my_loocv <- function(maxdepth, minbucket, minsplit) {
+  my_model <- train(form = Species ~ ., data = my_data, method = "rpart2",
+                    trControl = trainControl(method = "LOOCV"),
+                    tuneGrid = data.frame(maxdepth = maxdepth),
+                    control = rpart::rpart.control(cp = 0.01,
+                                                   minbucket = minbucket,
+                                                   minsplit = minsplit))
+  list(maxdepth = maxdepth,
+       minbucket = minbucket,
+       minsplit = minsplit,
+       Accuracy = my_model$results$Accuracy)
+}
+```
+
+```{r}
+my_params <- expand.grid(
+  maxdepth = 2:5,
+  minbucket = 1:7,
+  minsplit = c(2, 20))
+
+library(furrr)
+plan(multisession) # 並列処理の準備
+my_results <- my_params %>% future_pmap_dfr(my_loocv, # 実行
+  .options = furrr_options(seed = TRUE))
+
+my_results %>% filter(Accuracy == max(Accuracy)) # 正解率（検証）の最大値
+```
+
+```{r}
+my_model <- train(form = Species ~ ., data = my_data, method = "rpart2",
+                  trControl = trainControl(method = "none"),
+                  tuneGrid = data.frame(maxdepth = 3),
+                  control = rpart::rpart.control(cp = 0.01,
+                                                 minbucket = 5,
+                                                 minsplit = 2))
+```
+
+```{r}
+rpart.plot::rpart.plot(
+  my_model$finalModel, extra = 1)
+```
+
+## 9.4 複数の木を使う方法
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- iris
+
+my_model <- train(form = Species ~ ., data = my_data, method = "rf",
+                  tuneGrid = data.frame(mtry = 2:4), # 省略可
+                  trControl = trainControl(method = "LOOCV"))
+my_model$results
+```
+
+```{r}
+my_model <- train(
+  form = Species ~ ., data = my_data, method = "xgbTree",
+  tuneGrid = expand.grid(
+    nrounds          = c(50, 100, 150),
+    max_depth        = c(1, 2, 3),
+    eta              = c(0.3, 0.4),
+    gamma            = 0,
+    colsample_bytree = c(0.6, 0.8),
+    min_child_weight = 1,
+    subsample        = c(0.5, 0.75, 1)),
+  trControl = trainControl(method = "cv", number = 5)) # 5分割交差検証
+my_model$results %>% filter(Accuracy == max(Accuracy)) %>% head(5) %>% t
+```
+
+```{r}
+my_model <- train(form = Species ~ ., data = my_data, method = "rf")
+ggplot(varImp(my_model))
+```
+
+## 9.5 欠損のあるデータでの学習
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- iris
+
+n <- nrow(my_data)
+my_data$Petal.Length[0:(n - 1) %% 10 == 0] <- NA
+my_data$Petal.Width[ 0:(n - 1) %% 10 == 1] <- NA
+
+psych::describe(my_data) # nの値が135の変数に，150 - 135 = 15個の欠損がある．
+```
+
+```{r}
+my_model <- train(
+  form = Species ~ ., data = my_data, method = "rpart2",
+  na.action = na.pass,         # 欠損があっても学習を止めない．
+  preProcess = "medianImpute", # 欠損を中央値で埋める．
+  trControl = trainControl(method = "LOOCV"),
+  tuneGrid = data.frame(maxdepth = 20),          # 木の高さの上限
+  control = rpart::rpart.control(minsplit = 2,   # 分岐の条件
+                                 minbucket = 1)) # 終端ノードの条件
+max(my_model$results$Accuracy)
+```
+
+```{r}
+my_model <- train(form = Species ~ ., data = my_data, method = "xgbTree",
+                  na.action = na.pass,
+                  trControl = trainControl(method = "cv", number = 5))
+max(my_model$results$Accuracy)
+```
+
+## 9.6 他の分類手法
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- iris
+
+my_model <- train(form = Species ~ ., data = my_data, method = "knn",
+                  trControl = trainControl(method = "LOOCV"))
+my_model$results %>% filter(Accuracy == max(Accuracy))
+```
+
+```{r}
+library(caret)
+library(tidyverse)
+my_data <- iris
+
+my_model <- train(form = Species ~ ., data = my_data, method = "nnet",
+                  preProcess = c("center", "scale"), # 標準化
+                  trControl = trainControl(method = "LOOCV"),
+                  trace = FALSE) # 途中経過を表示しない
+my_model$results %>% filter(Accuracy == max(Accuracy))
+```
+
+# 10 分類2（2値分類）
+
+```{r}
+# Google Colaboratoryの環境設定
+if (file.exists("/content")) {
+  options(Ncpus = parallel::detectCores())
+  installed_packages <- rownames(installed.packages())
+  packages_to_install <- c("caret", "PRROC", "rpart.plot")
+  install.packages(setdiff(packages_to_install, installed_packages))
+}
+```
+
+## 10.1 2値分類の性能指標
+
+```{r}
+y       <- c(  0,   1,   1,   0,   1,   0,    1,   0,   0,   1)
+y_score <- c(0.7, 0.8, 0.3, 0.4, 0.9, 0.6, 0.99, 0.1, 0.2, 0.5)
+```
+
+```{r}
+y_ <- ifelse(0.5 <= y_score, 1, 0)
+y_
+```
+
+```{r}
+library(caret)
+confusionMatrix(data      = as.factor(y_), # 予測
+                reference = as.factor(y),  # 正解
+                positive = "1",            # 「1」を陽性とする．
+                mode = "everything")       # 全ての指標を求める．
+```
+
+## 10.2 トレードオフ
+
+```{r}
+library(PRROC)
+library(tidyverse)
+
+y       <- c(  0,   1,   1,   0,   1,   0,    1,   0,   0,   1)
+y_score <- c(0.7, 0.8, 0.3, 0.4, 0.9, 0.6, 0.99, 0.1, 0.2, 0.5)
+y_      <- ifelse(0.5 <= y_score, 1, 0)
+
+c(sum((y == 0) & (y_ == 1)) / sum(y == 0), # FPR
+  sum((y == 1) & (y_ == 1)) / sum(y == 1)) # TPR
+```
+
+```{r}
+my_roc <- roc.curve(scores.class0 = y_score[y == 1], # 答えが1のもののスコア
+                    scores.class1 = y_score[y == 0], # 答えが0のもののスコア
+                    curve = TRUE)
+my_roc %>% plot(xlab = "False Positive Rate",
+                ylab = "True Positive Rate",
+                legend = FALSE)
+```
+
+```{r}
+my_roc$auc
+```
+
+```{r}
+c(sum((y == 1) & (y_ == 1)) / sum(y  == 1), # Recall == TPR
+  sum((y == 1) & (y_ == 1)) / sum(y_ == 1)) # Precision
+```
+
+```{r}
+my_pr <- pr.curve(scores.class0 = y_score[y == 1],
+                  scores.class1 = y_score[y == 0],
+                  curve = TRUE)
+my_pr %>% plot(xlab = "Recall",
+               ylab = "Precision",
+               legend = FALSE)
+```
+
+```{r}
+my_pr$auc.integral
+```
+
+## 10.3 タイタニック
+
+```{r}
+library(caret)
+library(PRROC)
+library(tidyverse)
+
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/titanic.csv")
+my_data <- read_csv(my_url)
+```
+
+```{r}
+head(my_data)
+```
+
+```{r}
+my_model <- train(form = Survived ~ ., data = my_data, method = "rpart2",
+                  tuneGrid = data.frame(maxdepth = 2),
+                  trControl = trainControl(method = "LOOCV"))
+```
+
+```{r}
+rpart.plot::rpart.plot(my_model$finalModel, extra = 1)
+```
+
+```{r}
+my_model$results
+```
+
+```{r}
+y <- my_data$Survived
+tmp <- my_model %>% predict(newdata = my_data, type = "prob")
+y_score <- tmp$Yes
+
+my_roc <- roc.curve(scores.class0 = y_score[y == "Yes"],
+                    scores.class1 = y_score[y == "No"],
+                    curve = TRUE)
+my_roc$auc
+
+my_roc %>% plot(xlab = "False Positive Rate",
+                ylab = "True Positive Rate",
+                legend = FALSE)
+```
+
+```{r}
+X <- my_data %>% select(Class) # 質的入力変数
+y <- my_data$Survived          # 出力変数
+
+options(warn = -1) # これ以降，警告を表示しない．
+my_model1 <- train(x = X, y = y, method = "rpart2",
+                   tuneGrid = data.frame(maxdepth = 2),
+                   trControl = trainControl(method = "LOOCV"))
+options(warn = 0)  # これ以降，警告を表示する．
+
+rpart.plot::rpart.plot(my_model1$finalModel, extra = 1)
+my_model1$results
+```
+
+```{r}
+my_enc <- my_data %>% dummyVars(formula = Survived ~ Class)
+my_data2 <- my_enc %>%
+  predict(my_data) %>%
+  as.data.frame %>%
+  mutate(Survived = my_data$Survived)
+
+my_model2 <- train(form = Survived ~ ., data = my_data2, method = "rpart2",
+                   tuneGrid = data.frame(maxdepth = 2),
+                   trControl = trainControl(method = "LOOCV"))
+rpart.plot::rpart.plot(my_model2$finalModel, extra = 1)
+my_model2$results
+```
+
+```{r}
+my_model3 <- train(form = Survived ~ Class, data = my_data, method = "rpart2",
+                   tuneGrid = data.frame(maxdepth = 2),
+                   trControl = trainControl(method = "LOOCV"))
+rpart.plot::rpart.plot(my_model3$finalModel, extra = 1)
+my_model3$results
+```
+
+## 10.4 ロジスティック回帰
+
+```{r}
+curve(1 / (1 + exp(-x)), -6, 6)
+```
+
+```{r}
+library(caret)
+library(PRROC)
+library(tidyverse)
+
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/titanic.csv")
+my_data <- read_csv(my_url)
+
+my_model <- train(form = Survived ~ ., data = my_data, method = "glm",
+                  trControl = trainControl(method = "LOOCV"))
+```
+
+```{r}
+coef(my_model$finalModel) %>%
+  as.data.frame
+```
+
+```{r}
+my_model$results
+```
+
+# 11 深層学習とAutoML
+
+```{r}
+# Google Colaboratoryの環境設定
+if (file.exists("/content")) {
+  options(Ncpus = parallel::detectCores())
+  installed_packages <- rownames(installed.packages())
+  packages_to_install <- c("h2o", "keras")
+  install.packages(setdiff(packages_to_install, installed_packages))
+}
+```
+
+## 11.1 Kerasによる回帰
+
+```{r}
+library(keras)
+library(tidyverse)
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+tmp <- read_csv(my_url)
+```
+
+```{r}
+my_data <- tmp[sample(nrow(tmp)), ]
+```
+
+```{r}
+X <- my_data %>%
+  select(-LPRICE2) %>% scale
+y <- my_data$LPRICE2
+```
+
+```{r}
+curve(activation_relu(x), -3, 3)
+```
+
+```{r}
+my_model <- keras_model_sequential() %>%
+  layer_dense(units = 3, activation = "relu", input_shape = c(4)) %>%
+  layer_dense(units = 1)
+
+summary(my_model) # ネットワークの概要
+# 割愛（Pythonの結果を参照）
+```
+
+```{r}
+my_model %>% compile(
+  loss = "mse",
+  optimizer = "rmsprop")
+```
+
+```{r}
+my_cb <- callback_early_stopping(
+  patience = 20,
+  restore_best_weights = TRUE)
+```
+
+```{r}
+my_history <- my_model %>% fit(
+    x = X,
+    y = y,
+    validation_split = 0.25,
+    batch_size = 10,
+    epochs = 500,
+    callbacks = list(my_cb),
+    verbose = 0)
+```
+
+```{r}
+plot(my_history)
+```
+
+```{r}
+my_history
+```
+
+```{r}
+y_ <- my_model %>% predict(X)
+mean((y_ - y)^2)**0.5
+```
+
+## 11.2 Kerasによる分類
+
+```{r}
+library(keras)
+library(tidyverse)
+my_data <- iris[sample(nrow(iris)), ]
+```
+
+```{r}
+X <- my_data %>%
+  select(-Species) %>% scale
+y <- as.integer(my_data$Species) - 1
+```
+
+```{r}
+my_model <- keras_model_sequential() %>%
+  layer_dense(units = 3, activation = "relu", input_shape = c(4)) %>%
+  layer_dense(units = 3, activation = "softmax")
+```
+
+```{r}
+my_model %>% compile(loss = "sparse_categorical_crossentropy",
+                     optimizer = "rmsprop",
+                     metrics = c("accuracy"))
+```
+
+```{r}
+my_cb <- callback_early_stopping(
+  patience = 20,
+  restore_best_weights = TRUE)
+
+my_history <- my_model %>%
+  fit(x = X,
+    y = y,
+    validation_split = 0.25,
+    batch_size = 10,
+    epochs = 500,
+    callbacks = list(my_cb),
+    verbose = 0)
+
+plot(my_history)
+```
+
+```{r}
+my_history
+```
+
+```{r}
+tmp <- my_model %>% predict(X)
+y_ <- apply(tmp, 1, which.max) - 1
+mean(y_ == y)
+```
+
+```{r}
+-mean(log(c(0.8, 0.7, 0.3, 0.8)))
+
+-mean(log(c(0.7, 0.6, 0.2, 0.7)))
+```
+
+```{r}
+y <- c(2, 1, 0, 1)
+y_1 <- list(c(0.1, 0.1, 0.8),
+            c(0.1, 0.7, 0.2),
+            c(0.3, 0.4, 0.3),
+            c(0.1, 0.8, 0.1))
+y_2 <- list(c(0.1, 0.2, 0.7),
+            c(0.2, 0.6, 0.2),
+            c(0.2, 0.5, 0.3),
+            c(0.2, 0.7, 0.1))
+```
+
+```{r}
+c(mean(as.array(loss_sparse_categorical_crossentropy(y_true = y, y_pred = y_1))),
+  mean(as.array(loss_sparse_categorical_crossentropy(y_true = y, y_pred = y_2))))
+```
+
+## 11.3 MNIST：手書き数字の分類
+
+```{r}
+library(keras)
+library(tidyverse)
+keras::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
+```
+
+```{r}
+dim(x_train)
+```
+
+```{r}
+x_train[5, , ]
+```
+
+```{r}
+plot(as.raster(x = x_train[5, , ],
+               max = max(x_train)))
+```
+
+```{r}
+head(y_train)
+```
+
+```{r}
+c(min(x_train), max(x_train))
+```
+
+```{r}
+x_train <- x_train / 255
+x_test  <- x_test  / 255
+```
+
+```{r}
+my_index <- sample(1:60000, 6000)
+x_train <- x_train[my_index, , ]
+y_train <- y_train[my_index]
+```
+
+```{r}
+my_model <- keras_model_sequential() %>%
+  layer_flatten(input_shape = c(28, 28)) %>%
+  layer_dense(units = 256, activation = "relu") %>%
+  layer_dense(units = 10, activation = "softmax")
+summary(my_model)
+# 割愛（Pythonの結果を参照）
+
+my_model %>% compile(loss = "sparse_categorical_crossentropy",
+                     optimizer = "rmsprop",
+                     metrics = c("accuracy"))
+
+my_cb <- callback_early_stopping(patience = 5,
+                                 restore_best_weights = TRUE)
+```
+
+```{r}
+my_history <- my_model %>%
+  fit(x = x_train,
+      y = y_train,
+      validation_split = 0.2,
+      batch_size = 128,
+      epochs = 20,
+      callbacks = list(my_cb),
+      verbose = 0)
+
+plot(my_history)
+```
+
+```{r}
+tmp <- my_model %>% predict(x_test)
+y_ <- apply(tmp, 1, which.max) - 1
+table(y_, y_test)
+```
+
+```{r}
+```
+
+```{r}
+mean(y_ == y_test)
+```
+
+```{r}
+my_model %>%
+  evaluate(x = x_test, y = y_test)
+```
+
+```{r}
+x_train2d <- x_train %>% array_reshape(c(-1, 28, 28, 1))
+x_test2d  <- x_test  %>% array_reshape(c(-1, 28, 28, 1))
+```
+
+```{r}
+my_model <- keras_model_sequential() %>%
+  layer_conv_2d(filters = 32, kernel_size = 3,  # 畳み込み層
+                activation = "relu",
+                input_shape = c(28, 28, 1)) %>%
+  layer_max_pooling_2d(pool_size = 2) %>%       # プーリング層
+  layer_flatten() %>%
+  layer_dense(units = 128, activation = "relu") %>%
+  layer_dense(units = 10, activation = "softmax")
+
+summary(my_model)
+# 割愛（Python の結果を参照）
+
+my_model %>% compile(loss = "sparse_categorical_crossentropy",
+                     optimizer = "rmsprop",
+                     metrics = c("accuracy"))
+
+my_cb <- callback_early_stopping(patience = 5,
+                                 restore_best_weights = TRUE)
+```
+
+```{r}
+my_history <- my_model %>%
+  fit(x = x_train2d,
+      y = y_train,
+      validation_split = 0.2,
+      batch_size = 128,
+      epochs = 20,
+      callbacks = list(my_cb),
+      verbose = 0)
+
+plot(my_history)
+```
+
+```{r}
+my_model %>%
+  evaluate(x = x_test2d, y = y_test)
+```
+
+```{r}
+my_model <- keras_model_sequential() %>%
+  layer_conv_2d(filters = 20, kernel_size = 5, activation = "relu",
+                input_shape = c(28, 28, 1)) %>%
+  layer_max_pooling_2d(pool_size = 2, strides = 2) %>%
+  layer_conv_2d(filters = 50, kernel_size = 5, activation = "relu") %>%
+  layer_max_pooling_2d(pool_size = 2, strides = 2) %>%
+  layer_dropout(rate = 0.25) %>%
+  layer_flatten() %>%
+  layer_dense(units = 500, activation = "relu") %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = 10, activation = "softmax")
+
+my_model %>% compile(
+  loss = "sparse_categorical_crossentropy",
+  optimizer = "rmsprop",
+  metrics = c("accuracy"))
+
+my_cb <- callback_early_stopping(patience = 5,
+                                 restore_best_weights = TRUE)
+```
+
+```{r}
+my_history <- my_model %>%
+  fit(x = x_train2d,
+      y = y_train,
+      validation_split = 0.2,
+      batch_size = 128,
+      epochs = 20,
+      callbacks = list(my_cb),
+      verbose = 0)
+
+plot(my_history)
+```
+
+```{r}
+my_model %>%
+  evaluate(x = x_test2d, y = y_test)
+```
+
+```{r}
+y_prob <- my_model %>% predict(x_test2d) # カテゴリに属する確率
+
+my_result <- data.frame(
+  y_prob = apply(y_prob, 1, max),           # 確率の最大値
+  y_     = apply(y_prob, 1, which.max) - 1, # 予測カテゴリ
+  y      = y_test,                          # 正解
+  id     = seq_len(length(y_test))) %>%     # 番号
+  filter(y_ != y) %>%                       # 予測がはずれたものを残す
+  arrange(desc(y_prob))                     # 確率の大きい順に並び替える
+```
+
+```{r}
+head(my_result)
+```
+
+```{r}
+tmp <- my_result[1:5, ]$id
+my_labels <- sprintf("%s (%s)",
+  my_result[1:5, ]$y, tmp)
+my_fig <- expand.grid(
+  label = my_labels,
+  y = 28:1,
+  x = 1:28)
+my_fig$z <- as.vector(
+  x_test[tmp, , ])
+
+my_fig %>% ggplot(
+  aes(x = x, y = y, fill = z)) +
+  geom_raster() +
+  coord_fixed() +
+  theme_void() +
+  theme(legend.position = "none") +
+  facet_grid(. ~ label)
+```
+
+## 11.4 AutoML
+
+```{r}
+library(h2o)
+library(keras)
+library(tidyverse)
+
+h2o.init()
+h2o.no_progress()
+# h2o.shutdown(prompt = FALSE) # 停止
+```
+
+```{r}
+my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
+                "/fromzero/master/data/wine.csv")
+my_data <- read_csv(my_url)
+my_frame <- as.h2o(my_data) # 通常のデータフレームをH2OFrameに変換する．
+# あるいは
+my_frame <- h2o.importFile(my_url, header = TRUE) # データを読み込む．
+```
+
+```{r}
+my_frame
+
+# 通常のデータフレームに戻す．
+my_frame %>% as.data.frame %>% head
+# 結果は割愛（見た目は同じ）
+```
+
+```{r}
+my_model <- h2o.automl(
+    y = "LPRICE2",
+    training_frame = my_frame,
+    max_runtime_secs = 60)
+```
+
+```{r}
+min(my_model@leaderboard$rmse)
+```
+
+```{r}
+tmp <- my_model %>%
+  predict(my_frame) %>%
+  as.data.frame
+y_ <- tmp$predict
+y  <- my_data$LPRICE2
+
+plot(y, y_)
+```
+
+```{r}
+keras::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
+my_index <- sample(1:60000, 6000)
+x_train <- x_train[my_index, , ]
+y_train <- y_train[my_index]
+```
+
+```{r}
+tmp <- x_train %>%
+  array_reshape(c(-1, 28 * 28)) %>%
+  as.data.frame
+tmp$y <- as.factor(y_train)
+my_train <- as.h2o(tmp)
+
+tmp <- x_test %>%
+  array_reshape(c(-1, 28 * 28)) %>%
+  as.data.frame
+my_test <- as.h2o(tmp)
+```
+
+```{r}
+my_model <- h2o.automl(
+    y = "y",
+    training_frame = my_train,
+    max_runtime_secs = 120)
+```
+
+```{r}
+min(my_model@leaderboard$
+    mean_per_class_error)
+```
+
+```{r}
+tmp <- my_model %>%
+  predict(my_test) %>% as.data.frame
+y_ <- tmp$predict
+
+mean(y_ == y_test)
+```
+
+# 12 時系列予測
+
+```{r}
+# Google Colaboratoryの環境設定
+if (file.exists("/content")) {
+  options(Ncpus = parallel::detectCores())
+  installed_packages <- rownames(installed.packages())
+  packages_to_install <- c("caret", "fable", "feasts", "prophet", "tsibble", "urca")
+  packages_to_upgrade <- c("ggplot2")
+  install.packages(union(setdiff(packages_to_install, installed_packages), packages_to_upgrade))
+}
+```
+
+## 12.1 日時と日時の列
+
+```{r}
+as.POSIXct("2021-01-01")
+```
+
+```{r}
+library(tsibble)
+
+seq(from = 2021, to = 2023, by = 1)
+
+seq(from = yearmonth("202101"), to = yearmonth("202103"), by = 2)
+
+seq(from = as.POSIXct("2021-01-01"), to = as.POSIXct("2021-01-03"), by = "1 day")
+
+seq(from = as.POSIXct("2021-01-01 00:00:00"),
+    to   = as.POSIXct("2021-01-01 03:00:00"), by = "2 hour")
+```
+
+## 12.2 時系列データの予測
+
+```{r}
+my_data <- as.vector(AirPassengers)
+```
+
+```{r}
+n <- length(my_data) # データ数（144）
+k <- 108             # 訓練データ数
+```
+
+```{r}
+library(tidyverse)
+library(tsibble)
+
+my_ds <- seq(
+  from = yearmonth("1949/01"),
+  to   = yearmonth("1960/12"),
+  by   = 1)
+my_label <- rep(
+  c("train", "test"),
+  c(k, n - k))
+my_df <- tsibble(
+  ds    = my_ds,
+  x     = 0:(n - 1),
+  y     = my_data,
+  label = my_label,
+  index = ds) # 日時の列の指定
+
+head(my_df)
+```
+
+```{r}
+my_train <- my_df[  1:k , ]
+my_test  <- my_df[-(1:k), ]
+y <- my_test$y
+```
+
+```{r}
+my_plot <- my_df %>%
+  ggplot(aes(x = ds,
+             y = y,
+             color = label)) +
+  geom_line()
+my_plot
+```
+
+```{r}
+library(caret)
+my_lm_model <- train(form = y ~ x, data = my_train, method = "lm")
+y_ <- my_lm_model %>% predict(my_test)
+caret::RMSE(y, y_) # RMSE（テスト）
+```
+
+```{r}
+y_ <- my_lm_model %>% predict(my_df)
+tmp <- my_df %>%
+  mutate(y = y_, label = "model")
+my_plot + geom_line(data = tmp)
+```
+
+```{r}
+library(fable)
+my_arima_model <- my_train %>% model(ARIMA(y))
+my_arima_model
+```
+
+```{r}
+tmp <- my_arima_model %>% forecast(h = "3 years")
+head(tmp)
+```
+
+```{r}
+y_ <- tmp$.mean
+caret::RMSE(y_, y)
+```
+
+```{r}
+# 予測結果のみでよい場合
+#tmp %>% autoplot
+
+tmp %>% autoplot +
+  geom_line(data = my_df,
+            aes(x = ds,
+                y = y,
+                color = label))
+```
+
+```{r}
+library(prophet)
+my_prophet_model <- my_train %>%
+  prophet(seasonality.mode = "multiplicative")
+```
+
+```{r}
+tmp <- my_prophet_model %>% predict(my_test)
+head(tmp[, c("ds", "yhat", "yhat_lower", "yhat_upper")])
+```
+
+```{r}
+y_ <- tmp$yhat
+caret::RMSE(y_, y)
+```
+
+```{r}
+# my_prophet_model %>% plot(tmp) # 予測結果のみでよい場合
+
+my_prophet_model %>% plot(tmp) +
+  geom_line(data = my_train, aes(x = as.POSIXct(ds))) +
+  geom_line(data = my_test,  aes(x = as.POSIXct(ds)), color = "red")
+```
+
+# 13 教師なし学習
+
+```{r}
+# Google Colaboratoryの環境設定
+if (file.exists("/content")) {
+  options(Ncpus = parallel::detectCores())
+  installed_packages <- rownames(installed.packages())
+  packages_to_install <- c("factoextra", "ggbiplot", "igraph")
+  install.packages(setdiff(packages_to_install, installed_packages))
+}
+```
+
+## 13.1 主成分分析
+
+```{r}
+library(tidyverse)
+
+my_data <- data.frame(
+  language  = c(  0,  20,  20,  25,  22,  17),
+  english   = c(  0,  20,  40,  20,  24,  18),
+  math      = c(100,  20,   5,  30,  17,  25),
+  science   = c(  0,  20,   5,  25,  16,  23),
+  society   = c(  0,  20,  30,   0,  21,  17),
+  row.names = c("A", "B", "C", "D", "E", "F"))
+my_result <- my_data %>% prcomp # 主成分分析の実行
+```
+
+```{r}
+my_result$x # 主成分スコア
+```
+
+```{r}
+my_result %>% ggbiplot::ggbiplot(
+  labels = row.names(my_data),
+  scale = 0)
+```
+
+```{r}
+my_result$rotation %>% t
+```
+
+```{r}
+summary(my_result)
+```
+
+```{r}
+my_result <- prcomp(
+  x = my_data,
+  scale = TRUE)       # 標準化
+# あるいは
+my_result <- prcomp(
+  x = scale(my_data)) # 標準化データ
+
+my_result$x # 主成分スコア
+```
+
+```{r}
+Z  <- my_data %>% scale(scale = FALSE) %>% as.matrix # 標準化しない場合
+#Z <- my_data %>% scale(scale = TRUE)  %>% as.matrix # 標準化する場合
+
+n <- nrow(my_data)
+S <- var(Z)                          # 分散共分散行列
+#S <- t(Z) %*% Z / (n - 1)           # （同じ結果）
+tmp <- eigen(S)                      # 固有値と固有ベクトル
+Z %*% tmp$vectors                    # 主成分スコア（結果は割愛）
+cumsum(tmp$values) / sum(tmp$values) # 累積寄与率
+```
+
+```{r}
+udv <- svd(Z) # 特異値分解
+U <- udv$u
+d <- udv$d
+V <- udv$v
+W <- diag(d)
+
+c(all.equal(Z, U %*% W %*% t(V), check.attributes = FALSE), # 確認1
+  all.equal(t(U) %*% U, diag(dim(U)[2])),                   # 確認2
+  all.equal(t(V) %*% V, diag(dim(V)[2])))                   # 確認3
+
+U %*% W            # 主成分スコア（結果は割愛）
+
+e <- d^2 / (n - 1) # 分散共分散行列の固有値
+cumsum(e) / sum(e) # 累積寄与率
+```
+
+## 13.2 クラスタ分析
+
+```{r}
+library(tidyverse)
+
+my_data <- data.frame(
+  x         = c(  0, -16,  10,  10),
+  y         = c(  0,   0,  10, -15),
+  row.names = c("A", "B", "C", "D"))
+
+my_result <- my_data %>%
+  dist("euclidian") %>% # distだけでも可
+  hclust("complete")    # hclustだけでも可
+```
+
+```{r}
+my_result %>% factoextra::fviz_dend(
+  k = 3, # クラスタ数
+  rect = TRUE, rect_fill = TRUE)
+```
+
+```{r}
+my_result %>% factoextra::fviz_dend(
+  k = 3,
+  rect = TRUE, rect_fill = TRUE,
+  type = "phylogenic")
+```
+
+```{r}
+my_result %>% cutree(3)
+```
+
+```{r}
+library(tidyverse)
+
+my_data <- data.frame(
+  language  = c(  0,  20,  20,  25,  22,  17),
+  english   = c(  0,  20,  40,  20,  24,  18),
+  math      = c(100,  20,   5,  30,  17,  25),
+  science   = c(  0,  20,   5,  25,  16,  23),
+  society   = c(  0,  20,  30,   0,  21,  17),
+  row.names = c("A", "B", "C", "D", "E", "F"))
+
+try( # RMarkdownで発生するエラーを回避する．
+  my_data %>% scale %>%                        # 列ごとの標準化
+    gplots::heatmap.2(cexRow = 1, cexCol = 1), # ラベルのサイズを指定して描画する．
+  silent = TRUE)
+```
+
+```{r}
+library(tidyverse)
+
+my_data <- data.frame(
+  x         = c(  0, -16,  10,  10),
+  y         = c(  0,   0,  10, -15),
+  row.names = c("A", "B", "C", "D"))
+
+my_result <- my_data %>% kmeans(3)
+```
+
+```{r}
+my_result$cluster
+```
+
+```{r}
+library(tidyverse)
+library(factoextra)
+
+my_data <- iris[, -5]
+
+f <- 2:5 %>% map(function(k) {
+  my_data %>% kmeans(k) %>%
+    fviz_cluster(data = my_data, geom = "point") +
+    ggtitle(sprintf("k = %s", k))
+})
+gridExtra::grid.arrange(f[[1]], f[[2]], f[[3]], f[[4]], ncol = 2)
+```
+
+```{r}
+fviz_nbclust(my_data, kmeans, method = "wss")
+```
+
+```{r}
+library(tidyverse)
+my_data <- iris[, -5] %>% scale
+
+my_result <- prcomp(my_data)$x %>% as.data.frame # 主成分分析
+
+# 非階層的クラスタ分析の場合
+my_result$cluster <- (my_data %>% scale %>% kmeans(3))$cluster %>% as.factor
+
+# 階層的クラスタ分析の場合
+#my_result$cluster <- my_data %>% dist %>% hclust %>% cutree(3) %>% as.factor
+
+my_result %>%
+  ggplot(aes(x = PC1, y = PC2, color = cluster)) + # 色でクラスタを表現する．
+  geom_point(shape = iris$Species) +               # 形で品種を表現する．
+  theme(legend.position = "none")
+```
+

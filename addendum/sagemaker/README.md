@@ -20,9 +20,12 @@ conda env create --file fromzero/addendum/sagemaker/sage-python.yml
 
 ## Jupyter Notebookの利用
 
-画面左のファイルブラウザーがあります．
+画面左のファイルブラウザーがあります．そこから，次のノートブックを開いてください．
 
-Rのためのノートブックはfromzero/code/r.ipynb（全体）やfromzero/code/R-notebook（各章ごと），Pythonのためのノードブックはfromzero/code/python.ipynb（全体）やfromzero/code/Python-notebook（各章ごと）にあります．
+言語|カーネル|全体のノートブック|各章のノートブック
+--|--|--|--
+R|sage-r:R|fromzero/code/r.ipynb|fromzero/code/R-notebook
+Python|sage-python:Python|fromzero/code/python.ipynb|fromzero/code/Python-notebook
 
 ノートブックのファイル（.ipynb）をダブルクリックするとカーネル選択のダイアログが出るので，Rの場合はsage-r:R，Pythonの場合はsage-python:Pythonを選択してください．
 

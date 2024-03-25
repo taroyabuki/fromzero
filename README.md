@@ -48,14 +48,16 @@ RやPythonのコード（具体的なコンピュータプログラム）の読�
 --|--|--|--
 R|Google Colab|[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taroyabuki/fromzero/blob/master/code/r.ipynb)|[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taroyabuki/fromzero/blob/master/code/r-results.ipynb)
 R|Jupyter|[r.ipynb](code/r.ipynb)|[r-results.ipynb](code/r-results.ipynb)
-R|R Markdown|[r.Rmd](code/r.Rmd)|[r.html](https://taroyabuki.github.io/fromzero/r.html)
+R|RStudio|[r.Rmd](code/r.Rmd)|[r.html](https://taroyabuki.github.io/fromzero/r.html)
 Python|Google Colab|[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taroyabuki/fromzero/blob/master/code/python.ipynb)|[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taroyabuki/fromzero/blob/master/code/python-results.ipynb)
 Python|Jupyter|[python.ipynb](code/python.ipynb)|[python-results.ipynb](code/python-results.ipynb)
-Python|R Markdown|[python.Rmd](code/python.Rmd)|[python.html](https://taroyabuki.github.io/fromzero/python.html)
+Python|RStudio|[python.Rmd](code/python.Rmd)|[python.html](https://taroyabuki.github.io/fromzero/python.html)
 
-コードの使い方は，2.6節を参照してください[^1]．
+コードの使い方は，2.6節を参照してください[^1][^2]．
 
 [^1]: [Amazon SageMaker Studio Lab](https://github.com/taroyabuki/fromzero/tree/main/addendum/sagemaker)での動作も確認済みです．
+
+[^2]: Apple Chipでは，JupyterとRStudio上では第11章のコードが動作しません．第11章のコードを試す場合は，Google Colabを利用してください．
 
 ## Docker
 

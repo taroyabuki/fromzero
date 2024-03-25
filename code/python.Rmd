@@ -19,6 +19,7 @@ RStudioでKnitする方法
 ```{r setup}
 reticulate::py_install(packages=c("lxml", "graphviz", "h2o", "keras", "matplotlib", "pmdarima", "pandas==1.5.3", "pandarallel", "pca", "prophet", "scikit-learn==1.1.3", "scipy", "seaborn", "statsmodels", "tensorflow", "xgboost"));
 ```
+```
 
 ```{python}
 # これはPythonのコードの例です．

@@ -64,6 +64,7 @@ if (file.exists("/content")) {
   installed_packages <- rownames(installed.packages())
   packages_to_install <- c("furrr", "keras", "proxy")
   install.packages(setdiff(packages_to_install, installed_packages))
+  install.packages(c("ggplot2"))
 }
 ```
 
@@ -1890,7 +1891,7 @@ registerDoSEQ()
 if (file.exists("/content")) {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
-  packages_to_install <- c("caret", "ggfortify", "glmnet", "glmnetUtils", "leaps", "neuralnet", "psych")
+  packages_to_install <- c("caret", "ggfortify", "glmnetUtils", "leaps", "neuralnet", "psych")
   install.packages(setdiff(packages_to_install, installed_packages))
 }
 ```
@@ -3053,8 +3054,8 @@ if (file.exists("/content")) {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
   packages_to_install <- c("caret", "fable", "feasts", "prophet", "tsibble", "urca")
-  packages_to_upgrade <- c("ggplot2")
-  install.packages(union(setdiff(packages_to_install, installed_packages), packages_to_upgrade))
+  install.packages(setdiff(packages_to_install, installed_packages))
+  install.packages(c("ggplot2"))
 }
 ```
 

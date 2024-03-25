@@ -64,7 +64,7 @@ Python|RStudio|[python.Rmd](code/python.Rmd)|[python.html](https://taroyabuki.gi
 環境|言語|説明
 --|--|--
 Jupyter Notebook|R, Python|[Jupyter Notebook](docker/jupyter)
-RStudio|R|[rstudio](docker/rstudio)
+RStudio|R|[RStudio](docker/rstudio)
 
 Dockerの使い方は，2.3節を参照してください．
 

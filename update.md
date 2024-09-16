@@ -11,7 +11,10 @@ p. 20|[Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済�
 p. 22 脚註3|Google Colabでノートブックを新規作成した後で，ランタイム→ランタイムのタイプを変更で，Rを選択できるようになりました．
 p. 56|Rのコード`左辺 %<-% 右辺`が正しく動作しない場合は，``keras::`%<-%`(左辺, 右辺)``に変更してください．
 p. 151|GitHub上でのCSVファイルの表示方法が変更されたので，https://github.com/taroyabuki/fromzero/blob/master/data/exam.csv の代わりにhttps://taroyabuki.github.io/fromzero/exam.html を使ってください．
-p. 160, 161|scikit-learnのバージョンによっては，Pythonのコードの`get_feature_names()`を`get_feature_names_out()`に変更する必要があります．
+p. 112 脚註6|対象を数値の列に限定するオプション`numeric_only=True`が必要になりました．
+p. 113|`my_df.var(numeric_only=True)`や`my_df.apply('var', numeric_only=True)`として，対象を数値の列に明示的に限定しなければならなくなりました．配布しているコードはそのように修正しています．
+p. 115|`my_df.groupby('gender').mean(numeric_only=True)`あるいは`my_df.groupby('gender').agg('mean', numeric_only=True)`あるいは`my_df.drop(['name'], axis=1).groupby('gender').agg(np.mean)`のように，対象を数値の列に明示的に限定しなければならなくなりました．配布しているコードはそのように修正しています．
+p. 160, 161|scikit-learnのバージョンによっては，Pythonのコードの`get_feature_names()`を`get_feature_names_out()`に変更する必要があります．配布しているコードはそのように修正しています．
 p. 184|[予測値の期待値の信頼区間](addendum/07.03.02/)
 p. 194|[「7.4.3 当てはまりの良さの指標の問題点」についての補足](addendum/07.04.03.ipynb)
 p. 271, 275|XGBoostで`ValueError: Invalid classes inferred from unique values of y. Expected: [0 1 2], got ['setosa' 'versicolor' 'virginica']`というエラーが出る場合は，`LabelEncoder`を使ってラベルを数値に変換してください．

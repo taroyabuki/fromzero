@@ -2,7 +2,8 @@
 
 # ゼロからはじめるデータサイエンス入門（講談社, 2021）サポートサイト
 
-[書店へのリンク集（版元ドットコム）](https://www.hanmoto.com/bd/isbn/9784065132326)
+- [書店へのリンク集（版元ドットコム）](https://www.hanmoto.com/bd/isbn/9784065132326)
+- [国会図書館](https://ndlsearch.ndl.go.jp/books/R100000002-I031834151)
 
 <img src="https://www.kspub.co.jp/book/detail/images/8e2cee80a3e43a0cbbecef67a945b93613c656b0.jpg" alt="書影" style="width:300px;"/>
 

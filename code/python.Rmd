@@ -900,9 +900,9 @@ np.var(my_df['english'], ddof=1)
 ```
 
 ```{python}
-my_df.var()
+my_df.var(numeric_only=True)
 # あるいは
-my_df.apply('var')
+my_df.apply('var', numeric_only=True)
 # あるいは
 my_df.iloc[:, [1, 2]].apply(
     lambda x: np.var(x, ddof=1))
@@ -930,11 +930,11 @@ pd.crosstab(my_df2.gender,
 ```
 
 ```{python}
-my_df.groupby('gender').mean()
+my_df.groupby('gender').mean(numeric_only=True)
 # あるいは
-my_df.groupby('gender').agg('mean')
+my_df.groupby('gender').agg('mean', numeric_only=True)
 # あるいは
-my_df.groupby('gender').agg(np.mean)
+my_df.drop(['name'], axis=1).groupby('gender').agg(np.mean)
 
 ```
 

@@ -11,18 +11,18 @@ p. 20|[Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済�
 p. 22 脚註3|Google Colabでノートブックを新規作成した後で，ランタイム→ランタイムのタイプを変更で，Rを選択できるようになりました．
 p. 56|Rのコード`左辺 %<-% 右辺`が正しく動作しない場合は，``keras::`%<-%`(左辺, 右辺)``に変更してください．
 p. 151|GitHub上でのCSVファイルの表示方法が変更されたので，https://github.com/taroyabuki/fromzero/blob/master/data/exam.csv の代わりにhttps://taroyabuki.github.io/fromzero/exam.html を使ってください．
-p. 112 脚註6|Pandasのバージョンによっては，対象を数値の列に限定するオプション`numeric_only=True`が必要です．
-p. 113|Pandasのバージョンによっては，Pythonのコードを`my_df.var(numeric_only=True)`や`my_df.apply('var', numeric_only=True)`として，対象を数値の列に明示的に限定しなければなりません．
-p. 115|Pandasのバージョンによっては，Pythonのコードを`my_df.groupby('gender').mean(numeric_only=True)`あるいは`my_df.groupby('gender').agg('mean', numeric_only=True)`あるいは`my_df.drop(['name'], axis=1).groupby('gender').agg(np.mean)`として，対象を数値の列に明示的に限定しなければなりません．
-p. 160, 161|scikit-learnのバージョンによっては，Pythonのコードの`get_feature_names()`を`get_feature_names_out()`に変更する必要があります．
+p. 112 脚註6|**（バージョン依存）**対象を数値の列に限定するオプション`numeric_only=True`が必要な場合があります．
+p. 113|**（バージョン依存）**Pythonのコードを，`my_df.var(numeric_only=True)`や`my_df.apply('var', numeric_only=True)`としなければならないことがあります．
+p. 115|**（バージョン依存）**Pythonのコードを，`my_df.groupby('gender').mean(numeric_only=True)`あるいは`my_df.groupby('gender').agg('mean', numeric_only=True)`あるいは`my_df.drop(['name'], axis=1).groupby('gender').agg(np.mean)`としなければならないことがあります．
+p. 160, 161|**（バージョン依存）**Pythonのコードの`get_feature_names()`を`get_feature_names_out()`としなければならないことがあります．
 p. 184|[予測値の期待値の信頼区間](addendum/07.03.02/)
 p. 194|[「7.4.3 当てはまりの良さの指標の問題点」についての補足](addendum/07.04.03.ipynb)
 p. 271, 275|XGBoostで`ValueError: Invalid classes inferred from unique values of y. Expected: [0 1 2], got ['setosa' 'versicolor' 'virginica']`というエラーが出る場合は，`LabelEncoder`を使ってラベルを数値に変換してください．
 p. 271, 275|9.4.2, 9.5.3項のPythonのコードで警告がたくさん出る場合は，`warnings.simplefilter`の引数の「`, UserWarning`」を削除してみてください．
 p. 277|9.6.2項のPythonのコードで警告がたくさん出る場合は，`MLPClassifier()`を`MLPClassifier(max_iter=1000)`に変更してみてください．
-p. 292, 298|scikit-learnのバージョンによっては，Pythonのコードの`get_feature_names()`を`get_feature_names_out()`に変更する必要があります．
+p. 292, 298|**（バージョン依存）**Pythonのコードの`get_feature_names()`を`get_feature_names_out()`としなければならないことがあります．
 p. 310, 329|Rのコード`左辺 %<-% 右辺`が正しく動作しない場合は，``keras::`%<-%`(左辺, 右辺)``に変更してください．
-p. 342|Pythonのコードの`from fbprophet import Prophet`を`from prophet import Prophet`に変更する必要がある場合があります．
+p. 342|**（バージョン依存）**Pythonのコードの`from fbprophet import Prophet`を`from prophet import Prophet`としなければならないことがあります．
 
 ## 正誤表
 

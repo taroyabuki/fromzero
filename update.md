@@ -10,6 +10,7 @@ p. 6|Windows 11には，脚註4で紹介しているWindows Terminalが搭載さ
 p. 20|[Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済みです．表2.1のクラウド・ノートブックに相当します．
 p. 22 脚註3|Google Colabでノートブックを新規作成した後で，ランタイム→ランタイムのタイプを変更で，Rを選択できるようになりました．
 p. 56|Rのコード`左辺 %<-% 右辺`が正しく動作しない場合は，``keras::`%<-%`(左辺, 右辺)``に変更してください．
+p. 77|**（バージョン依存）** 3.4.2.1のPythonのコードの`my_df2 = my_df.append(tmp)`を`my_df2 = pd.concat([my_df, tmp])`としなければならないことがあります．
 p. 151|GitHub上でのCSVファイルの表示方法が変更されたので，https://github.com/taroyabuki/fromzero/blob/master/data/exam.csv の代わりにhttps://taroyabuki.github.io/fromzero/exam.html を使ってください．
 p. 112 脚註6|**（バージョン依存）** 対象を数値の列に限定するオプション`numeric_only=True`が必要な場合があります．
 p. 113|**（バージョン依存）** Pythonのコードを，`my_df.var(numeric_only=True)`や`my_df.apply('var', numeric_only=True)`としなければならないことがあります．

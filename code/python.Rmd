@@ -440,7 +440,7 @@ tmp = pd.DataFrame({
     'english': [80],
     'math'   : [80],
     'gender' : ['m']})
-my_df2 = my_df.append(tmp)
+my_df2 = pd.concat([my_df, tmp])
 ```
 
 ```{python}

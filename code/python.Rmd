@@ -2653,7 +2653,9 @@ plt.plot(x, y)
 ```
 
 ```{python}
+import sklearn
 import pandas as pd
+from packaging.version import parse
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score, LeaveOneOut
 from sklearn.pipeline import Pipeline
@@ -2665,8 +2667,9 @@ my_data = pd.read_csv(my_url)
 
 X, y = my_data.iloc[:, 0:3], my_data.Survived
 
+none = 'none' if parse(sklearn.__version__) < parse("1.4") else None
 my_pipeline = Pipeline([('ohe', OneHotEncoder(drop='first')),
-                        ('lr', LogisticRegression(penalty='none'))])
+                        ('lr', LogisticRegression(penalty=none))])
 my_pipeline.fit(X, y)
 ```
 

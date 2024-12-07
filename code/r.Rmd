@@ -59,10 +59,10 @@ print(1 + 2)
 
 ```{r}
 # Google Colaboratoryの環境設定
-if (file.exists("/content")) {
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
-  packages_to_install <- c("furrr", "keras", "proxy")
+  packages_to_install <- c("furrr", "keras3", "proxy")
   install.packages(setdiff(packages_to_install, installed_packages))
   install.packages(c("ggplot2"))
 }
@@ -97,7 +97,7 @@ x <- 2
 y <- 3
 x * y
 
-keras::`%<-%`(c(x, y), c(20, 30)) # まとめて名付け
+c(x, y) %<-% c(20, 30) # まとめて名付け
 x * y
 ```
 
@@ -770,7 +770,7 @@ v[2] == NA # 誤り
 
 ```{r}
 # Google Colaboratoryの環境設定
-if (file.exists("/content")) {
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
   packages_to_install <- c("exactci", "ggmosaic", "pastecs", "psych", "vcd")
@@ -1258,7 +1258,7 @@ quantile(result, c(0.025, 0.975))
 
 ```{r}
 # Google Colaboratoryの環境設定
-if (file.exists("/content")) {
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
   packages_to_install <- c("caret")
@@ -1463,7 +1463,7 @@ iris
 
 ```{r}
 # Google Colaboratoryの環境設定
-if (file.exists("/content")) {
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
   packages_to_install <- c("caret", "doParallel", "pastecs")
@@ -1888,7 +1888,7 @@ registerDoSEQ()
 
 ```{r}
 # Google Colaboratoryの環境設定
-if (file.exists("/content")) {
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
   packages_to_install <- c("caret", "ggfortify", "glmnetUtils", "leaps", "neuralnet", "psych")
@@ -2193,7 +2193,7 @@ my_model$results %>%
 
 ```{r}
 # Google Colaboratoryの環境設定
-if (file.exists("/content")) {
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
   packages_to_install <- c("caret", "furrr", "psych", "randomForest", "rpart.plot", "xgboost")
@@ -2410,7 +2410,7 @@ my_model$results %>% filter(Accuracy == max(Accuracy))
 
 ```{r}
 # Google Colaboratoryの環境設定
-if (file.exists("/content")) {
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
   packages_to_install <- c("caret", "PRROC", "rpart.plot")
@@ -2596,10 +2596,10 @@ my_model$results
 
 ```{r}
 # Google Colaboratoryの環境設定
-if (file.exists("/content")) {
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
-  packages_to_install <- c("h2o", "keras")
+  packages_to_install <- c("h2o", "keras3")
   install.packages(setdiff(packages_to_install, installed_packages))
 }
 ```
@@ -2607,7 +2607,11 @@ if (file.exists("/content")) {
 ## 11.1 Kerasによる回帰
 
 ```{r}
-library(keras)
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
+  library(keras3)
+} else {
+  library(keras)
+}
 library(tidyverse)
 my_url <- str_c("https://raw.githubusercontent.com/taroyabuki",
                 "/fromzero/master/data/wine.csv")
@@ -2676,7 +2680,11 @@ mean((y_ - y)^2)**0.5
 ## 11.2 Kerasによる分類
 
 ```{r}
-library(keras)
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
+  library(keras3)
+} else {
+  library(keras)
+}
 library(tidyverse)
 my_data <- iris[sample(nrow(iris)), ]
 ```
@@ -2752,9 +2760,13 @@ c(mean(as.array(loss_sparse_categorical_crossentropy(y_true = y, y_pred = y_1)))
 ## 11.3 MNIST：手書き数字の分類
 
 ```{r}
-library(keras)
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
+  library(keras3)
+} else {
+  library(keras)
+}
 library(tidyverse)
-keras::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
+c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
 ```
 
 ```{r}
@@ -2960,7 +2972,11 @@ my_fig %>% ggplot(
 
 ```{r}
 library(h2o)
-library(keras)
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
+  library(keras3)
+} else {
+  library(keras)
+}
 library(tidyverse)
 
 h2o.init()
@@ -3007,7 +3023,7 @@ plot(y, y_)
 ```
 
 ```{r}
-keras::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
+c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
 my_index <- sample(1:60000, 6000)
 x_train <- x_train[my_index, , ]
 y_train <- y_train[my_index]
@@ -3050,7 +3066,7 @@ mean(y_ == y_test)
 
 ```{r}
 # Google Colaboratoryの環境設定
-if (file.exists("/content")) {
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
   packages_to_install <- c("caret", "fable", "feasts", "prophet", "tsibble", "urca")
@@ -3194,7 +3210,7 @@ my_prophet_model %>% plot(tmp) +
 
 ```{r}
 # Google Colaboratoryの環境設定
-if (file.exists("/content")) {
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
   packages_to_install <- c("factoextra", "ggbiplot", "igraph")

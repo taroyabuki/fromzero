@@ -62,7 +62,7 @@ print(1 + 2)
 if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   options(Ncpus = parallel::detectCores())
   installed_packages <- rownames(installed.packages())
-  packages_to_install <- c("furrr", "keras3", "proxy")
+  packages_to_install <- c("furrr", "proxy", "zeallot")
   install.packages(setdiff(packages_to_install, installed_packages))
   install.packages(c("ggplot2"))
 }
@@ -97,11 +97,7 @@ x <- 2
 y <- 3
 x * y
 
-if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
-  library(keras3)
-} else {
-  library(keras)
-}
+library(zeallot)
 c(x, y) %<-% c(20, 30) # まとめて名付け
 x * y
 ```
@@ -2767,12 +2763,11 @@ c(mean(as.array(loss_sparse_categorical_crossentropy(y_true = y, y_pred = y_1)))
 ```{r}
 if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
   library(keras3)
-  keras3::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
 } else {
   library(keras)
-  keras::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
 }
-# c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
+library(zeallot)
+c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
 library(tidyverse)
 ```
 
@@ -3030,12 +3025,8 @@ plot(y, y_)
 ```
 
 ```{r}
-if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
-  keras3::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
-} else {
-  keras::`%<-%`(c(c(x_train, y_train), c(x_test, y_test)), dataset_mnist())
-}
-# c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
+library(zeallot)
+c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
 my_index <- sample(1:60000, 6000)
 x_train <- x_train[my_index, , ]
 y_train <- y_train[my_index]

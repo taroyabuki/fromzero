@@ -9,7 +9,7 @@
 p. 6|Windows 11には，脚註4で紹介しているWindows Terminalが搭載されています．
 p. 20|[Amazon SageMaker Studio Lab](addendum/sagemaker)での動作も確認済みです．表2.1のクラウド・ノートブックに相当します．
 p. 22 脚註3|Google Colabでノートブックを新規作成した後で，ランタイム→ランタイムのタイプを変更で，Rを選択できるようになりました．
-p. 56|Rのコード`左辺 %<-% 右辺`が正しく動作しない場合は，``keras::`%<-%`(左辺, 右辺)``に変更してください．
+p. 56|Google Colabでは，Kerasの代わりにKeras3をインストールして，`library(keras3)`で読み込んでください（公開コードは対応済み）．
 p. 77|**（バージョン依存）** 3.4.2.1のPythonのコードの`my_df2 = my_df.append(tmp)`を`my_df2 = pd.concat([my_df, tmp])`としなければならないことがあります．
 p. 112 脚註6|**（バージョン依存）** 対象を数値の列に限定するオプション`numeric_only=True`が必要な場合があります．
 p. 113|**（バージョン依存）** Pythonのコードを，`my_df.var(numeric_only=True)`や`my_df.apply('var', numeric_only=True)`としなければならないことがあります．
@@ -23,8 +23,10 @@ p. 271, 275|9.4.2, 9.5.3項のPythonのコードで警告がたくさん出る�
 p. 277|9.6.2項のPythonのコードで警告がたくさん出る場合は，`MLPClassifier()`を`MLPClassifier(max_iter=1000)`に変更してみてください．
 p. 292, 298|**（バージョン依存）** Pythonのコードの`get_feature_names()`を`get_feature_names_out()`としなければならないことがあります．
 p. 297|**（バージョン依存）** Pythonのコードの`LogisticRegression(penalty='none')`を`LogisticRegression(penalty=None)`としなければならないことがあります．
+第11章|Google Colabでは，Kerasの代わりにKeras3をインストールして，`library(keras3)`で読み込んでください（公開コードは対応済み）．
+p. 309|**（バージョン依存）** Rでエラーが出る場合は，`list`を`rbind`に変更してください．
 p. 309|**（バージョン依存）** Pythonでは`y, y_1, y_2 = np.array(y), np.array(y_1), np.array(y_2)`として，リストをアレイに変換しなければならないことがあります．
-p. 310, 329|Rのコード`左辺 %<-% 右辺`が正しく動作しない場合は，``keras::`%<-%`(左辺, 右辺)``に変更してください．
+p. 310, 329|Rのコード`左辺 %<-% 右辺`が正しく動作しない場合は，``keras::`%<-%`(左辺, 右辺)``に変更してください（Google Colabでは``keras3::`%<-%```）．
 p. 342|**（バージョン依存）** Pythonのコードの`from fbprophet import Prophet`を`from prophet import Prophet`としなければならないことがあります．
 
 ## 正誤表

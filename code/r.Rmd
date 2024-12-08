@@ -97,6 +97,11 @@ x <- 2
 y <- 3
 x * y
 
+if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
+  library(keras3)
+} else {
+  library(keras)
+}
 c(x, y) %<-% c(20, 30) # まとめて名付け
 x * y
 ```

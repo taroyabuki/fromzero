@@ -2766,9 +2766,8 @@ if (Sys.getenv("COLAB_JUPYTER_IP") != "") {
 } else {
   library(keras)
 }
-library(zeallot)
-c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
 library(tidyverse)
+c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
 ```
 
 ```{r}
@@ -3025,7 +3024,6 @@ plot(y, y_)
 ```
 
 ```{r}
-library(zeallot)
 c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
 my_index <- sample(1:60000, 6000)
 x_train <- x_train[my_index, , ]
